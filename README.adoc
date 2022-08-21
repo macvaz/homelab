@@ -1,0 +1,57 @@
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: homelab
+:tabsize: 2
+
+== 1. Basic OS configuration
+
+=== Linux version
+=== Network interfaces
+=== UPS?
+
+== 2. Fault-tolerant storage
+
+=== RAID 1 device
+  USB external disks
+  mdadm
+=== NAS
+  sshfs
+  nfs
+=== Onsite backups
+  automatic syncthing replications from mobile phones
+=== Offsite backups
+  rclone
+
+== 3. Router configuration
+
+=== Dynamic DNS
+  NoIP
+=== Blocking direct traffic to Router DNS
+  adblocking (pihole)
+  Mainly problematic with Android phones
+=== Port forwading for VPN
+
+== 4. VPN
+  wireguard
+  laptop scripts
+  mobile phones
+
+== 4. Docker
+
+=== Containers
+
+[source]
+----
+  - Pihole
+  - Syncthing
+  - Yacht
+  - Dashmachine? Heimdall?
+  - Uptime-kuma
+  - Next-cloud?
+----
+
+=== Docker-compose
+
+YAML file
+.env
