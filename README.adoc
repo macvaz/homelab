@@ -16,8 +16,7 @@
   USB external disks
   mdadm
 === NAS
-  sshfs
-  nfs
+  OpenMediaVault
 === Onsite backups
   automatic syncthing replications from mobile phones
 === Offsite backups

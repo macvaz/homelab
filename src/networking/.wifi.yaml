@@ -1,0 +1,9 @@
+# This NIC is disabled and was only used for first boot and installation process
+network:
+  version: 2
+  wifis:
+    wlp2s0:
+      access-points:
+        SSID:
+          password: PASSWORD
+      dhcp4: true
