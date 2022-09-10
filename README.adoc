@@ -4,17 +4,102 @@
 :project_id: homelab
 :tabsize: 2
 
-== 1. Basic OS configuration
+== 1. Hardware specs and BIOS setup
+
+=== Hardware specs
+
+I decided to buy a budget minipc to build my homelab. Most significant hardware specs are the following:
+
+[source]
+----
+mac@minipc:~$ lscpu
+Architecture:            x86_64
+  CPU op-mode(s):        32-bit, 64-bit
+  Address sizes:         39 bits physical, 48 bits virtual
+  Byte Order:            Little Endian
+CPU(s):                  4
+  On-line CPU(s) list:   0-3
+Vendor ID:               GenuineIntel
+  Model name:            Intel(R) Celeron(R) CPU J3455 @ 1.50GHz
+    CPU family:          6
+    Model:               92
+    Thread(s) per core:  1
+    Core(s) per socket:  4
+    Socket(s):           1
+----
+
+[source]
+----
+mac@minipc:~$ more /proc/meminfo
+MemTotal:        7982160 kB
+----
+
+[source]
+----
+mac@minipc:~$ sudo smartctl -a /dev/sda
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.15.0-47-generic] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Device Model:     AirDisk 128GB SSD
+Rotation Rate:    Solid State Device
+SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
+----
+
+For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
+
+*I describe how to create a software based NAS storage* based on a pair of 1 TB external USB disks in section 4 (External storage).
+
+=== Bios setup
+
+BIOS setup for personal pcs are normally set to *boot only when a start button is pressed*. This minipc is a server running 24/7 so in the event of a power outage, I prefer the server to boot automatically when power is restored avoiding me to manually pressing the start button.
+
+This kind of low level power management is configured in the BIOS, not in the operating systems. My BIOS is an old American Megatrend one and the setting to change is placed in the *Boot/State After G3* option and must be set to *"Power On"*.
+
+image::src/bios/boot_on_power_outage.jpg[]
+
+== 2. Linux installation
 
 === Linux version
-=== Network interfaces
-=== UPS?
+=== LVM of internal drives
 
-== 2. Fault-tolerant storage
+[source]
+----
+mac@minipc:~$ lsblk
+NAME                      MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+sda                         8:0    0 119,2G  0 disk
+├─sda1                      8:1    0     1G  0 part  /boot/efi
+├─sda2                      8:2    0     2G  0 part  /boot
+└─sda3                      8:3    0 116,2G  0 part
+  └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
+----
+
+== 3. Network interfaces
+
+== 4. External storage
 
 === RAID 1 device
+
   USB external disks
   mdadm
+
+[source]
+----
+mac@minipc:~$ lsblk
+NAME                      MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+sda                         8:0    0 119,2G  0 disk
+├─sda1                      8:1    0     1G  0 part  /boot/efi
+├─sda2                      8:2    0     2G  0 part  /boot
+└─sda3                      8:3    0 116,2G  0 part
+  └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
+sdb                         8:16   0 931,5G  0 disk
+└─sdb1                      8:17   0 931,5G  0 part
+  └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
+sdc                         8:32   0 931,5G  0 disk
+└─sdc1                      8:33   0 931,5G  0 part
+  └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
+----
+
 === NAS
   OpenMediaVault
 === Onsite backups
