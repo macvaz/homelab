@@ -61,7 +61,12 @@ image::src/bios/boot_on_power_outage.jpg[]
 == 2. Linux installation
 
 === Linux version
-=== LVM of internal drives
+
+ubuntu 22.04
+
+=== Disk partitioning
+
+Only 1 drive partitioned using LVM
 
 [source]
 ----
@@ -76,12 +81,21 @@ sda                         8:0    0 119,2G  0 disk
 
 == 3. Network interfaces
 
+2 network interfaces
+  - nic
+  - wifi
+
 == 4. External storage
+
+This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two extra USB disk drives and create a RAID 1 with them.
+
+Since /dev/sda1 is used only as main operating system disk drive, this RAID device is used exclusively to support the NAS.
 
 === RAID 1 device
 
-  USB external disks
-  mdadm
+-USB external disks
+
+-mdadm
 
 [source]
 ----
