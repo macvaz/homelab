@@ -144,11 +144,13 @@ Most of the applications running in the minipc are deployed as docker containers
 ----
 == 3. External storage
 
-This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)*. Consequently, I added two external USB disk drives and created a RAID 1 device to meet fault-tolerance requirement. At the end if this section, the minipc becomes a homemade NAS server.
+This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
 
-In addition, a monthly off-site backup is automatically generated. See Backup section.
+NAS appliances are a common IT device that provides large size disk and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-Since /dev/sda is used only as main operating system disk drive, this RAID device is used exclusively to support the NAS.
+Extended the mimipc with 2 external 1 TB USB disks was only 80€ so I decided to transform minipc in a homemade NAS server. Created a NAS server in Linux is not hard and a very common option is to create a RAID device using mdadm and expose the drive through NFS and SMB.
+
+Since /dev/sda is used only as main operating system disk drive, this new RAID device is used exclusively to support the NAS.
 
 === RAID 1 device
 
@@ -208,6 +210,8 @@ cockpit-file-sharing
   - Heimdall
   - Uptime-kuma
   - Next-cloud?
+  - Photoview?
+  - Homeassistant?
 ----
 
 === Docker-compose
