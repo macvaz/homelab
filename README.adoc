@@ -154,7 +154,7 @@ Next I describe the final solution implemented.
 
 === Create a RAID 1 device
 
-The cheapest solution for creating a redundant storage device for a minipc, is to connect 2 external USB hard drives and combine them in a redundant multiple disk (md) under a RAID 1 structure. Since /dev/sda is used only as system drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
+The cheapest solution for creating a redundant storage device for a minipc, is *to connect 2 external USB hard drives and combine them in a redundant multiple disk (md) under a RAID 1 structure*. Since /dev/sda is used only as system drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
 
 The model and basic specs fo the 2 external USB drives are:
 
@@ -167,7 +167,7 @@ Device Model:     TOSHIBA MQ04UBF100
 ...
 ----
 
-After connecting the 2 devices, a new RAID 1 device can be easily created using a software RAID controller called mdadm (multiple device administration). In a linux box, as everyone can imagine, mdadm can be set up in a configuration file (https://github.com/macvaz/homelab/tree/main/src/raid/mdadm.conf[/etc/mdadm/mdadm.conf])
+After connecting the 2 devices, a new RAID 1 device can be easily created using a software RAID controller called mdadm (multiple device administration). In a linux box, as everyone can imagine, mdadm can be set up in a configuration file (https://github.com/macvaz/homelab/tree/main/src/raid1/mdadm.conf[/etc/mdadm/mdadm.conf])
 
 I first created this conf file manually. It's a bit tricky since it requires to recreate the ramdisks in order to mount the disk at boot time. In case you miss that step, your next restart will fail. That happens so follow the instractions carefully.
 
