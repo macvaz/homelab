@@ -201,10 +201,8 @@ sdc                         8:32   0 931,5G  0 disk
 cockpit
 cockpit-file-sharing
 
-=== Onsite backups
-  syncthing
-=== Offsite backups
-  monthly backup using rclone
+=== Media player
+minidlna
 
 == 4. VPN and external access
 
@@ -240,5 +238,11 @@ cockpit-file-sharing
 
 https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
 
-.env
+== 6. Backups
+
+=== Onsite backups
+  syncthing + some bash writing on RAID
+
+=== Offsite backups
+  monthly backup (bash sctipt) using rclone
 
