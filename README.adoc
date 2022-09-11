@@ -50,7 +50,7 @@ For my use case, these hardware specs are perfectly ok regarding cpu and memory.
 
 *I describe how to create a software-based homemade NAS storage* based on a pair of 1 TB external USB disks in section 4 (External storage).
 
-=== Bios setup
+=== BIOS setup
 
 BIOS setup for personal pcs are normally set to *boot only when a start button is pressed*. This minipc is a server running 24/7 so in the event of a power outage, I prefer the server to boot automatically when power is restored. This simple config avoids any manual task to restore service.
 
@@ -62,7 +62,7 @@ image::src/bios/boot_on_power_outage.jpg[]
 
 === Linux version
 
-ubuntu 22.04 Server
+Ubuntu 22.04 Server
 
 === Disk partitioning
 
