@@ -48,7 +48,7 @@ SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
 
 For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
 
-*I describe how to create a software-based homemade NAS storage* based on a pair of 1 TB external USB disks in section 4 (External storage).
+*I describe how to create a software-based homemade NAS storage* based on a pair of 1 TB external USB disks in section 3 (External storage).
 
 === BIOS setup
 
@@ -125,7 +125,7 @@ mac@minipc:~$ ls -a /etc/netplan/
 
 The config file for the wifi is prefixed by ".", disabling the wireless interface. Both config files can be found https://github.com/macvaz/homelab/tree/main/src/networking[here.]
 
-=== Addition ubuntu packages
+=== Installing addition ubuntu packages
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required for several reasons:
 
