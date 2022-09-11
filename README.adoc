@@ -83,7 +83,7 @@ sda                         8:0    0 119,2G  0 disk
 
 [source]
 ----
-- cockpit: Web interface for system administration
+- cockpit: Web interface for linux system administration
 - cockpit-file-sharing: Controlling SAMBA and NFS from cockpit
 - rclone: Off-site backup
 - minidlna: Export media content via DLNA to TV
@@ -159,7 +159,7 @@ cockpit-file-sharing
   - Pihole
   - Syncthing
   - Yacht
-  - Dashmachine? Heimdall?
+  - Heimdall
   - Uptime-kuma
   - Next-cloud?
 ----
