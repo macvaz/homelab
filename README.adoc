@@ -98,7 +98,7 @@ tune2fs -m 1 /dev/mapper/ubuntu--vg-ubuntu--lv
 
 === Network interfaces
 
-A server network configuration is very different to a normal mobile phone/desktop/laptop which normally act as clients so IPs can be dynamic /normally using DHCP).
+Since server network configuration is very different to a normal smartphones/desktops/laptops which normally act as clients, IPs can't be dynamically assigned via DHCP. Do you remember I used my normal wifi to install Ubuntu? Let's fix that.
 
 In a server, the network interfaces has fixed IPs in order be found easily by the clients. Disabling DHCP is mandatory.
 
@@ -125,7 +125,7 @@ The config file for the wifi is prefixed by ".", disabling the wireless interfac
 
 === Installing addition ubuntu packages
 
-Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required for several reasons:
+Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
 
 [source]
 ----
@@ -146,9 +146,9 @@ This minipc is intended to *host 1 on-site fault-tolerant backup for my family m
 
 *NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-There are olso open-source NAS servers like FreeNAS, OpenMediaVault or Amahi. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. None of them has official support for Docker and requires hardware virtualization solutions like Proxmox VE or KVM that I would like to avoid in my minipc.
+There are also open-source NAS servers like FreeNAS, OpenMediaVault or Amahi. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. None of them has official support for Docker and requires hardware virtualization solutions like Proxmox VE or KVM that I would like to avoid in my minipc.
 
-Consequently, I decided to build my NAS server from the scratch. Linux has a lot of projects (mdadm, cockpit, nfs server, samba server, minidlna, etc) that jointly with well-known open-source applications (like syncthing, nextcloud, rclone, etc) allows to create a low-end NAS server easily. Just to be clear, a high-end NAS server requires dedicated hardware but this software-based solution is enough for our storage requirements.
+Consequently, *I decided to build my NAS server from the scratch*. Linux has a lot of projects (mdadm, cockpit, nfs server, samba server, minidlna, etc) that jointly with well-known open-source applications (like syncthing, nextcloud, rclone, etc) allows to create a low-end NAS server easily. Just to be clear, a high-end NAS server requires dedicated hardware but this software-based solution is enough for our storage requirements.
 
 Next I describe the final solution implemented.
 
@@ -197,7 +197,7 @@ sdc                         8:32   0 931,5G  0 disk
   └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
 ----
 
-=== File-based protocols (SMB and NFS)
+=== NAS network protocols (SMB and NFS)
 cockpit
 cockpit-file-sharing
 
