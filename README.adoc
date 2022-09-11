@@ -37,13 +37,11 @@ MemTotal:        7982160 kB
 [source]
 ----
 mac@minipc:~$ sudo smartctl -a /dev/sda
-smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.15.0-47-generic] (local build)
-Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
-
-=== START OF INFORMATION SECTION ===
+...
 Device Model:     AirDisk 128GB SSD
 Rotation Rate:    Solid State Device
 SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
+...
 ----
 
 For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
@@ -146,17 +144,41 @@ Most of the applications running in the minipc are deployed as docker containers
 
 This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
 
-NAS appliances are a common IT hardware that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
+*NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-Since extending the minipc with 2 external 1TB USB disks was only 80€, *I decided to transform minipc in a homemade NAS server*. Create a NAS server from the scratch in linux is not hard. A very common option is to create a 2-disks RAID 1 device using mdadm and expose a file-based interface through NFS and SMB.
+There are olso open-source NAS servers like FreeNAS, OpenMediaVault or Amahi. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. None of them has official support for Docker and requires hardware virtualization solutions like Proxmox VE or KVM that I would like to avoid in my minipc.
 
-Since /dev/sda is used only as main operating system disk drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
+Consequently, I decided to build my NAS server from the scratch. Linux has a lot of projects (mdadm, cockpit, nfs server, samba server, minidlna, etc) that jointly with well-known open-source applications (like syncthing, nextcloud, rclone, etc) allows to create a low-end NAS server easily. Just to be clear, a high-end NAS server requires dedicated hardware but this software-based solution is enough for our storage requirements.
 
-=== RAID 1 device
+Next I describe the final solution implemented.
 
--USB external disks
+=== Create a RAID 1 device
 
--mdadm
+The cheapest solution for creating a redundant storage device for a minipc, is to connect 2 external USB hard drives and combine them in a redundant multiple disk (md) under a RAID 1 structure. Since /dev/sda is used only as system drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
+
+The model and basic specs fo the 2 external USB drives are:
+
+[source]
+----
+mac@minipc:~$ sudo smartctl -a /dev/sdb
+...
+Model Family:     Toshiba 2.5" HDD MQ04UBF... (USB 3.0)
+Device Model:     TOSHIBA MQ04UBF100
+...
+----
+
+After connecting the 2 devices, a new RAID 1 device can be easily created using a software RAID controller called mdadm (multiple device administration). In a linux box, as everyone can imagine, mdadm can be set up in a configuration file (https://github.com/macvaz/homelab/tree/main/src/raid/mdadm.conf[/etc/mdadm/mdadm.conf])
+
+I first created this conf file manually. It's a bit tricky since it requires to recreate the ramdisks in order to mount the disk at boot time. In case you miss that step, your next restart will fail. That happens so follow the instractions carefully.
+
+Nowadays, I would rather recommend to use a frontend (like cockpit) instead of using mdadm direct. I discovered cockpit after mounting the RAID and I totally fell in love. It's a web-based administration front-end for Linux (similar to Webmin but more updated) that makes administering a Linux box easier (for people like me, software developers, finding all key information in the same web page is gold).
+
+Creating and monitoring a new RAID 1 device with cockpit is quite simple and it doesn't forget to update ramdisks :)
+
+image::src/raid1/create_raid_cockpit.png[]
+image::src/raid1/create_raid_detailed_cockpit.png[]
+
+After creating the /dev/md0 device, the block devices of the minipc are the following:
 
 [source]
 ----
@@ -175,7 +197,7 @@ sdc                         8:32   0 931,5G  0 disk
   └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
 ----
 
-=== NAS
+=== File-based protocols (SMB and NFS)
 cockpit
 cockpit-file-sharing
 
