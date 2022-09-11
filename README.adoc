@@ -48,7 +48,7 @@ SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
 
 For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
 
-*I describe how to create a software based NAS storage* based on a pair of 1 TB external USB disks in section 4 (External storage).
+*I describe how to create a software-based homemade NAS storage* based on a pair of 1 TB external USB disks in section 4 (External storage).
 
 === Bios setup
 
@@ -62,7 +62,7 @@ image::src/bios/boot_on_power_outage.jpg[]
 
 === Linux version
 
-ubuntu 22.04
+ubuntu 22.04 Server
 
 === Disk partitioning
 
@@ -79,6 +79,17 @@ sda                         8:0    0 119,2G  0 disk
   └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
 ----
 
+=== Ubuntu packages to install
+
+[source]
+----
+- cockpit: Web interface for system administration
+- cockpit-file-sharing: Controlling SAMBA and NFS from cockpit
+- rclone: Off-site backup
+- minidlna: Export media content via DLNA to TV
+- ¿tailscale?: VPN server behind cgnat
+----
+
 == 3. Network interfaces
 
 2 network interfaces
@@ -87,7 +98,9 @@ sda                         8:0    0 119,2G  0 disk
 
 == 4. External storage
 
-This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two extra USB disk drives and create a RAID 1 with them.
+This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two extra USB disk drives and create a RAID 1 with them in order to build a homemade NAS server.
+
+In addition, a monthly off-site backup is automatically generated. See Backup section.
 
 Since /dev/sda1 is used only as main operating system disk drive, this RAID device is used exclusively to support the NAS.
 
@@ -115,11 +128,13 @@ sdc                         8:32   0 931,5G  0 disk
 ----
 
 === NAS
-  OpenMediaVault
+cockpit
+cockpit-file-sharing
+
 === Onsite backups
-  automatic syncthing replications from mobile phones
+  syncthing
 === Offsite backups
-  rclone
+  monthly backup using rclone
 
 == 3. Router configuration
 
@@ -128,7 +143,7 @@ sdc                         8:32   0 931,5G  0 disk
 === Blocking direct traffic to Router DNS
   adblocking (pihole)
   Mainly problematic with Android phones
-=== Port forwading for VPN
+=== Port forwading for VPN and ¿nextcloud?
 
 == 4. VPN
   wireguard

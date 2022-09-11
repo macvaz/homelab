@@ -1,5 +1,28 @@
 version: "3"
+
+networks:
+  homelab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
+          gateway: 10.10.10.1
+
 services:
+
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=Europe/Madrid
+    volumes:
+      - ${VOL}/heimdall/config>:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
 
   syncthing:
     image: syncthing/syncthing
@@ -15,6 +38,8 @@ services:
       - 22000:22000/tcp # TCP file transfers
       - 22000:22000/udp # QUIC file transfers
       - 21027:21027/udp # Receive local discovery broadcasts
+    networks:
+      - homelab
     restart: unless-stopped
 
   pihole:
@@ -33,6 +58,8 @@ services:
       - "53:53/tcp" # DNS
       - "53:53/udp" # DNS
       - "$PIHOLE_PORT:80/tcp" # Web interface
+    networks:
+      - homelab
     restart: unless-stopped
 
   yacht:
@@ -47,12 +74,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - ${YACHT_PORT}:8000
+    networks:
+      - homelab
     restart: unless-stopped
 
-  uptime-kuma:
+  uptime:
     image: louislam/uptime-kuma:1
-    container_name: uptime-kuma
-    hostname: uptime_kuma
+    container_name: uptime
+    hostname: uptime
     environment:
       - PUID=$PUID
       - PGID=$PGID
@@ -61,33 +90,13 @@ services:
       - ${VOL}/uptime-kuma/data:/app/data
     ports:
       - 3001:3001
+    networks:
+      - homelab
     extra_hosts:
       - "pihole.lan:$MINIPC_IP"
-      - "backup.lan:$MINIPC_IP"
-      - "yacht.lan:$MINIPC_IP"
     secrets:
       - secret_1
     restart: always
-
-  deluge:
-    image: lscr.io/linuxserver/deluge:latest
-    container_name: deluge
-    environment:
-      - PUID=$PUID
-      - PGID=$PGID
-      - TZ=Europe/London
-      - DELUGE_LOGLEVEL=error #optional
-    volumes:
-      - $VOL/deluge/config:/config
-      - $VOL/deluge/downloads:/downloads
-    ports:
-      - 8112:8112
-      - 6881:6881
-      - 6881:6881/udp
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-    restart: unless-stopped
 
 secrets:
   secret_1:
