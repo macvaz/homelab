@@ -62,7 +62,7 @@ image::src/bios/boot_on_power_outage.jpg[]
 
 Standard stuff here. Downloaded *Ubuntu 22.04 Server* ISO file and flashed in a USB stick. Booted minipc from the USB drive and conducted a common  installation.
 
-Since the minipc final place is in a very uncomfortable place (in the top of a bookshelf), I installed the Ubuntu Server similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
+Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed the Ubuntu Server similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
 
 === Disk partitioning
 
