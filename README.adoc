@@ -144,7 +144,7 @@ Most of the applications running in the minipc are deployed as docker containers
 ----
 == 3. External storage
 
-This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two external USB disk drives and create a RAID 1 with them in order to build a homemade NAS server.
+This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two external USB disk drives and create a RAID 1 to meet fault-tolerance requirement. At the end if this section, the minipc will become a homemade NAS server.
 
 In addition, a monthly off-site backup is automatically generated. See Backup section.
 
