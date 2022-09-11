@@ -146,7 +146,7 @@ This minipc is intended to *host 1 on-site fault-tolerant backup for my family m
 
 *NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-There are also open-source NAS servers like FreeNAS, OpenMediaVault or Amahi. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. None of them has official support for Docker and requires hardware virtualization solutions like Proxmox VE or KVM that I would like to avoid in my minipc.
+*There are also open-source NAS servers like FreeNAS, OpenMediaVault or Amahi*. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. *None of them has official support for Docker and requires hardware virtualization solutions like Proxmox VE or KVM* that I would like to avoid in my minipc.
 
 Consequently, *I decided to build my NAS server from the scratch*. Linux has a lot of projects (mdadm, cockpit, nfs server, samba server, minidlna, etc) that jointly with well-known open-source applications (like syncthing, nextcloud, rclone, etc) allows to create a low-end NAS server easily. Just to be clear, a high-end NAS server requires dedicated hardware but this software-based solution is enough for our storage requirements.
 
