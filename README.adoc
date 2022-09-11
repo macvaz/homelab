@@ -52,9 +52,9 @@ For my use case, these hardware specs are perfectly ok regarding cpu and memory.
 
 === Bios setup
 
-BIOS setup for personal pcs are normally set to *boot only when a start button is pressed*. This minipc is a server running 24/7 so in the event of a power outage, I prefer the server to boot automatically when power is restored avoiding me to manually pressing the start button.
+BIOS setup for personal pcs are normally set to *boot only when a start button is pressed*. This minipc is a server running 24/7 so in the event of a power outage, I prefer the server to boot automatically when power is restored. This simple config avoids any manual task to restore service.
 
-This kind of low level power management is configured in the BIOS, not in the operating systems. My BIOS is an old American Megatrend one and the setting to change is placed in the *Boot/State After G3* option and must be set to *"Power On"*.
+This kind of low level power management is configured at BIOS level, not in the operating systems. My BIOS is an old American Megatrend one and the setting to change is placed in the *Boot/State After G3* option and must be set to *"Power On"*.
 
 image::src/bios/boot_on_power_outage.jpg[]
 
@@ -83,6 +83,8 @@ sda                         8:0    0 119,2G  0 disk
 
 [source]
 ----
+- docker.io
+- wireguard
 - cockpit: Web interface for linux system administration
 - cockpit-file-sharing: Controlling SAMBA and NFS from cockpit
 - rclone: Off-site backup
