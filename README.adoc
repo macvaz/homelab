@@ -62,11 +62,13 @@ image::src/bios/boot_on_power_outage.jpg[]
 
 === Linux version
 
-Ubuntu 22.04 Server
+Standard stuff here. Downloaded Ubuntu 22.04 Server ISO file and flashed in a USB stick. Booted minipc from the USB drive and conducted a common  installation.
+
+Since the minipc final place is in a very uncomfortable place (in the top of a bookshelf), I installed the Ubuntu Server similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
 
 === Disk partitioning
 
-Only 1 drive partitioned using LVM
+Ubuntu graphical installer makes very easy to use LVM. I decided to use the automatic partition table suggested by the installer because it was exactly what I was looking for: a GPT partition table and the / file system mounted under a LVM Volume Group.
 
 [source]
 ----
@@ -79,26 +81,68 @@ sda                         8:0    0 119,2G  0 disk
   └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
 ----
 
-=== Ubuntu packages to install
+Each partition of the disk has a very common and clear goal:
+[source]
+----
+- /boot/efi is where OS-independent bootloader is stored (grub2 in my case)
+- /boot is where linux boot-related binaries are stored. (mainly kernels and ramdisks).
+- / is the root of the file system. It is mounted using LVM.
+----
+
+Since / is mounted under a LVM volume group, it's easy to create more logical volumes if required. LVM provides a lot of flexibility to rearrange volumes.
+
+The only modification I did was to change the level of disk space reserved to root in emergency situations. I finally reserved 1% to root and the size of the logical volume perfectly matched the free space of the disk.
 
 [source]
 ----
-- docker.io
-- wireguard
+tune2fs -m 1 /dev/mapper/ubuntu--vg-ubuntu--lv
+----
+
+=== Network interfaces
+
+A server network configuration is very different to a normal mobile phone/desktop/laptop which normally act as clients so IPs can be dynamic /normally using DHCP).
+
+In a server, the network interfaces has fixed IPs in order be found easily by the clients. Disabling DHCP is mandatory.
+
+My minipc has 2 network interfaces (ethernet and wireless):
+
+[source]
+----
+mac@minipc:~$ lspci
+01:00.0 Ethernet controller: Intel Corporation Ethernet Controller I225-V (rev 01)
+02:00.0 Network controller: Intel Corporation Wireless 3165 (rev 79)
+----
+
+My minipc is placed in the top of a booksheld, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and to increase security of the minipc I disabled the wireless interface. The wifi interfaces was mainly used to install ubuntu but for 24/7 production server I prefer the stability an ethernet cable.
+
+Ubuntu has plenty options to configure the network interfaces. I finally used netplan and created 2 yaml files:
+
+[source]
+----
+mac@minipc:~$ ls -a /etc/netplan/
+.  ..  ethernet.yaml  .wifi.yaml
+----
+
+The config file for the wifi is prefixed by ".", disabling the wireless interface. Both config files can be found https://github.com/macvaz/homelab/tree/main/src/networking[here.]
+
+=== Addition ubuntu packages
+
+Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required for several reasons:
+
+[source]
+----
+- docker.io: Docker engine
+- docker-compose: Multi-container docker applications
+- mdadm: Software RAID management
+- wireguard: VPN server
 - cockpit: Web interface for linux system administration
 - cockpit-file-sharing: Controlling SAMBA and NFS from cockpit
+- cockpit-identities: Controlling users and passwords for SAMBA and NFS from cockpit
 - rclone: Off-site backup
 - minidlna: Export media content via DLNA to TV
 - ¿tailscale?: VPN server behind cgnat
 ----
-
-== 3. Network interfaces
-
-2 network interfaces
-  - nic
-  - wifi
-
-== 4. External storage
+== 3. External storage
 
 This minipc is intended to host 1 on-site fault-tolerant backup for my family media (photos and videos). Consequently, I added two extra USB disk drives and create a RAID 1 with them in order to build a homemade NAS server.
 
@@ -138,7 +182,7 @@ cockpit-file-sharing
 === Offsite backups
   monthly backup using rclone
 
-== 3. Router configuration
+== 4. VPN and external access
 
 === Dynamic DNS
   NoIP
@@ -147,12 +191,12 @@ cockpit-file-sharing
   Mainly problematic with Android phones
 === Port forwading for VPN and ¿nextcloud?
 
-== 4. VPN
+=== VPN
   wireguard
   laptop scripts
   mobile phones
 
-== 4. Docker
+== 5. Docker
 
 === Containers
 
@@ -168,5 +212,7 @@ cockpit-file-sharing
 
 === Docker-compose
 
-YAML file
+https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
+
 .env
+
