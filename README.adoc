@@ -146,11 +146,11 @@ Most of the applications running in the minipc are deployed as docker containers
 
 This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
 
-NAS appliances are a common IT device that provides large size disk and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
+NAS appliances are a common IT hardware that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-Extended the mimipc with 2 external 1 TB USB disks was only 80€ so I decided to transform minipc in a homemade NAS server. Created a NAS server in Linux is not hard and a very common option is to create a RAID device using mdadm and expose the drive through NFS and SMB.
+Since extending the minipc with 2 external 1TB USB disks was only 80€, *I decided to transform minipc in a homemade NAS server*. Create a NAS server from the scratch in linux is not hard. A very common option is to create a 2-disks RAID 1 device using mdadm and expose a file-based interface through NFS and SMB.
 
-Since /dev/sda is used only as main operating system disk drive, this new RAID device is used exclusively to support the NAS.
+Since /dev/sda is used only as main operating system disk drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
 
 === RAID 1 device
 
