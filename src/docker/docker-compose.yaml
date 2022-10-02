@@ -2,11 +2,7 @@ version: "3"
 
 networks:
   homelab:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.10.10.0/24
-          gateway: 10.10.10.1
+    external: true
 
 services:
 
@@ -126,25 +122,6 @@ services:
       - "pihole.lan:$MINIPC_IP"
     secrets:
       - secret_1
-    restart: always
-
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    hostname: portainer
-    environment:
-      - PUID=$PUID
-      - PGID=$PGID
-    security_opt:
-      - no-new-privileges:true
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ${VOL}/portainer/portainer-data:/data
-    ports:
-      - 9000:9000
-    networks:
-      - homelab
     restart: always
 
 secrets:
