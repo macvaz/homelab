@@ -222,16 +222,30 @@ minidlna
 
 === Containers
 
+Running containers
+
 [source]
 ----
   - Pihole
   - Syncthing
-  - Yacht
+  - Portainer
   - Heimdall
   - Uptime-kuma
+  - Photoview
+----
+
+In analysis:
+
+[source]
+----
+  - smtp-relay: https://hub.docker.com/r/ixdotai/smtp o https://hub.docker.com/r/namshi/smtp
+  - Watchtower?
+  - Traefik?
   - Next-cloud?
-  - Photoview?
   - Homeassistant?
+  - Plex / kodi / jellybin / emby
+  - freeipa
+  - teleport
 ----
 
 === Docker-compose
