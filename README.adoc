@@ -138,7 +138,7 @@ Most of the applications running in the minipc are deployed as docker containers
 - cockpit-identities: Controlling users and passwords for SAMBA and NFS from cockpit
 - rclone: Off-site backup
 - minidlna: Export media content via DLNA to smart TV
-- ¿tailscale?: VPN server behind cgnat
+- ssmtp: Sending alarms as emails from applications
 ----
 == 3. External storage
 
@@ -238,7 +238,6 @@ In analysis:
 
 [source]
 ----
-  - smtp-relay: https://hub.docker.com/r/ixdotai/smtp o https://hub.docker.com/r/namshi/smtp
   - Watchtower?
   - Traefik?
   - Next-cloud?

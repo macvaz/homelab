@@ -18,7 +18,12 @@ mkdir -p "$NAS_PATH/$month"
 
 echo "From syncthing folders to unique NAS month folder (onsite backup)"
 backup_folder () {
-   rsync -avh $SYNCTHING_PATH/$1/*_$month* "$NAS_PATH/$month/"
+   count=$(find $SYNCTHING_PATH/$1/ -name "*_$month*" | wc -l)
+   if [ "$count" -ge 1 ]; then
+     rsync -avh $SYNCTHING_PATH/$1/*_$month* "$NAS_PATH/$month/"
+   else
+     echo -e "Subject: Backup error\nFrom: email@homelab\nMissing files in $SYNCTHING_PATH/$1/*_$month*" | mail $EMAIL_ADDRESS
+   fi
 }
 
 backup_folder "movil_miguel/camara/Camera"
@@ -26,3 +31,5 @@ backup_folder "Tarjeta-Movil-Maria"
 
 echo "Starting rclone (offsite backup)"
 rclone sync "$NAS_PATH/$month" "$RCLONE_REMOTE:$month" --progress
+
+echo -e "Subject: Backup result\nFrom: email@homelab\nBackup result" | mail $EMAIL_ADDRESS
