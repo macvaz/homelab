@@ -22,7 +22,7 @@ backup_folder () {
    if [ "$count" -ge 1 ]; then
      rsync -avh $SYNCTHING_PATH/$1/*_$month* "$NAS_PATH/$month/"
    else
-     echo -e "Subject: Backup error\nFrom: email@homelab\nMissing files in $SYNCTHING_PATH/$1/*_$month*" | mail $EMAIL_ADDRESS
+     echo "Missing files in $SYNCTHING_PATH/$1/*_$month*" | mutt -s "Backup error" $EMAIL_ADDRESS
    fi
 }
 
@@ -32,4 +32,6 @@ backup_folder "Tarjeta-Movil-Maria"
 echo "Starting rclone (offsite backup)"
 rclone sync "$NAS_PATH/$month" "$RCLONE_REMOTE:$month" --progress
 
-echo -e "Subject: Backup result\nFrom: email@homelab\nBackup result" | mail $EMAIL_ADDRESS
+sleep 2
+
+cat $HOME/backup.log | mutt -s "Backup result" -a $HOME/backup.log -- $EMAIL_ADDRESS

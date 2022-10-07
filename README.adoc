@@ -138,7 +138,7 @@ Most of the applications running in the minipc are deployed as docker containers
 - cockpit-identities: Controlling users and passwords for SAMBA and NFS from cockpit
 - rclone: Off-site backup
 - minidlna: Export media content via DLNA to smart TV
-- ssmtp: Sending alarms as emails from applications
+- mutt: Simple email client that allows sending emails from shell scripts
 ----
 == 3. External storage
 
