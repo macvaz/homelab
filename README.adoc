@@ -259,6 +259,5 @@ https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
   syncthing + some bash writing on RAID
 
 === Offsite backups
-  monthly backup (bash sctipt) using rclone
-  src/backup/backup_last_month_photos.sh
+  https://github.com/macvaz/homelab/tree/main/src/backup/backup_last_month_photos.sh[Monthly backup script using rclone]
 
