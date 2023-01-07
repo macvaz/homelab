@@ -260,4 +260,5 @@ https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
 
 === Offsite backups
   monthly backup (bash sctipt) using rclone
+  src/backup/backup_last_month_photos.sh
 
