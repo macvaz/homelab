@@ -144,7 +144,7 @@ Most of the applications running in the minipc are deployed as docker containers
 - mutt: Command line email client to easily sending email programaticaly from shell scripts
 ----
 
-=== Software distributed from verdors
+=== Software distributed from hardware verdors
 
 Some hardware is distribuited directly from vendor's website
 
