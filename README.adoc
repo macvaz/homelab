@@ -143,6 +143,15 @@ Most of the applications running in the minipc are deployed as docker containers
 - ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
 - mutt: Command line email client to easily sending email programaticaly from shell scripts
 ----
+
+=== Software distributed from verdors
+
+Some hardware is distribuited directly from vendor's website
+
+[source]
+----
+- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
+
 == 3. External storage
 
 This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
