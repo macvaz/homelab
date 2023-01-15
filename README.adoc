@@ -151,6 +151,7 @@ Some hardware is distribuited directly from vendor's website
 [source]
 ----
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
+----
 
 == 3. External storage
 
