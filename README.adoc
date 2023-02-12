@@ -56,30 +56,40 @@ This kind of low level power management is configured at BIOS level, not in the 
 
 image::src/bios/boot_on_power_outage.jpg[]
 
-== 2. Linux installation
+== 2. Hypervisor (Proxmox VE) installation
 
-=== Linux version
+=== Proxmox version
 
-Standard stuff here. Downloaded *Ubuntu 22.04 Server* ISO file and flashed in a USB stick. Booted minipc from the USB drive and conducted a common  installation.
+My first build was based on a standard bare-metal **Ubuntu Server 22.04** installation. This setup was perfectly ok for my needs and worked as expected, but I had to create from the scratch several common solutions (like backups for configuration files or automation for installing OS packages). This type of adhoc solutions are a heavy burden to maintain a system in the long run.
 
-Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed the Ubuntu Server similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
+Since I ran this setup for almost 9 months, I knew my small minipc was mainly idle for my workloads. At that time I was reading about hardware virtualization and Type I hypervisors (VMMs) and I decided to test Proxmox VE (Virtual Environment).
+
+After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. Installing a hypervisor is not harder than installing a general purpose OS.
+
+Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
 
 === Disk partitioning
 
-Ubuntu graphical installer makes very easy to use LVM. I decided to use the automatic partition table suggested by the installer because it was exactly what I was looking for: a GPT partition table and the / file system mounted under a LVM Volume Group.
+Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (the data disks are configured post installation using the web interface). The final layout looks professional and at the same time, simple to understand:
 
 [source]
 ----
 mac@minipc:~$ lsblk
-NAME                      MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
-sda                         8:0    0 119,2G  0 disk
-├─sda1                      8:1    0     1G  0 part  /boot/efi
-├─sda2                      8:2    0     2G  0 part  /boot
-└─sda3                      8:3    0 116,2G  0 part
-  └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
+sdb
+├─sdb1
+├─sdb2                       vfat        FAT32                    /boot/efi
+└─sdb3                       LVM2_member LVM2
+  ├─pve-swap                 swap
+  ├─pve-root                 ext4        1.0      PROXMOX_ROOT    /
+  ├─pve-data_tmeta
+  │ └─pve-data-tpool
+  │   └─pve-data
+  └─pve-data_tdata
+    └─pve-data-tpool
+      └─pve-data
 ----
 
-Each partition of the disk has a very common and clear goal:
+Each partition and volume group has a very common and clear goal:
 [source]
 ----
 - /boot/efi is where OS-independent bootloader is stored (grub2 in my case)
