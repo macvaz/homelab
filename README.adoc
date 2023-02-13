@@ -254,6 +254,8 @@ zd0                 ext4        VM_100_NAS                         500G
 
 == 4. Creating a virtual machine on proxmox
 
+=== Ubuntu packages
+
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
 
 [source]
@@ -265,25 +267,6 @@ Most of the applications running in the minipc are deployed as docker containers
 - ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
 - mutt: Command line email client to easily sending email programaticaly from shell scripts
 ----
-
-=== Media player
-minidlna
-
-== 4. VPN and external access
-
-=== Dynamic DNS
-  NoIP
-=== Blocking direct traffic to Router DNS
-  adblocking (pihole)
-  Mainly problematic with Android phones
-=== Port forwading for VPN and ¿nextcloud?
-
-=== VPN
-  wireguard
-  laptop scripts
-  mobile phones
-
-== 5. Docker
 
 === Containers
 
@@ -316,6 +299,23 @@ In analysis:
 === Docker-compose
 
 https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
+
+=== Media player
+minidlna
+
+== 5. VPN and external access
+
+=== Dynamic DNS
+  NoIP
+=== Blocking direct traffic to Router DNS
+  adblocking (pihole)
+  Mainly problematic with Android phones
+=== Port forwading for VPN and ¿nextcloud?
+
+=== VPN
+  wireguard
+  laptop scripts
+  mobile phones
 
 == 6. Backups
 
