@@ -68,9 +68,9 @@ After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB
 
 Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
 
-=== Disk partitioning
+=== OS Disk partitioning
 
-Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (the data disks are configured post installation using the web interface). The final layout looks professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (the data disks are configured post installation using the web interface as storage pools). The final layout looks professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -93,17 +93,10 @@ Each partition and volume group has a very common and clear goal:
 [source]
 ----
 - /boot/efi is where OS-independent bootloader is stored (grub2 in my case)
-- /boot is where linux boot-related binaries are stored (mainly kernels and ramdisks).
-- / is the root of the file system. It is mounted using LVM.
-----
-
-Since / is mounted under a LVM volume group, it's easy to create more logical volumes if required. LVM provides a lot of flexibility to rearrange volumes.
-
-The only modification I did was to change the level of disk space reserved to root in emergency situations. I finally reserved 1% to root and the size of the logical volume perfectly matched the free space of the disk.
-
-[source]
-----
-tune2fs -m 1 /dev/mapper/ubuntu--vg-ubuntu--lv
+- pve-swap is the lvm volume group where Proxmox VE placed the swap space
+- pve-root voluge group is where the root file system of Proxmox is placed.
+- pve-data_tmeta (metadata) is a volume group based on thin provisioning used to store VMs virtual hard disks
+- pve-data_tdata (data) is a volumen group based on thin provisioning used to store VMs VMs virtual hard disks
 ----
 
 === Network interfaces
