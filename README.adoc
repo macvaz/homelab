@@ -166,49 +166,6 @@ Since I relied on my physical router network (192.168.1.0/24), I found no need t
 ...
 ----
 
-=== Additional configuration of proxmox
-
-Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
-
-The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
-
-An extract of the configuration steps is the following:
-
-[source]
-----
->> apt instalapt install -y libsasl2-modules mailutils
-
-# Setup credentials in the sasl_passwd file following this format
->> more /etc/postfix/sasl_passwd
-smtp.gmail.com email:passwd
-
-# Create a hashed version of the file
->> postmap hash:/etc/postfix/sasl_passwd
->> chmod 600 /etc/postfix/sasl_passwd
-
-# Paste next configuration in /etc/postfix/main.cf file:
-realayhost = smtp.gmail.com:587
-smtp_use_tls = yes
-smtp_sasl_auth_enable = yes
-smtp_sasl_security_options =
-smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
-
-# Restart postfix
->> postfix reload
-----
-
-=== Software distributed from hardware verdors
-
-Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
-
-Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
-
-[source]
-----
-- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
-----
-
 === Storage pools
 
 This minipc is intended to *host 1 on-site fault-tolerant copy for my family media (photos and videos)* so only one disk is not a valid option.
@@ -250,6 +207,49 @@ sdd
 ├─sdd1              zfs_member  zfs-mirror-hdd                     931.5G
 └─sdd9                                                             8M
 zd0                 ext4        VM_100_NAS                         500G
+----
+
+=== Additional configuration of proxmox
+
+Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
+
+The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
+
+An extract of the configuration steps is the following:
+
+[source]
+----
+>> apt instalapt install -y libsasl2-modules mailutils
+
+# Setup credentials in the sasl_passwd file following this format
+>> more /etc/postfix/sasl_passwd
+smtp.gmail.com email:passwd
+
+# Create a hashed version of the file
+>> postmap hash:/etc/postfix/sasl_passwd
+>> chmod 600 /etc/postfix/sasl_passwd
+
+# Paste next configuration in /etc/postfix/main.cf file:
+realayhost = smtp.gmail.com:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+
+# Restart postfix
+>> postfix reload
+----
+
+=== Software distributed from hardware verdors
+
+Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
+
+Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
+
+[source]
+----
+- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
 == 4. Creating a virtual machine on proxmox
