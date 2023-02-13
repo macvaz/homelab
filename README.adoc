@@ -12,7 +12,7 @@ I decided to buy a budget minipc to build my homelab. Most significant hardware 
 
 [source]
 ----
-mac@minipc:~$ lscpu
+>> root@proxmox:~$ lscpu
 Architecture:            x86_64
   CPU op-mode(s):        32-bit, 64-bit
   Address sizes:         39 bits physical, 48 bits virtual
@@ -30,13 +30,13 @@ Vendor ID:               GenuineIntel
 
 [source]
 ----
-mac@minipc:~$ more /proc/meminfo
+>> root@proxmox:~$ more /proc/meminfo
 MemTotal:        7982160 kB
 ----
 
 [source]
 ----
-mac@minipc:~$ sudo smartctl -a /dev/sda
+>> root@proxmox:~$ sudo smartctl -a /dev/sda
 ...
 Device Model:     AirDisk 128GB SSD
 Rotation Rate:    Solid State Device
@@ -46,7 +46,7 @@ SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
 
 For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
 
-*I describe how to create a software-based homemade NAS storage* based on a pair of 1 TB external USB disks in section 3 (External storage).
+*I describe how to create a redundant storage pool* based on a pair of 1 TB external USB disks in section 2 (Storage pools).
 
 === BIOS setup
 
@@ -74,7 +74,7 @@ Proxmox graphical installer comes with very good defaults, making disk managemen
 
 [source]
 ----
-mac@minipc:~$ lsblk
+>> root@proxmox:~$ lsblk
 sdb
 ├─sdb1
 ├─sdb2                       vfat        FAT32                    /boot/efi
@@ -99,24 +99,53 @@ Each partition or volume group has a common and clear goal:
 - pve-data_tdata (data) is a LVM-based thin provisioning volume used to store virtual hard disks
 ----
 
-=== Network interfaces
+=== Networking
 
-Using Proxmox graphical interface makes network setup quite easy. It detected router physical network and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
+Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
 
 My minipc has 2 physical network interfaces (ethernet and wireless):
 
 [source]
 ----
-root@proxmox:~$ lspci
+>> root@proxmox:~$ lspci
 01:00.0 Ethernet controller: Intel Corporation Ethernet Controller I225-V (rev 01)
 02:00.0 Network controller: Intel Corporation Wireless 3165 (rev 79)
 ----
 
 My minipc is placed in the top of a bookshelf, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and increase security, wireless interface was not enabled.
 
+Proxmox creates a default virtual bridge **vmbr0** linked with the default ethernet physical NIC **eno1** in such a manner each NIC of a VM is created directly in the same network range of the physical network of my router. Quite simple setup and very convenient.
+
+Since I relied on my physical router network (1921.68.1.0/24), I found no need to create virtual networks in the proxmox hypervisor. Only two physical address are used of my home network:
+
+[source]
+----
+  - one for proxmox (192.168.1.4) => Hypervisor bare-metal deployment (hostname **proxmox**)
+  - one for the virtual machine where docker runs (192.168.1.2) => Virtual machine created over Proxmox (hostname **minipc**)
+----
+
+**minipc** VM has one external IP and lots of private IP address (one for each docker container).
+
+[source]
+----
+>> root@proxmox:~$ ip a
+...
+2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master vmbr0 state UP group default qlen 1000
+    link/ether 68:1d:ef:28:1d:0e brd ff:ff:ff:ff:ff:ff
+    altname enp1s0
+...
+4: vmbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 68:1d:ef:28:1d:0e brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.4/24 scope global vmbr0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6a1d:efff:fe28:1d0e/64 scope link
+       valid_lft forever preferred_lft forever
+...
+----
+
 === Additional configuration of proxmox
 
-Since most of the software is going to be installed inside a virtual machine, at the hypervisor level, very few extra packages are required.
+Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
 
 The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
 
@@ -157,6 +186,49 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
+=== Storage pools
+
+This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
+
+*NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
+
+*There are also open-source NAS servers like TrueNAS, OpenMediaVault or Amahi* but any of the runs directly over docker. Using Proxmox I can create a VM to run this NAS servers but underneath hardware is limited, so I decided to explore Proxmox native storage pools instead of a NAS solution.
+
+Proxmox has a built-in set of storage solutions that can fit my storage requirements:
+
+[source]
+----
+  - Backup space for my virtual hard disks: A Proxmox directory over my old SSD + backup managing utilies from the Proxmos UI (backup schedulling and restore)
+  - Thin provisioning for my virtual hard disks: A Proxmox thin-lvm where virtual hard drive are stored for VMs
+  - Redundant store for my family media files: A ZFS zpool using 2 different USB external hard drives of 1 TB.
+----
+
+ZFS is used underneath by Proxmox to create a virtual device that synchronize automatically operations over both external hard drives. The model and some technical specs of the USB external hard drives used to create a redundant data store:
+
+[source]
+----
+>> root@proxmox:~$ smartctl -a /dev/sdb
+...
+Model Family:     Toshiba 2.5" HDD MQ04UBF... (USB 3.0)
+Device Model:     TOSHIBA MQ04UBF100
+...
+----
+
+[source]
+----
+>> root@proxmox:~$ lsblk
+NAME                FSTYPE      LABEL           MOUNTPOINT         SIZE
+sda
+└─sda1              ext4        PROXMOX_BACKUPS /mnt/pve/backups   119.2G
+sdc
+├─sdc1              zfs_member  zfs-mirror-hdd                     931.5G
+└─sdc9                                                             8M
+sdd
+├─sdd1              zfs_member  zfs-mirror-hdd                     931.5G
+└─sdd9                                                             8M
+zd0                 ext4        VM_100_NAS                         500G
+----
+
 == 4. Creating a virtual machine on proxmox
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
@@ -170,71 +242,6 @@ Most of the applications running in the minipc are deployed as docker containers
 - ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
 - mutt: Command line email client to easily sending email programaticaly from shell scripts
 ----
-
-
-
-== 4. External storage
-
-This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
-
-*NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
-
-*There are also open-source NAS servers like FreeNAS, OpenMediaVault or Amahi*. However, all of them are based on OS different from Ubuntu (mostly FreeBSD, Debian and Redhat's Linux versions). These servers are distributed as packages of their native OS and also as ISO images. *None of them has official support for Docker* and requires hardware virtualization solutions like Proxmox VE or KVM that I would like to avoid in my minipc.
-
-Note: TrueNAS Core (a Linux-based port of TrueNAS) is a very reasonable option for data storage but hardware requirements are high. Next version of my homelab will be based on TrueNAS Core but it will require to buy a complete new hardware platform.
-
-Consequently, *I decided to build my NAS server from the scratch*. Linux has a lot of projects (mdadm, cockpit, nfs server, samba server, minidlna, etc) that jointly with well-known open-source applications (like syncthing, nextcloud, rclone, etc) allows to create a low-end NAS server easily. Just to be clear, a high-end NAS server requires dedicated hardware but this software-based solution is enough for our storage requirements.
-
-Next I describe the final solution implemented.
-
-=== Create a RAID 1 device
-
-The cheapest solution for creating a redundant storage device for a minipc, is *to connect 2 external USB hard drives and combine them in a redundant multiple disk (md) under a RAID 1 structure*. Since /dev/sda is used only as system drive, this new RAID device (/dev/md0) is exclusively use to support the NAS.
-
-The model and basic specs fo the 2 external USB drives are:
-
-[source]
-----
-mac@minipc:~$ sudo smartctl -a /dev/sdb
-...
-Model Family:     Toshiba 2.5" HDD MQ04UBF... (USB 3.0)
-Device Model:     TOSHIBA MQ04UBF100
-...
-----
-
-After connecting the 2 devices, a new RAID 1 device can be easily created using *a software RAID controller called mdadm* (multiple device administration). In a linux box, as everyone can imagine, mdadm can be set up in a configuration file (https://github.com/macvaz/homelab/tree/main/src/raid1/mdadm.conf[/etc/mdadm/mdadm.conf])
-
-I first created this conf file manually. It's a bit tricky since it requires to recreate the ramdisks in order to mount the disk at boot time. In case you miss this step, your next server reboot will fail. That happens so follow the instructions carefully.
-
-Nowadays, *I would rather recommend to use a frontend (like cockpit) instead of using mdadm direct*. I discovered cockpit after mounting the RAID and I totally fell in love. It's a web-based administration front-end for Linux (similar to Webmin but more updated) that makes administering a Linux box easier (for people like me, software developers, finding all key information in the same web page is gold).
-
-Creating and monitoring a new RAID 1 device with cockpit is quite simple and it doesn't forget to update ramdisks :)
-
-image::src/raid1/create_raid_cockpit.png[]
-image::src/raid1/create_raid_detailed_cockpit.png[]
-
-After creating the /dev/md0 device, the block devices of the minipc are the following:
-
-[source]
-----
-mac@minipc:~$ lsblk
-NAME                      MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
-sda                         8:0    0 119,2G  0 disk
-├─sda1                      8:1    0     1G  0 part  /boot/efi
-├─sda2                      8:2    0     2G  0 part  /boot
-└─sda3                      8:3    0 116,2G  0 part
-  └─ubuntu--vg-ubuntu--lv 253:0    0 116,2G  0 lvm   /
-sdb                         8:16   0 931,5G  0 disk
-└─sdb1                      8:17   0 931,5G  0 part
-  └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
-sdc                         8:32   0 931,5G  0 disk
-└─sdc1                      8:33   0 931,5G  0 part
-  └─md0                     9:0    0 931,4G  0 raid1 /mnt/nas
-----
-
-=== NAS network protocols (SMB and NFS)
-cockpit
-cockpit-file-sharing
 
 === Media player
 minidlna
