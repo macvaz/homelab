@@ -93,7 +93,7 @@ Since the minipc final location is in a very uncomfortable place (in the top of 
 
 === OS Disk partitioning
 
-Proxmox graphical installer comes with very good disk management defaults. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good disk management defaults. Proxmox software is installed only in one disk (/dev/sdb), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -211,9 +211,9 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 
 === Storage pools
 
-This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
+This minipc is intended to *host 1 on-site fault-tolerant copy for my family media (photos and videos)* so only one disk is not a valid option.
 
-*NAS appliances are a common IT hardware* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
+*NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
 *There are also open-source NAS servers like TrueNAS, OpenMediaVault or Amahi* but any of the runs directly over docker. Using Proxmox I can create a VM to run this NAS servers but underneath hardware is limited, so I decided to explore Proxmox native storage pools instead of a NAS solution.
 
