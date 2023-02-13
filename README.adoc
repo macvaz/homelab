@@ -36,17 +36,38 @@ MemTotal:        7982160 kB
 
 [source]
 ----
->> root@proxmox:~$ sudo smartctl -a /dev/sda
+>> root@proxmox:~$ smartctl -a /dev/sda
 ...
 Device Model:     AirDisk 128GB SSD
 Rotation Rate:    Solid State Device
 SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
 ...
+
+>> root@proxmox:~$ smartctl -a /dev/sdb
+...
+=== START OF INFORMATION SECTION ===
+Model Family:     Crucial/Micron Client SSDs
+Device Model:     CT480BX500SSD1
+Serial Number:    2246E686DF8F
+LU WWN Device Id: 5 00a075 1e686df8f
+Firmware Version: M6CR056
+User Capacity:    480,103,981,056 bytes [480 GB]
+Sector Size:      512 bytes logical/physical
+Rotation Rate:    Solid State Device
+Form Factor:      2.5 inches
+TRIM Command:     Available
+Device is:        In smartctl database [for details use: -P show]
+ATA Version is:   ACS-3 T13/2161-D revision 4
+SATA Version is:  SATA 3.3, 6.0 Gb/s (current: 6.0 Gb/s)
+Local Time is:    Mon Feb 13 13:04:43 2023 CET
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled
+...
 ----
 
-For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only one 128 GBs disk drive is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
+For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only 2 small SDD drives for both OS and data long term storage is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
 
-*I describe how to create a redundant storage pool* based on a pair of 1 TB external USB disks in section 2 (Storage pools).
+**I decided to buy 2 external USB hard disk** (no more SATA ports available in such small enclosure). *I describe how to create a redundant storage pool* based on a pair of 1 TB external USB disks in section 2 (Storage pools).
 
 === BIOS setup
 
@@ -60,17 +81,19 @@ image::src/bios/boot_on_power_outage.jpg[]
 
 === Proxmox version
 
-My first build was based on a standard bare-metal **Ubuntu Server 22.04** installation. This setup was perfectly ok for my needs and worked as expected, but I had to create from the scratch several common solutions (like backups for configuration files or automation for installing OS packages). This type of adhoc solutions are a heavy burden to maintain a system in the long run.
+My first build was based on a standard bare-metal **Ubuntu Server 22.04** installation. This setup was perfectly ok for my needs and worked as expected, but I had to create from the scratch several common solutions (like backups for configuration files, package installation automation, disk SMART alarms monitoring, etc). This type of adhoc solutions are a heavy burden to maintain a system in the long run.
 
-Since I ran this setup for almost 9 months, I knew my small minipc was mainly idle for my workloads. At that time I was reading about hardware virtualization and Type I hypervisors (VMMs) and I decided to test Proxmox VE (Virtual Environment).
+Since I ran this bare-metal Ubuntu setup for almost 9 months, I knew my small minipc was mainly idle for my workloads. At that time I was reading about hardware virtualization and Type 1 hypervisors (VMMs) and I decided to test Proxmox VE (Virtual Environment), recreating the homelab based on Proxmox.
 
-After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. Installing a hypervisor is not harder than installing a general purpose OS.
+This kind of software offers a complete HCI (Hyperconverged Infrastructure) solution ready for professional datacenter management. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chrome very comfortable.
 
-Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE in a more accessible location using my TV screen and ethernet cable during the process. Configuring Proxmox networking this way simplifies hugely the installation as default values are perfectly ok.
+After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
+
+Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE in a more accessible location using my TV screen and ethernet cable during the process. Since that deployment is basically identical to the definitive setup over the bookshelf, configuring Proxmox networking this way was quite simple.
 
 === OS Disk partitioning
 
-Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk looks very professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good defaults, making disk management easy. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -120,8 +143,8 @@ Since I relied on my physical router network (1921.68.1.0/24), I found no need t
 
 [source]
 ----
-  - one for proxmox (192.168.1.4) => Hypervisor bare-metal deployment (hostname **proxmox**)
-  - one for the virtual machine where docker runs (192.168.1.2) => Virtual machine created over Proxmox (hostname **minipc**)
+  - one for proxmox (192.168.1.4) => Hypervisor bare-metal deployment (hostname **proxmox.homelab**)
+  - one for the virtual machine where docker runs (192.168.1.2) => Virtual machine created over Proxmox (hostname **minipc.homelab**)
 ----
 
 **minipc** VM has one external IP and lots of private IP address (one for each docker container).
