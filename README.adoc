@@ -300,9 +300,6 @@ In analysis:
 
 https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
 
-=== Media player
-minidlna
-
 == 5. VPN and external access
 
 === Dynamic DNS
