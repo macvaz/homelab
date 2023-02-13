@@ -70,7 +70,7 @@ Since the minipc final location is in a very uncomfortable place (in the top of 
 
 === OS Disk partitioning
 
-Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (the data disks are configured post installation using the web interface as storage pools). The final layout looks professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk, letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk looks professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -89,14 +89,14 @@ sdb
       └─pve-data
 ----
 
-Each partition and volume group has a very common and clear goal:
+Each partition or volume group has a very common and clear goal:
 [source]
 ----
 - /boot/efi is where OS-independent bootloader is stored (grub2 in my case)
 - pve-swap is the lvm volume group where Proxmox VE placed the swap space
 - pve-root voluge group is where the root file system of Proxmox is placed.
-- pve-data_tmeta (metadata) is a volume group based on thin provisioning used to store VMs virtual hard disks
-- pve-data_tdata (data) is a volumen group based on thin provisioning used to store VMs VMs virtual hard disks
+- pve-data_tmeta (metadata) is a LVM-based thin provisioning volume used to store virtual hard disks
+- pve-data_tdata (data) is a LVM-based thin provisioning volume used to store virtual hard disks
 ----
 
 === Network interfaces
@@ -126,26 +126,37 @@ mac@minipc:~$ ls -a /etc/netplan/
 
 The config file for the wifi is prefixed by ".", disabling the wireless interface. Both config files can be found https://github.com/macvaz/homelab/tree/main/src/networking[here.]
 
-=== Installing addition ubuntu packages
+=== Additional configuration of proxmox
 
-Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
+Since most of the software is going to be installed inside a virtual machine, at the hypervisor level, very few extra packages are required.
 
-[source]
-----
-- docker.io: Docker engine
-- docker-compose: Multi-container docker applications
-- mdadm: Software RAID management
-- wireguard: VPN server
-- cockpit: Web interface for linux system administration
-- cockpit-file-sharing: Controlling SAMBA and NFS from cockpit
-- cockpit-identities: Controlling users and passwords for SAMBA and NFS from cockpit
-- rclone: Off-site backup
-- borgbackup: Encrypted, deduplicated, onsite backup
-- vorta: Frontend for borg backup
-- minidlna: Export media content via DLNA to smart TV
-- ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
-- mutt: Command line email client to easily sending email programaticaly from shell scripts
-----
+	https://www.youtube.com/watch?v=85ME8i4Ry6A
+apt instalapt install -y libsasl2-modules mailutils
+
+
+postfix sobre proxmox
+
+
+root@proxmox:~# more /etc/postfix/sasl_passwd
+smtp.gmail.com email:passwd
+
+
+postmap hash:/etc/postfix/sasl_passwd
+chmod 600 /etc/postfix/sasl_passwd
+
+
+en /etc/postfix/main.cf
+
+
+realayhost = smtp.gmail.com:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+
+
+>> postfix reload
 
 === Software distributed from hardware verdors
 
@@ -156,7 +167,23 @@ Some hardware is distribuited directly from vendor's website
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
-== 3. External storage
+== 4. Creating a virtual machine on proxmox
+
+Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
+
+[source]
+----
+- docker.io: Docker engine
+- docker-compose: Multi-container docker applications
+- rclone: Off-site backup
+- minidlna: Export media content via DLNA to smart TV
+- ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
+- mutt: Command line email client to easily sending email programaticaly from shell scripts
+----
+
+
+
+== 4. External storage
 
 This minipc is intended to *host 1 on-site fault-tolerant backup for my family media (photos and videos)* so only one disk is not a valid option.
 
