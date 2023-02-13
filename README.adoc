@@ -66,11 +66,11 @@ Since I ran this setup for almost 9 months, I knew my small minipc was mainly id
 
 After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. Installing a hypervisor is not harder than installing a general purpose OS.
 
-Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE similarly to how desktop machines are installed, reusing my usual keyboard, screen and wifi connection via DHCP.
+Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE in a more accessible location using my TV screen and ethernet cable during the process. Configuring Proxmox networking this way simplifies hugely the installation as default values are perfectly ok.
 
 === OS Disk partitioning
 
-Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk, letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk looks professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good defaults, making disk management very easy. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk looks very professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -89,7 +89,7 @@ sdb
       └─pve-data
 ----
 
-Each partition or volume group has a very common and clear goal:
+Each partition or volume group has a common and clear goal:
 [source]
 ----
 - /boot/efi is where OS-independent bootloader is stored (grub2 in my case)
@@ -101,53 +101,40 @@ Each partition or volume group has a very common and clear goal:
 
 === Network interfaces
 
-Since server network configuration is very different to a normal smartphones/desktops/laptops which normally act as clients, IPs can't be dynamically assigned via DHCP. Do you remember I used my normal wifi to install Ubuntu? Let's fix that.
+Using Proxmox graphical interface makes network setup quite easy. It detected router physical network and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
 
-In a server, the network interfaces has fixed IPs in order be found easily by the clients. Disabling DHCP is mandatory.
-
-My minipc has 2 network interfaces (ethernet and wireless):
+My minipc has 2 physical network interfaces (ethernet and wireless):
 
 [source]
 ----
-mac@minipc:~$ lspci
+root@proxmox:~$ lspci
 01:00.0 Ethernet controller: Intel Corporation Ethernet Controller I225-V (rev 01)
 02:00.0 Network controller: Intel Corporation Wireless 3165 (rev 79)
 ----
 
-My minipc is placed in the top of a bookshelf, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and to increase security of the minipc I disabled the wireless interface. The wifi interfaces was mainly used to install ubuntu but for 24/7 production server I prefer the stability an ethernet cable.
-
-Ubuntu has plenty options to configure the network interfaces. I finally used netplan and created 2 yaml files:
-
-[source]
-----
-mac@minipc:~$ ls -a /etc/netplan/
-.  ..  ethernet.yaml  .wifi.yaml
-----
-
-The config file for the wifi is prefixed by ".", disabling the wireless interface. Both config files can be found https://github.com/macvaz/homelab/tree/main/src/networking[here.]
+My minipc is placed in the top of a bookshelf, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and increase security, wireless interface was not enabled.
 
 === Additional configuration of proxmox
 
 Since most of the software is going to be installed inside a virtual machine, at the hypervisor level, very few extra packages are required.
 
-	https://www.youtube.com/watch?v=85ME8i4Ry6A
-apt instalapt install -y libsasl2-modules mailutils
+The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
 
+An extract of the configuration steps is the following:
 
-postfix sobre proxmox
+[source]
+----
+>> apt instalapt install -y libsasl2-modules mailutils
 
-
-root@proxmox:~# more /etc/postfix/sasl_passwd
+# Setup credentials in the sasl_passwd file following this format
+>> more /etc/postfix/sasl_passwd
 smtp.gmail.com email:passwd
 
+# Create a hashed version of the file
+>> postmap hash:/etc/postfix/sasl_passwd
+>> chmod 600 /etc/postfix/sasl_passwd
 
-postmap hash:/etc/postfix/sasl_passwd
-chmod 600 /etc/postfix/sasl_passwd
-
-
-en /etc/postfix/main.cf
-
-
+# Paste next configuration in /etc/postfix/main.cf file:
 realayhost = smtp.gmail.com:587
 smtp_use_tls = yes
 smtp_sasl_auth_enable = yes
@@ -155,12 +142,15 @@ smtp_sasl_security_options =
 smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
 smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
 
-
+# Restart postfix
 >> postfix reload
+----
 
 === Software distributed from hardware verdors
 
-Some hardware is distribuited directly from vendor's website
+Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
+
+Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
 
 [source]
 ----
