@@ -85,7 +85,7 @@ My first build was based on a standard bare-metal **Ubuntu Server 22.04** instal
 
 Since I ran this bare-metal Ubuntu setup for almost 9 months, I knew my small minipc was mainly idle for my workloads. At that time I was reading about hardware virtualization and Type 1 hypervisors (VMMs) and I decided to test Proxmox VE (Virtual Environment), recreating the homelab based on Proxmox.
 
-This kind of software offers a complete HCI (Hyperconverged Infrastructure) solution ready for professional datacenter management. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chrome very comfortable.
+This kind of software offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
 
 After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
@@ -93,7 +93,7 @@ Since the minipc final location is in a very uncomfortable place (in the top of 
 
 === OS Disk partitioning
 
-Proxmox graphical installer comes with very good defaults, making disk management easy. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good disk management defaults. Proxmox is installed only in one disk (OS disk), letting the other disks to create storage pools using the web interface after installation. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 [source]
 ----
@@ -124,7 +124,7 @@ Each partition or volume group has a common and clear goal:
 
 === Networking
 
-Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
+Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
 
 My minipc has 2 physical network interfaces (ethernet and wireless):
 
@@ -137,17 +137,17 @@ My minipc has 2 physical network interfaces (ethernet and wireless):
 
 My minipc is placed in the top of a bookshelf, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and increase security, wireless interface was not enabled.
 
-Proxmox creates a default virtual bridge **vmbr0** linked with the default ethernet physical NIC **eno1** in such a manner each NIC of a VM is created directly in the same network range of the physical network of my router. Quite simple setup and very convenient.
+Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM is created directly in the same network range of the physical network of my router. Quite simple setup and very convenient.
 
-Since I relied on my physical router network (1921.68.1.0/24), I found no need to create virtual networks in the proxmox hypervisor. Only two physical address are used of my home network:
+Since I relied on my physical router network (192.168.1.0/24), I found no need to create virtual networks in the proxmox hypervisor. Only two physical address are used of my home network:
 
 [source]
 ----
-  - one for proxmox (192.168.1.4) => Hypervisor bare-metal deployment (hostname **proxmox.homelab**)
-  - one for the virtual machine where docker runs (192.168.1.2) => Virtual machine created over Proxmox (hostname **minipc.homelab**)
+  - one for proxmox.homelab (192.168.1.4) => Hypervisor bare-metal deployment
+  - one for minipc.homelab (192.148.1.2) => Virtual machine created over Proxmox where docker runs
 ----
 
-**minipc** VM has one external IP and lots of private IP address (one for each docker container).
+**minipc.homelab** VM has one external IP and lots of private IP address (one for each docker container). Most of the software of the homelab is run inside the virtual machine, making backup and maintenance child's play
 
 [source]
 ----
