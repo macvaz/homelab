@@ -260,6 +260,8 @@ Most of the applications running in the minipc are deployed as docker containers
 
 [source]
 ----
+- qemu-guest-agent: Guest agent for better power managent from host
+- cloud-init: Early initialization of a VM instance (normally cloud images)
 - docker.io: Docker engine
 - docker-compose: Multi-container docker applications
 - rclone: Off-site backup
