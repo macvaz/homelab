@@ -241,6 +241,13 @@ smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
 >> postfix reload
 ----
 
+Additional ubuntu packages in host:
+
+[source]
+----
+- cloud-init: Early initialization of a VM instance (normally cloud images)
+----
+
 === Software distributed from hardware verdors
 
 Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
@@ -261,7 +268,6 @@ Most of the applications running in the minipc are deployed as docker containers
 [source]
 ----
 - qemu-guest-agent: Guest agent for better power managent from host
-- cloud-init: Early initialization of a VM instance (normally cloud images)
 - docker.io: Docker engine
 - docker-compose: Multi-container docker applications
 - rclone: Off-site backup
