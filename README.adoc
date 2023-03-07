@@ -219,7 +219,7 @@ An extract of the configuration steps is the following:
 
 [source]
 ----
->> apt instalapt install -y libsasl2-modules mailutils
+>> apt install -y libsasl2-modules mailutils
 
 # Setup credentials in the sasl_passwd file following this format
 >> more /etc/postfix/sasl_passwd
@@ -239,13 +239,6 @@ smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
 
 # Restart postfix
 >> postfix reload
-----
-
-Additional ubuntu packages in host:
-
-[source]
-----
-- cloud-init: Early initialization of a VM instance (normally cloud images)
 ----
 
 === Software distributed from hardware verdors
