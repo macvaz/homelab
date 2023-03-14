@@ -254,7 +254,11 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 
 == 4. Creating a virtual machine on proxmox
 
+In case of creating VMs from a general purpose Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google.
+
 === Cloud init & cloud images
+
+In general creating VMs from an general-purpose ISO image is not the best approach. Cloud images are a much better alternative. 
 
 https://cloud-images.ubuntu.com/minimal/releases/jammy/release-20230209/
 https://pve.proxmox.com/wiki/Cloud-Init_Support
