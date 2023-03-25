@@ -211,6 +211,9 @@ zd0                 ext4        VM_100_NAS                         500G
 
 === Additional configuration of proxmox
 
+Proxmox runs by default using 8006 port. In order to use more standard ports, an nginx proxy server can be deployed in proxmox server. Follow this tutorial: https://pve.proxmox.com/wiki/Web_Interface_Via_Nginx_Proxy
+
+
 Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
 
 The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
