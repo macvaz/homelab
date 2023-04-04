@@ -59,7 +59,7 @@ The most significant hardware specs of *proxmox* node are:
 
 The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage.
 
-===== Node 1: Physical access through KVM
+=== KVM (Keyboard video mouse) specs
 
 Since *proxmox node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
 
