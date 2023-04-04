@@ -4,7 +4,7 @@
 :project_id: homelab
 :tabsize: 2
 
-== 1. Hardware specs and BIOS setup
+== 1. Hardware architecture
 
 === Hardware specs
 
