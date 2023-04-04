@@ -82,15 +82,11 @@ Automatic shutdown
 
 === Proxmox version
 
-My first build was based on a standard bare-metal **Ubuntu Server 22.04** installation. This setup was perfectly ok for my needs and worked as expected, but I had to create from the scratch several common solutions (like backups for configuration files, package installation automation, disk SMART alarms monitoring, etc). This type of adhoc solutions are a heavy burden to maintain a system in the long run.
+Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
 
-Since I ran this bare-metal Ubuntu setup for almost 9 months, I knew my small minipc was mainly idle for my workloads. At that time I was reading about hardware virtualization and Type 1 hypervisors (VMMs) and I decided to test Proxmox VE (Virtual Environment), recreating the homelab based on Proxmox.
+After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
-This kind of software offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
-
-After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted minipc from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
-
-Since the minipc final location is in a very uncomfortable place (in the top of a bookshelf), I installed Proxmox VE in a more accessible location using my TV screen and ethernet cable during the process. Since that deployment is basically identical to the definitive setup over the bookshelf, configuring Proxmox networking this way was quite simple.
+The recommended way of installing Proxmox VE is through the KVM extender, with the node already places in its definitive localtion.
 
 === OS Disk partitioning
 
