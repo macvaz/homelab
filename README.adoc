@@ -29,7 +29,7 @@ image::src/img/physical_architecture.png[]
  -2x 1TB (DATA disks)
 |===
 
-===== Node 1 specs: proxmox
+===== proxmox node
 
 The most significant hardware specs of *proxmox* node are:
 
