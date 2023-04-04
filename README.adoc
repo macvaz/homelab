@@ -116,12 +116,9 @@ Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** e
 
 *NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-Proxmox fault-tolerant storage pools are based on ZFS but my CPU and memory are not ECC-compatible. Consequently I decided to create a software-based NAS solution using an open-source NAS server like OpenMediaVault (OMV). Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
+Proxmox fault-tolerant storage pools are based on ZFS but *my CPU and memory are not ECC-compatible*. Consequently I decided to create a software-based NAS solution using an *open-source NAS server like OpenMediaVault (OMV)*. Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
 
 === Additional configuration of proxmox
-
-Proxmox runs by default using 8006 port. In order to use more standard ports, an nginx proxy server can be deployed in proxmox server. Follow this tutorial: https://pve.proxmox.com/wiki/Web_Interface_Via_Nginx_Proxy
-
 
 Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
 
@@ -164,7 +161,26 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
-== 4. Creating a virtual machine on proxmox
+== 4. Virtual machines (VMs)
+
+|===
+|VM name | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
+
+|docker
+|192.168.1.2
+|Ubuntu Server 22.04
+|3
+|3 GBs
+|
+
+|nas
+|192.168.1.5
+|Debian 11
+|2
+|2 GBs
+|
+
+|===
 
 In case of creating VMs from a general purpose Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google.
 
