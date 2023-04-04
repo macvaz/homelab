@@ -17,10 +17,11 @@ image::src/img/physical_architecture.png[]
 ==== Nodes
 
 |===
-|Node name | Service IP| CPUs | Cores| RAM | HDD| SSD
+|Node name | Service IP| Operating system| CPUs | Cores| RAM | HDD| SSD
 
 |proxmox
 |192.168.1.6
+|Proxmox VE 7.36
 |1 Intel Celeron (J5040)
 |4
 |16 GBs
