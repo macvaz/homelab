@@ -14,66 +14,43 @@ image::src/img/physical_architecture.png[]
 
 === Hyper-converged infrastructure (HCI) specs
 
-The most significant hardware specs of the HCI server are:
+Table with nodes
+Node name, node ip, ram, disks, nombre of processors
+
+==== KVM (Keyboard Video Mouse) access
+
+KVM description
+
+==== proxmox node
+
+
+The most significant hardware specs of *proxmox* node are:
 
 [source]
 ----
 >> root@proxmox:~$ lscpu
-Architecture:            x86_64
-  CPU op-mode(s):        32-bit, 64-bit
-  Address sizes:         39 bits physical, 48 bits virtual
-  Byte Order:            Little Endian
-CPU(s):                  4
-  On-line CPU(s) list:   0-3
-Vendor ID:               GenuineIntel
-  Model name:            Intel(R) Celeron(R) CPU J3455 @ 1.50GHz
-    CPU family:          6
-    Model:               92
-    Thread(s) per core:  1
-    Core(s) per socket:  4
-    Socket(s):           1
+
 ----
 
 [source]
 ----
 >> root@proxmox:~$ more /proc/meminfo
-MemTotal:        7982160 kB
+
 ----
 
 [source]
 ----
 >> root@proxmox:~$ smartctl -a /dev/sda
-...
-Device Model:     AirDisk 128GB SSD
-Rotation Rate:    Solid State Device
-SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
-...
+
 
 >> root@proxmox:~$ smartctl -a /dev/sdb
 ...
-=== START OF INFORMATION SECTION ===
-Model Family:     Crucial/Micron Client SSDs
-Device Model:     CT480BX500SSD1
-Serial Number:    2246E686DF8F
-LU WWN Device Id: 5 00a075 1e686df8f
-Firmware Version: M6CR056
-User Capacity:    480,103,981,056 bytes [480 GB]
-Sector Size:      512 bytes logical/physical
-Rotation Rate:    Solid State Device
-Form Factor:      2.5 inches
-TRIM Command:     Available
-Device is:        In smartctl database [for details use: -P show]
-ATA Version is:   ACS-3 T13/2161-D revision 4
-SATA Version is:  SATA 3.3, 6.0 Gb/s (current: 6.0 Gb/s)
-Local Time is:    Mon Feb 13 13:04:43 2023 CET
-SMART support is: Available - device has SMART capability.
-SMART support is: Enabled
+
+>> root@proxmox:~$ smartctl -a /dev/sdc
 ...
 ----
 
-For my use case, these hardware specs are perfectly ok regarding cpu and memory. However, only 2 small SDD drives for both OS and data long term storage is clearly not enough to meet my storage requirements in both capacity and fault-tolerance.
-
-**I decided to buy 2 external USB hard disk** (no more SATA ports available in such small enclosure). *I describe how to create a redundant storage pool* based on a pair of 1 TB external USB disks in section 2 (Storage pools).
+The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage.
 
 === Network equipment specs
 
