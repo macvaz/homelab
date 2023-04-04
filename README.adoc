@@ -17,7 +17,7 @@ image::src/img/physical_architecture.png[]
 ==== Nodes
 
 |===
-|Node name | Service IP| Operating system| CPUs | Cores| RAM | SSD
+|Node name | Service IP| Operating System| CPUs | Cores| RAM | SSD
 
 |proxmox
 |192.168.1.6
