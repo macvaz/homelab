@@ -25,8 +25,8 @@ image::src/img/physical_architecture.png[]
 |4
 |16 GBs
 |0
-|1 512 GB (OS disk)
- 2 1 TB (DATA disks)
+|-1x 0.5TB (OS disk)
+ -2x 1TB (DATA disks)
 |===
 
 ===== Node 1 specs: proxmox
@@ -72,9 +72,9 @@ VLANs
 FW
 DNS pointing to pihole
 
-=== Uninterrupted power supply (UPS)
+=== Uninterrupted power supply (UPS) specs
 
-== 2. Hypervisor (Proxmox VE) installation
+== 2. Hypervisor installation
 
 === Proxmox version
 
