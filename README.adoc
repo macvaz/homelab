@@ -29,34 +29,6 @@ image::src/img/physical_architecture.png[]
  -2x 1TB (DATA disks)
 |===
 
-===== proxmox node
-
-The most significant hardware specs of *proxmox* node are:
-
-[source]
-----
->> root@proxmox:~$ lscpu
-
-----
-
-[source]
-----
->> root@proxmox:~$ more /proc/meminfo
-
-----
-
-[source]
-----
->> root@proxmox:~$ smartctl -a /dev/sda
-
-
->> root@proxmox:~$ smartctl -a /dev/sdb
-...
-
->> root@proxmox:~$ smartctl -a /dev/sdc
-...
-----
-
 The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage.
 
 === KVM (Keyboard video mouse) specs
