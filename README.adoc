@@ -6,9 +6,15 @@
 
 == 1. Hardware architecture
 
+=== Physical architecture diagram
+
 image::src/img/physical_architecture.png[]
 
-=== Hardware specs
+=== HCI server specs
+
+Due to the lack of free physical space at home, a software-defined IT infrastructure approach like Hyper-converged infrastructure (HCI) was ideal. HCI allows to virtualize all traditional hardware equipment using software-defined computing, networking and storage.
+
+This approach doesn't required specialized hardware appliances for storage (ej: NAS appliance) and computing. Both kind of infrastructures can be virtualized by software using a hypervisor. In this homelab, Proxmox VE was use as Type 1 hypervisor.
 
 I decided to buy a budget minipc to build my homelab. Most significant hardware specs are the following:
 
