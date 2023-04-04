@@ -50,7 +50,7 @@ Describe PowerWalker VI 1000 STL
 USB cable
 Automatic shutdown
 
-== 2. Hypervisor installation
+== 2. OS installation of proxmox node
 
 === Proxmox version
 
