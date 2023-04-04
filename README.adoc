@@ -6,15 +6,13 @@
 
 == 1. Hardware architecture
 
-=== Physical architecture diagram
-
-image::src/img/physical_architecture.png[]
-
-=== Hyper-converged infrastructure (HCI) server specs
-
 Due to the lack of free physical space at home, a software-defined IT infrastructure approach like hyper-converged infrastructure (HCI) was found ideal. HCI allows virtualizing most traditional hardware equipment using software-defined computing, networking and storage.
 
 Enterprise-level HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since Proxmox Virtual Environment (VE) is the most common open-source Type 1 hypervisor available, it was selected as the base technology of the HCI server.
+
+image::src/img/physical_architecture.png[]
+
+=== Hyper-converged infrastructure (HCI) specs
 
 The most significant hardware specs of the HCI server are:
 
@@ -77,13 +75,8 @@ For my use case, these hardware specs are perfectly ok regarding cpu and memory.
 
 **I decided to buy 2 external USB hard disk** (no more SATA ports available in such small enclosure). *I describe how to create a redundant storage pool* based on a pair of 1 TB external USB disks in section 2 (Storage pools).
 
-=== BIOS setup
+=== Network equipment specs
 
-BIOS setup for personal pcs are normally set to *boot only when a start button is pressed*. This minipc is a server running 24/7 so in the event of a power outage, I prefer the server to boot automatically when power is restored. This simple config avoids any manual task to restore service.
-
-This kind of low level power management is configured at BIOS level, not in the operating systems. My BIOS is an old American Megatrend one and the setting to change is placed in the *Boot/State After G3* option and must be set to *"Power On"*.
-
-image::src/bios/boot_on_power_outage.jpg[]
 
 == 2. Hypervisor (Proxmox VE) installation
 
