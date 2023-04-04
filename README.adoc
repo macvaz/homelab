@@ -16,7 +16,6 @@ image::src/img/physical_architecture.png[]
 
 ==== Nodes
 
-
 |===
 |Node name | Service IP| CPUs | Cores| RAM | HDD| SSD
 
@@ -73,7 +72,7 @@ VLANs
 FW
 DNS pointing to pihole
 
-==== Uninterrupted power supply (UPS)
+=== Uninterrupted power supply (UPS)
 
 == 2. Hypervisor (Proxmox VE) installation
 
