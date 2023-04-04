@@ -6,6 +6,8 @@
 
 == 1. Hardware architecture
 
+image::src/img/physical_architecture.png[]
+
 === Hardware specs
 
 I decided to buy a budget minipc to build my homelab. Most significant hardware specs are the following:
