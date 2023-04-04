@@ -12,9 +12,9 @@ image::src/img/physical_architecture.png[]
 
 === HCI server specs
 
-Due to the lack of free physical space at home, a software-defined IT infrastructure approach like Hyper-converged infrastructure (HCI) was ideal. HCI allows to virtualize all traditional hardware equipment using software-defined computing, networking and storage.
+Due to the lack of free physical space at home, a software-defined IT infrastructure approach like hyper-converged infrastructure (HCI) was found ideal. HCI allows virtualizing most traditional hardware equipment using software-defined computing, networking and storage.
 
-This approach doesn't required specialized hardware appliances for storage (ej: NAS appliance) that are very common in IT deployments. Both computing and storage infrastructure can be virtualized by software using a hypervisor. Since Proxmox VE is the most common open-source Type 1 hypervisor available, it is the base technology of the homelab.
+Enterprise-devel HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since Proxmox Virtual Environment (VE) is the most common open-source Type 1 hypervisor available, it was selected as the base technology of the HCI server.
 
 The most significant hardware specs of the HCI server are:
 
