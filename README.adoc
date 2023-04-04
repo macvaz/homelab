@@ -52,13 +52,11 @@ Automatic shutdown
 
 == 2. OS installation of proxmox node
 
-=== Proxmox version
-
 Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
 
 After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
-The recommended way of installing Proxmox VE is through the KVM extender, with the node already places in its definitive localtion.
+If there is a KVM available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location and network connectivity.
 
 === OS Disk partitioning
 
