@@ -63,7 +63,7 @@ The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD dis
 
 Since *proxmox node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
 
-Just connect a USB keyboard and mose to the receiver KVM device. There is no additional ethernet cable for the KVM so the ethernet cable linking TV and router is used to connect KVM receiver and sender. TV lost ethernet connectivity when using KVM extender.
+Just connect a USB keyboard and mouse to the receiver KVM device. There is no additional ethernet cable for the KVM so the ethernet cable linking TV and router is reused to connect KVM receiver and sender. TV losses ethernet connectivity when using KVM extender.
 
 === Network equipment specs
 
@@ -73,6 +73,10 @@ FW
 DNS pointing to pihole
 
 === Uninterrupted power supply (UPS) specs
+
+Describe PowerWalker VI 1000 STL
+USB cable
+Automatic shutdown
 
 == 2. Hypervisor installation
 
