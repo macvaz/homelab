@@ -78,6 +78,9 @@ For my use case, these hardware specs are perfectly ok regarding cpu and memory.
 === Network equipment specs
 
 Describe Mikrotik HAP ax2
+VLANs
+FW
+DNS pointing to pihole
 
 == 2. Hypervisor (Proxmox VE) installation
 
