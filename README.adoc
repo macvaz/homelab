@@ -54,7 +54,7 @@ Automatic shutdown
 
 Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
 
-After downloaded *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
+After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
 If there is a KVM available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location and network connectivity.
 
@@ -93,28 +93,7 @@ Each partition or volume group has a common and clear goal:
 
 Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
 
-My minipc has 2 physical network interfaces (ethernet and wireless):
-
-[source]
-----
->> root@proxmox:~$ lspci
-01:00.0 Ethernet controller: Intel Corporation Ethernet Controller I225-V (rev 01)
-02:00.0 Network controller: Intel Corporation Wireless 3165 (rev 79)
-----
-
-My minipc is placed in the top of a bookshelf, close to the router. I wired minipc to the router via an ethernet cable. To lower the power consumption and increase security, wireless interface was not enabled.
-
 Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM is created directly in the same network range of the physical network of my router. Quite simple setup and very convenient.
-
-Since I relied on my physical router network (192.168.1.0/24), I found no need to create virtual networks in the proxmox hypervisor. Only two physical address are used of my home network:
-
-[source]
-----
-  - one for proxmox.homelab (192.168.1.4) => Hypervisor bare-metal deployment
-  - one for minipc.homelab (192.148.1.2) => Virtual machine created over Proxmox where docker runs
-----
-
-**minipc.homelab** VM has one external IP and lots of private IP address (one for each docker container). Most of the software of the homelab is run inside the virtual machine, making backup and maintenance child's play
 
 [source]
 ----
@@ -126,55 +105,18 @@ Since I relied on my physical router network (192.168.1.0/24), I found no need t
 ...
 4: vmbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether 68:1d:ef:28:1d:0e brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.4/24 scope global vmbr0
+    inet 192.168.1.6/24 scope global vmbr0
        valid_lft forever preferred_lft forever
     inet6 fe80::6a1d:efff:fe28:1d0e/64 scope link
        valid_lft forever preferred_lft forever
 ...
 ----
 
-=== Storage pools
-
-This minipc is intended to *host 1 on-site fault-tolerant copy for my family media (photos and videos)* so only one disk is not a valid option.
+=== Redundant storage
 
 *NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
 
-*There are also open-source NAS servers like TrueNAS, OpenMediaVault or Amahi* but any of the runs directly over docker. Using Proxmox I can create a VM to run this NAS servers but underneath hardware is limited, so I decided to explore Proxmox native storage pools instead of a NAS solution.
-
-Proxmox has a built-in set of storage solutions that can fit my storage requirements:
-
-[source]
-----
-  - Backup space for my virtual hard disks: A Proxmox directory over my old SSD + backup managing utilies from the Proxmos UI (backup schedulling and restore)
-  - Thin provisioning for my virtual hard disks: A Proxmox thin-lvm where virtual hard drive are stored for VMs
-  - Redundant store for my family media files: A ZFS zpool using 2 different USB external hard drives of 1 TB.
-----
-
-ZFS is used underneath by Proxmox to create a virtual device that synchronize automatically operations over both external hard drives. The model and some technical specs of the USB external hard drives used to create a redundant data store:
-
-[source]
-----
->> root@proxmox:~$ smartctl -a /dev/sdb
-...
-Model Family:     Toshiba 2.5" HDD MQ04UBF... (USB 3.0)
-Device Model:     TOSHIBA MQ04UBF100
-...
-----
-
-[source]
-----
->> root@proxmox:~$ lsblk
-NAME                FSTYPE      LABEL           MOUNTPOINT         SIZE
-sda
-└─sda1              ext4        PROXMOX_BACKUPS /mnt/pve/backups   119.2G
-sdc
-├─sdc1              zfs_member  zfs-mirror-hdd                     931.5G
-└─sdc9                                                             8M
-sdd
-├─sdd1              zfs_member  zfs-mirror-hdd                     931.5G
-└─sdd9                                                             8M
-zd0                 ext4        VM_100_NAS                         500G
-----
+Proxmox fault-tolerant storage pools are based on ZFS but my CPU and memory are not ECC-compatible. Consequently I decided to create a software-based NAS solution using an open-source NAS server like OpenMediaVault (OMV). Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
 
 === Additional configuration of proxmox
 
