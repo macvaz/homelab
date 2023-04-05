@@ -31,7 +31,7 @@ Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure whe
  -2x 1TB (DATA disks)
 |===
 
-The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage.
+The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check 'Storage pools' section).
 
 === KVM access
 
@@ -119,7 +119,7 @@ Each partition and volume group of /dev/sdb has a common and clear goal:
 |lvm-based thin provisioning volume used to store (data) of virtual hard disks of VMs
 |===
 
-=== Long-term storage
+=== Storage pools
 
 Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different HCI storage technologies]:
 
