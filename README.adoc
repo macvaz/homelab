@@ -127,12 +127,12 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 |Technology |Description | Hardware requirments
 
 |Ceph
-|Column 2, row 1
-|Column 3, row 1
+|A both self-healing and self-managing shared, reliable and highly scalable storage system
+|Cluster technology. Thought for having several nodes. Extra administration complexity. Not an appeling option.
 
 |ZFS
-|A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots.
-|ZFS developers recommends ECC memory. Neither my cpu nor my memory is ECC-compliant. Discarded.
+|A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots
+|Memory intensive. Recommended ECC memory. Not really an option
 
 |Column 1, row 3
 |Column 2, row 3
