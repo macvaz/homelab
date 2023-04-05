@@ -84,7 +84,6 @@ sdb
 ----
 
 Each partition and volume group of /dev/sdb has a common and clear goal:
-¡
 
 |===
 |Partition |Volume group |Type| Goal
@@ -120,6 +119,29 @@ Each partition and volume group of /dev/sdb has a common and clear goal:
 |lvm-based thin provisioning volume used to store (data) of virtual hard disks of VMs
 |===
 
+=== Long-term storage
+
+Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different HCI storage technologies]:
+
+|===
+|Technology |Description | Comments
+
+|Ceph
+|A both self-healing and self-managing shared, reliable and highly scalable storage system
+|Cluster technology. Thought for having several nodes. Extra administration complexity. Not an appealing option.
+
+|ZFS
+|A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots
+|Memory intensive. Recommended ECC memory. Not really an option
+
+|===
+
+Eventually, both HCI storage technologies were discarded and started to explore approaches like *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. The lack of free space at home, makes having a dedicated hardware NAS appliance not an option.
+
+The final approach was to *create a VM (nas_vm) in proxmox1 based on the open-source NAS server OpenMediaVault (OMV)*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault detects both data disks as attached SATA disks, making very easy to create a RAID 1 device over them.
+
+All data management tasks are centralized in the OMV VM (nas_vm): managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
+
 === Networking
 
 Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
@@ -142,30 +164,6 @@ Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** e
        valid_lft forever preferred_lft forever
 ...
 ----
-
-=== Long-term storage
-
-*NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since buying both the chassis and at least 2 disks is required, NAS appliances are expensive. Due to the lack of free space at home, having a specialized NAS appliance only for storage was not and option so both computing and storage resources run on the same node (proxmox1).
-
-Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different HCI storage technologies]:
-
-
-|===
-|Technology |Description | Comments
-
-|Ceph
-|A both self-healing and self-managing shared, reliable and highly scalable storage system
-|Cluster technology. Thought for having several nodes. Extra administration complexity. Not an appealing option.
-
-|ZFS
-|A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots
-|Memory intensive. Recommended ECC memory. Not really an option
-
-|===
-
-Eventually, both HCI storage technologies were discarded. The final approach was to *create a VM (nas_vm) in proxmox1 based on the open-source NAS server OpenMediaVault (OMV)*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault detects both data disks as a JBOD, making very easy to create a RAID 1 device over them.
-
-All data management tasks are centralized in the OMV VM (nas_vm): managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
 === Additional configuration of proxmox
 
