@@ -12,7 +12,9 @@ Enterprise-level HCI deployments doesn't require specialized hardware appliances
 
 image::src/img/physical_architecture.png[]
 
-=== Hyper-converged infrastructure (HCI) node specs
+=== HCI node specs
+
+Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure where storage and computing resources are defined by software (virtualized). Consequently no specialized hardware appliances are required for computation and storage.
 
 ==== Nodes
 
@@ -31,26 +33,28 @@ image::src/img/physical_architecture.png[]
 
 The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage.
 
-=== KVM (Keyboard video mouse) specs
+=== KVM access
 
 Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
 
-Just connect a USB keyboard and mouse to the receiver KVM device. There is no additional ethernet cable for the KVM so the ethernet cable linking TV and router is reused to connect KVM receiver and sender. TV losses ethernet connectivity when using KVM extender.
+Just connect a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. There is no additional ethernet cable for the KVM so the ethernet cable linking TV and router is reused to connect KVM receiver and sender. TV losses ethernet connectivity when using KVM extender.
 
-=== Network equipment specs
+=== Network diagram
 
 Describe Mikrotik HAP ax2
 VLANs
 FW
 DNS pointing to pihole
 
-=== Uninterrupted power supply (UPS) specs
+=== Emergency power supply
+
+Uninterrupted power supply (UPS) specs
 
 Describe PowerWalker VI 1000 STL
 USB cable
 Automatic shutdown
 
-== 2. OS installation of proxmox node
+== 2. Installation of an HCI node
 
 Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable.
 
@@ -112,11 +116,31 @@ Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** e
 ...
 ----
 
-=== Redundant storage
+=== Long-term storage
 
-*NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since you have to buy both the chassis and at least 2 disks, NAS appliances are expensive. If you don't mind to pay that cost, I recommend Synology NAS home appliances.
+*NAS appliances are a common IT solution* that provides both large storage capacity and fault-tolerance. Since buying both the chassis and at least 2 disks is required, NAS appliances are expensive. Due to the lack of free space at home, having a specialized NAS appliance only for storage was not and option so both computing and storage resources run on the same node (proxmox1).
 
-Proxmox fault-tolerant storage pools are based on ZFS but *my CPU and memory are not ECC-compatible*. Consequently I decided to create a software-based NAS solution using an *open-source NAS server like OpenMediaVault (OMV)*. Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
+Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different HCI storage technologies]:
+
+
+|===
+|Technology |Description | Hardware requirments
+
+|Ceph
+|Column 2, row 1
+|Column 3, row 1
+
+|ZFS
+|A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots.
+|ZFS developers recommends ECC memory. Neither my cpu nor my memory is ECC-compliant. Discarded.
+
+|Column 1, row 3
+|Column 2, row 3
+|Column 3, row 3
+|===
+
+  -Ceph
+  - . fault-tolerant storage pools are based on ZFS but *my CPU and memory are not ECC-compatible*. Consequently I decided to create a software-based NAS solution using an *open-source NAS server like OpenMediaVault (OMV)*. Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
 
 === Additional configuration of proxmox
 
