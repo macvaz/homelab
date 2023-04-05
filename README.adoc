@@ -142,11 +142,17 @@ The final approach was to *create a VM (nas_vm), in proxmox1 node, based on the 
 
 *All storage-related tasks are centralized in the OMV VM (nas_vm)*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
-=== Networking
+=== Network topology
 
-Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for proxmox1. This IP (is visible in all my LAN and is where Proxmox VE GUI can be found.
+Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for proxmox1 (192.168.1.6).
 
-Proxmox creates a default ** https://pve.proxmox.com/wiki/Network_Configuration[virtual bridged network] (vmbr0)** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM belongs to the physical home network (192.168.1.0/24) managed by my mikrotik router. Quite simple setup and very convenient.
+Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge] (vmbr0)** linked to the first ** ethernet physical NIC eno1**. This network mode is quite simple, each NIC of a VM connected to this bridge, gets an IP address directly from my router address space (192.168.1.0/24). This network setup is very convenient in a homelab (each VM gets a physical IP address from the router), but it assigns several IP address to the same NIC (same MAC). This setup is normally not valid using proxmox in Cloud Service Providers, marking different IPs with same MAC as suspicious devices.
+
+Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in proxmox1 node have only 1 vNIC.
+
+The network diagram of the proxmox1 node (without VMs and docker containers) is the following:
+
+
 
 [source]
 ----
