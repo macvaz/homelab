@@ -66,25 +66,6 @@ If there is a KVM available, the recommended way of installing Proxmox VE is thr
 
 Proxmox graphical installer comes with very good disk management defaults. Proxmox software is installed only in one disk (/dev/sdb), letting the other disks for data storage. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
-[source]
-----
->> root@proxmox:~$ lsblk
-sdb
-├─sdb1
-├─sdb2                       vfat        FAT32                    /boot/efi
-└─sdb3                       LVM2_member LVM2
-  ├─pve-swap                 swap
-  ├─pve-root                 ext4        1.0      PROXMOX_ROOT    /
-  ├─pve-data_tmeta
-  │ └─pve-data-tpool
-  │   └─pve-data
-  └─pve-data_tdata
-    └─pve-data-tpool
-      └─pve-data
-----
-
-Each partition and volume group of /dev/sdb has a common and clear goal:
-
 |===
 |Partition |Volume group |Type| Goal
 
@@ -118,6 +99,23 @@ Each partition and volume group of /dev/sdb has a common and clear goal:
 |lvm thing provisioning
 |lvm-based thin provisioning volume used to store (data) of virtual hard disks of VMs
 |===
+
+[source]
+----
+>> root@proxmox:~$ lsblk
+sdb
+├─sdb1
+├─sdb2                       vfat        FAT32                    /boot/efi
+└─sdb3                       LVM2_member LVM2
+  ├─pve-swap                 swap
+  ├─pve-root                 ext4        1.0      PROXMOX_ROOT    /
+  ├─pve-data_tmeta
+  │ └─pve-data-tpool
+  │   └─pve-data
+  └─pve-data_tdata
+    └─pve-data-tpool
+      └─pve-data
+----
 
 === Data disks layout
 
