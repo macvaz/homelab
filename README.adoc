@@ -53,7 +53,7 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 
 == 2. Installing HCI node (proxmox1)
 
-Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
 
 After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
