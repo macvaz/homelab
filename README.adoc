@@ -47,6 +47,10 @@ Describe PowerWalker VI 1000 STL
 USB cable
 Automatic shutdown
 
+Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
+
+Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
+
 == 2. Installing HCI node (proxmox1)
 
 Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
@@ -276,12 +280,6 @@ smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
 # Restart postfix
 >> postfix reload
 ----
-
-=== Software distributed from hardware vendors
-
-Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
-
-Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
 
 [source]
 ----
