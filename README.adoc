@@ -54,7 +54,7 @@ Describe PowerWalker VI 1000 STL
 USB cable
 Automatic shutdown
 
-== 2. Installing HCI nodes
+== 2. Installing HCI node (proxmox1)
 
 Proxmox VE offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
 
@@ -138,17 +138,17 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Eventually, both HCI storage technologies were discarded and started to explore approaches like *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. The lack of free space at home, makes having a dedicated hardware NAS appliance not an option.
+Eventually, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
 
-The final approach was to *create a VM (nas_vm) in proxmox1 based on the open-source NAS server OpenMediaVault (OMV)*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault VM (nas_vm) detects both data disks as attached SATA disks, making very easy to create a RAID 1 device over them.
+The final approach was to *create a VM (nas_vm), in proxmox1 node, based on the open-source NAS server OpenMediaVault (OMV)*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault VM (nas_vm) detects both data disks as attached SATA disks, making very easy to create a RAID 1 device over them.
 
 *All storage-related tasks are centralized in the OMV VM (nas_vm)*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
 === Networking
 
-Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for Proxmox. This IP is visible in all my LAN and is where Proxmox VE GUI can be found.
+Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for proxmox1. This IP (is visible in all my LAN and is where Proxmox VE GUI can be found.
 
-Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM is created directly in the same network range of the physical network of my router. Quite simple setup and very convenient.
+Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM is created directly in the same network range (192.168.1.6) of the physical network of my router. Quite simple setup and very convenient.
 
 [source]
 ----
@@ -167,7 +167,9 @@ Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** e
 ...
 ----
 
-=== Additional configuration of proxmox
+Add network diagram of proxmox1 alone (without VMs and docker containers)
+
+=== Additional configuration of proxmox1
 
 Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
 
