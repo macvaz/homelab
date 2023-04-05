@@ -146,7 +146,7 @@ The final approach was to *create a VM (nas_vm), in proxmox1 node, based on the 
 
 Using Proxmox graphical interface makes network setup quite easy. It detected my router physical network out of the box and allowed to set up easily a fixed IP address for proxmox1. This IP (is visible in all my LAN and is where Proxmox VE GUI can be found.
 
-Proxmox creates a default ** virtual bridge vmbr0** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM is created directly in the same network range (192.168.1.6) of the physical network of my router. Quite simple setup and very convenient.
+Proxmox creates a default ** https://pve.proxmox.com/wiki/Network_Configuration[virtual bridged network] (vmbr0)** linked with the default ** ethernet physical NIC eno1** in such a manner each NIC of a VM belongs to the physical home network (192.168.1.0/24) managed by my mikrotik router. Quite simple setup and very convenient.
 
 [source]
 ----
