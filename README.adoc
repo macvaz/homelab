@@ -212,7 +212,7 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
-== 4. Virtual machines (VMs)
+== 4. Installing virtual machines (VMs)
 
 |===
 |VM name | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
