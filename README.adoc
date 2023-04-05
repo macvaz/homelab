@@ -153,7 +153,7 @@ Describe Mikrotik HAP ax2
 FW
 DNS pointing to pihole
 
-== 4. Installing virtual machines (VMs)
+== 3. Installing virtual machines (VMs)
 
 |===
 |VM name | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
