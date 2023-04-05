@@ -10,7 +10,7 @@ Due to the lack of free physical space at home, a software-defined IT infrastruc
 
 Enterprise-level HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *Proxmox Virtual Environment (VE) is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
-image::src/img/physical_architecture.png[]
+image::img/physical_architecture.png[]
 
 === HCI node specs
 
