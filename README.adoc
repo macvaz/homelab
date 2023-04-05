@@ -62,7 +62,7 @@ After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a US
 
 If there is a KVM available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location with final network connectivity.
 
-=== OS Disk layout
+=== OS disk layout
 
 Proxmox graphical installer comes with very good disk management defaults. Proxmox software is installed only in one disk (/dev/sdb), letting the other disks for data storage. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
