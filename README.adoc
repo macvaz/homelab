@@ -152,70 +152,6 @@ Proxmox VE allows to create additional virtual networks (based on bridged, route
 
 The network diagram of the proxmox1 node (without VMs and docker containers) is the following:
 
-
-
-[source]
-----
->> root@proxmox:~$ ip a
-...
-2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master vmbr0 state UP group default qlen 1000
-    link/ether 68:1d:ef:28:1d:0e brd ff:ff:ff:ff:ff:ff
-    altname enp1s0
-...
-4: vmbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 68:1d:ef:28:1d:0e brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.6/24 scope global vmbr0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::6a1d:efff:fe28:1d0e/64 scope link
-       valid_lft forever preferred_lft forever
-...
-----
-
-Add network diagram of proxmox1 alone (without VMs and docker containers)
-
-=== Additional configuration of proxmox1
-
-Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
-
-The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
-
-An extract of the configuration steps is the following:
-
-[source]
-----
->> apt install -y libsasl2-modules mailutils
-
-# Setup credentials in the sasl_passwd file following this format
->> more /etc/postfix/sasl_passwd
-smtp.gmail.com email:passwd
-
-# Create a hashed version of the file
->> postmap hash:/etc/postfix/sasl_passwd
->> chmod 600 /etc/postfix/sasl_passwd
-
-# Paste next configuration in /etc/postfix/main.cf file:
-realayhost = smtp.gmail.com:587
-smtp_use_tls = yes
-smtp_sasl_auth_enable = yes
-smtp_sasl_security_options =
-smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
-
-# Restart postfix
->> postfix reload
-----
-
-=== Software distributed from hardware vendors
-
-Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
-
-Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
-
-[source]
-----
-- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
-----
-
 == 4. Installing virtual machines (VMs)
 
 |===
@@ -340,4 +276,47 @@ https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
 === Offsite backups
 
 https://github.com/macvaz/homelab/tree/main/src/backup/backup_last_month_photos.sh[Monthly backup script using rclone]
+
+=== Additional configuration of proxmox1
+
+Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
+
+The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
+
+An extract of the configuration steps is the following:
+
+[source]
+----
+>> apt install -y libsasl2-modules mailutils
+
+# Setup credentials in the sasl_passwd file following this format
+>> more /etc/postfix/sasl_passwd
+smtp.gmail.com email:passwd
+
+# Create a hashed version of the file
+>> postmap hash:/etc/postfix/sasl_passwd
+>> chmod 600 /etc/postfix/sasl_passwd
+
+# Paste next configuration in /etc/postfix/main.cf file:
+realayhost = smtp.gmail.com:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+
+# Restart postfix
+>> postfix reload
+----
+
+=== Software distributed from hardware vendors
+
+Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
+
+Initially I deployed and configured the UPS monitor in a VM but this deployment wes neither reliable (sometimes it didn't detect changed in UPS) nor safe (it only shut down the vm and not the hypervisor)
+
+[source]
+----
+- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
+----
 
