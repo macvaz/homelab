@@ -31,7 +31,7 @@ Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure whe
  -2x 1TB (DATA disks)
 |===
 
-The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check 'Storage pools' section).
+The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
 === KVM access
 
