@@ -12,14 +12,14 @@ Enterprise-level HCI deployments doesn't require specialized hardware appliances
 
 image::src/img/physical_architecture.png[]
 
-=== Hyper-converged infrastructure (HCI) specs
+=== Hyper-converged infrastructure (HCI) node specs
 
 ==== Nodes
 
 |===
 |Node name | Service IP| Operating System| CPUs | Cores| RAM | SSD
 
-|proxmox
+|proxmox1
 |192.168.1.6
 |Proxmox VE 7.36
 |1 Intel Celeron (J5040)
@@ -33,7 +33,7 @@ The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD dis
 
 === KVM (Keyboard video mouse) specs
 
-Since *proxmox node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
+Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
 
 Just connect a USB keyboard and mouse to the receiver KVM device. There is no additional ethernet cable for the KVM so the ethernet cable linking TV and router is reused to connect KVM receiver and sender. TV losses ethernet connectivity when using KVM extender.
 
@@ -150,7 +150,7 @@ smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
 >> postfix reload
 ----
 
-=== Software distributed from hardware verdors
+=== Software distributed from hardware vendors
 
 Some hardware is distributed directly from vendor's website. The UPS monitor should be installed at hypervisor level, not VM level. In the event of a power outage, the complete server, including both hypervisor and all vms, should be shut down when the battery is running out.
 
@@ -166,14 +166,14 @@ Initially I deployed and configured the UPS monitor in a VM but this deployment 
 |===
 |VM name | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
 
-|docker
+|docker_vm
 |192.168.1.2
 |Ubuntu Server 22.04
 |3
 |3 GBs
 |
 
-|nas
+|nas_vm
 |192.168.1.5
 |Debian 11
 |2
@@ -228,6 +228,7 @@ Most of the applications running in the minipc are deployed as docker containers
 - minidlna: Export media content via DLNA to smart TV
 - ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
 - mutt: Command line email client to easily sending email programaticaly from shell scripts
+- ddclient: Register dynamic IP in cloudflare
 ----
 
 === Containers
