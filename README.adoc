@@ -124,7 +124,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 
 |===
-|Technology |Description | Hardware requirments
+|Technology |Description | Comments
 
 |Ceph
 |A both self-healing and self-managing shared, reliable and highly scalable storage system
@@ -136,8 +136,9 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-  -Ceph
-  - . fault-tolerant storage pools are based on ZFS but *my CPU and memory are not ECC-compatible*. Consequently I decided to create a software-based NAS solution using an *open-source NAS server like OpenMediaVault (OMV)*. Proxmox VE allows to create a VM to run a virtualized NAS server, exposing both DATA disks to the VM using Disk passthrough. Under this setup, Proxmox doesn't control data disks, giving direct access to the disks to OMV.
+Eventually, both HCI storage technologies were discarded. The final approach was to *create a VM (nas_vm) in proxmox1 based on the open-source NAS server OpenMediaVault (OMV)*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault detects both data disks as a JBOD, making very easy to create a RAID 1 device over them.
+
+All data management tasks are centralized in the OMV VM (nas_vm): managind disks, creating file systems, RAID devices, SMB shares, users, access policies, etc. The only data management task done by proxmox with data disks is the SMART scans and alerts.
 
 === Additional configuration of proxmox
 
