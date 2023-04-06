@@ -149,21 +149,21 @@ Proxmox VE allows to create additional virtual networks (based on bridged, route
 
 The network diagram of the proxmox1 node (without docker containers) is the following:
 
-image::img/network diagram.png[]
+image::img/network_diagram.png[]
 
 == 3. Installing virtual machines (VMs)
 
 |===
 |VM name | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
 
-|docker_vm
+|docker
 |192.168.1.2
 |Ubuntu Server 22.04
 |3
 |3 GBs
 |
 
-|nas_vm
+|nas
 |192.168.1.5
 |Debian 11
 |2
