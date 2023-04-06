@@ -147,11 +147,9 @@ Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration
 
 Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in proxmox1 node have only 1 vNIC.
 
-The network diagram of the proxmox1 node (without VMs and docker containers) is the following:
+The network diagram of the proxmox1 node (without docker containers) is the following:
 
-Describe Mikrotik HAP ax2
-FW
-DNS pointing to pihole
+image::img/network diagram.png[]
 
 == 3. Installing virtual machines (VMs)
 
