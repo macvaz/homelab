@@ -183,7 +183,8 @@ There are 2 VMs with very different responsibilities:
 [source]
 ----
  - docker: where all docker containers are executed. Uses shared storage drives served by nas VM.
- - nas: centralizes all shared storage technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault (OMV)
+ - nas: centralizes all shared storage technologies and services (RAID 1, SMB drives, access control).
+        Based on open-source NAS server OpenMediaVault (OMV)
 ----
 
 A more detailed description of the hardware specs of the guest VMs is listed here:
