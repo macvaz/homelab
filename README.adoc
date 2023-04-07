@@ -175,16 +175,19 @@ image::img/network_diagram.png[]
 
 == 3. Guest operating systems (Proxmox VMs)
 
-After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the services and processing running in them.
+After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on the VMs.
 
-There are 2 virtual machines (docker and nas) with 2 very different responsabilities:
- - docker is where batch processes and services runs
- - nas is where storage management is controlled
+There are 2 VMs with very different responsabilities:
+[source]
+----
+ - docker: where all docker containers are executed. Uses shared storage drives served by nas VM.
+ - nas: centralizes all shared storage technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault (OMV)
+----
 
-A more detailed description of the hardware resources of the guest VMs is listed here:
+A more detailed description of the hardware specs of the guest VMs is listed here:
 
 |===
-|Guest OS name | Type | Service IP| Operating System| vCPUs (Cores)| RAM | Disks
+|Guest OS name | Type | Service IP| Operating System| vCPUs (Cores)| RAM | vDisks
 
 |docker
 |Proxmox VM
