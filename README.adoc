@@ -41,13 +41,13 @@ Just connect a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse)
 
 === Emergency power supply
 
-One of the most important goals of the homelab is to remove our dependency with external cloud storage provides (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, having a reliable power supply to our storage server is key to guarantee a safe long-term data archival of my family media and sensitive documents.
+One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, having a reliable power supply to our storage server is key to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply) that ensures power supply in event of power outage  for near 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during that hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node.
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage  for near 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during that hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node.
 
-In order to control the graceful shutdown, a monitoring agent has to be installed in the proxmox1 HCI node. There ware to possibilities for this installation: in the host OS (proxmox1) or in  guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS and the monitor running in a VM was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
+In order to control the graceful shutdown, *a monitoring agent has to be installed in the proxmox1 HCI node*. There were to possibilities for this installation: in the host OS (proxmox1) or in  guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS and the monitor running in a VM was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
 
-After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. This is the only software installed directly in the hypervisor (host OS), without creating any VM or LXC container. The monitoring agent is distributed directly from vendor's website:
+After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from vendor's website:
 
 [source]
 ----
@@ -60,11 +60,11 @@ https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper
 
 After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
-If there is a KVM available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location with final network connectivity.
+If there is a KVM (Keyboard Video Mouse) available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location with final network connectivity.
 
 === OS disk layout
 
-Proxmox graphical installer comes with very good disk management defaults. Proxmox software is installed only in one disk (/dev/sdb), letting the other disks for data storage. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good disk management defaults. P*roxmox software is installed only in one disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 |===
 |Partition |Volume group |Type| Goal
@@ -138,13 +138,15 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 Eventually, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
 
-The final approach was to *create a VM (nas_vm), in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. OpenMediaVault VM (nas_vm) detects both data disks as attached SATA disks, making very easy to create a RAID 1 device over them.
+ The final approach was to *create a VM (nas), in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM (nas) detects both data disks as attached SATA disks, making very easy to create a RAID 1 device over them*.
 
 *All storage-related tasks are centralized in the OMV VM (nas_vm)*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
 === Network topology
 
-Using Proxmox graphical interface makes networking setup quite easy. It detected my home physical network (192.168.1.0/24)out of the box and allowed to set up easily a fixed IP address for proxmox1 (192.168.1.6).
+Using Proxmox graphical interface makes networking setup quite easy. It detected my home physical network (192.168.1.0/24) out of the box and allowed to set up easily a fixed IP address for proxmox1 (192.168.1.6).
+
+The final deployment consists in 2 ip networks:
 
 
 |===
@@ -152,7 +154,7 @@ Using Proxmox graphical interface makes networking setup quite easy. It detected
 
 |192.168.1.0/24
 |Public
-|Physical + virtual switch (vmbm0) in Proxmox VE
+|Physical + virtual switch (vmbr0) in Proxmox VE
 |Physical devices and VM vNICs
 
 |10.10.10.0/24
@@ -163,9 +165,9 @@ Using Proxmox graphical interface makes networking setup quite easy. It detected
 |===
 
 
-Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in proxmox1 node. This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside proxmox1 node. This bridged network setup is very convenient in a homelab environment (each VM gets a physical IP address from the router), but it assigns several IP addresses to the same physical NIC (proxmox's eno1). This setup is normally not allowed in Cloud Service Providers (CSPs), where networking equipment (CSP routers and switches) block traffic coming from different VMs with the same MAC address.
+Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in proxmox1 node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside proxmox1 node*. This bridged network setup is very convenient in a homelab environment (each VM gets a physical IP address from the router), but it assigns several IP addresses to the same physical NIC (proxmox's eno1). This setup is normally not allowed in Cloud Service Providers (CSPs), where networking equipment (CSP routers and switches) block traffic coming from different VMs with the same MAC address.
 
-Apart from virtual networking devices created by Proxmox VE, there also another virtualization technology (Docker) in the docker VM (192.168.1.2(/24). This software-defined Docker networking environment, contrary to proxmox1's is private and never leaves docker VM, so any physical external physical device (mikrotik router, TV and mobile clients) are totally unaware of 10.10.10.0/24 network. This network is only used to docker containers to comumnicate each other.
+Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology (Docker) internal the docker VM (192.168.1.2/24). *This software-defined Docker network environment, contrary to proxmox1's is private* and never leaves docker VM, so any physical external physical device (mikrotik router, TV and mobile clients) are totally unaware of 10.10.10.0/24 network. This network is only used to docker containers to communicate each other.
 
 Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in proxmox1 node have only 1 vNIC.
 
@@ -177,7 +179,7 @@ image::img/network_diagram.png[]
 
 After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on the VMs.
 
-There are 2 VMs with very different responsabilities:
+There are 2 VMs with very different responsibilities:
 [source]
 ----
  - docker: where all docker containers are executed. Uses shared storage drives served by nas VM.
