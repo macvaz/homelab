@@ -54,7 +54,7 @@ After installing the UPS monitor agent in the host OS (proxmox), all this unreli
 - PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
 ----
 
-== 2. Installing HCI node (proxmox1)
+== 2. Hypervisor (host OS)
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
 
