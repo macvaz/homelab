@@ -158,7 +158,7 @@ The final deployment consists in 2 ip networks:
 |Physical devices and VM vNICs
 
 |10.10.10.0/24
-|Internal
+|Internal to docker VM
 |Virtual devices (docker0) in Docker
 |Docker containers
 
