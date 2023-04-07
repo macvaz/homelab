@@ -173,7 +173,7 @@ The network diagram of the proxmox1 node (without docker containers) is the foll
 
 image::img/network_diagram.png[]
 
-== 3. Guest operating systems (VMs)
+== 3. Guest operating systems (Proxmox VMs)
 
 After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the services and processing running in them.
 
