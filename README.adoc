@@ -153,12 +153,12 @@ The final deployment consists in 2 ip networks:
 |Network address |Visibility|Virtualization technology|Connected devices
 
 |192.168.1.0/24
-|Public
+|External
 |Physical + virtual switch (vmbr0) in Proxmox VE
 |Physical devices and VM vNICs
 
 |10.10.10.0/24
-|Private
+|Internal
 |Virtual devices (docker0) in Docker
 |Docker containers
 
