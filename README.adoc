@@ -140,7 +140,7 @@ Eventually, both HCI storage technologies were discarded and started to explore 
 
 The final approach was to *create a VM (nas), in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM (nas) detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
-*All storage-related tasks are centralized in the OMV VM (nas_vm)*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
+*All storage-related tasks are centralized in the OpenMediaVault*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
 === Network topology
 
