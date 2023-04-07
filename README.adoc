@@ -180,12 +180,19 @@ image::img/network_diagram.png[]
 After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on the VMs.
 
 There are 2 VMs with very different responsibilities:
-[source]
-----
- - docker: where all docker containers are executed. Uses shared storage drives served by nas VM.
- - nas: centralizes all shared storage technologies and services (RAID 1, SMB drives, access control).
-        Based on open-source NAS server OpenMediaVault (OMV)
-----
+
+
+|===
+|VM name |Type |Goal
+
+|docker
+|Computation
+|VM where all docker containers are executed. Uses shared storage drives served by nas VM.
+
+|nas
+|Storage
+|Centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault (OMV)
+|===
 
 A more detailed description of the hardware specs of the guest VMs is listed here:
 
