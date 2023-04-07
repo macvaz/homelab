@@ -1,0 +1,92 @@
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: homelab
+:tabsize: 2
+
+== 4. VPN and external access
+
+=== Dynamic DNS
+  NoIP
+=== Blocking direct traffic to Router DNS
+  adblocking (pihole)
+  Mainly problematic with Android phones
+=== Port forwading for VPN and ¿nextcloud?
+
+=== VPN
+  wireguard
+  laptop scripts
+  mobile phones
+
+== 6. Backups
+
+=== Onsite backups
+  syncthing + some bash writing on RAID
+
+=== Offsite backups
+
+https://github.com/macvaz/homelab/tree/main/src/backup/backup_last_month_photos.sh[Monthly backup script using rclone]
+
+=== Additional configuration of proxmox1
+
+Since most of the software is going to be installed inside a VM, at the hypervisor level, very few extra packages are required.
+
+The most important thing missing is to set up email relay for automatic alarms. To configure it, just follow Techno Tim's video: https://www.youtube.com/watch?v=85ME8i4Ry6A
+
+An extract of the configuration steps is the following:
+
+[source]
+----
+>> apt install -y libsasl2-modules mailutils
+
+# Setup credentials in the sasl_passwd file following this format
+>> more /etc/postfix/sasl_passwd
+smtp.gmail.com email:passwd
+
+# Create a hashed version of the file
+>> postmap hash:/etc/postfix/sasl_passwd
+>> chmod 600 /etc/postfix/sasl_passwd
+
+# Paste next configuration in /etc/postfix/main.cf file:
+realayhost = smtp.gmail.com:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+
+# Restart postfix
+>> postfix reload
+----
+
+=== Cloud init & cloud images
+
+In general creating VMs from an general-purpose ISO image is not the best approach. Cloud images are a much better alternative.
+
+https://cloud-images.ubuntu.com/minimal/releases/jammy/release-20230209/
+https://pve.proxmox.com/wiki/Cloud-Init_Support
+
+[source]
+----
+# download the "minimal" cloud image
+wget https://cloud-images.ubuntu.com/minimal/releases/jammy/release-20230209/ubuntu-22.04-minimal-cloudimg-amd64.img
+
+# create a new VM with VirtIO SCSI controller
+qm create 9000 --memory 2048 --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci
+
+# import the downloaded disk to the local-lvm storage, attaching it as a SCSI drive
+qm set 9000 --scsi0 local-lvm:0,import-from=/root/ubuntu-22.04-minimal-cloudimg-amd64.img
+
+# configure a CD-ROM drive, which will be used to pass the Cloud-Init data to the VM
+qm set 9000 --ide2 local-lvm:cloudinit
+
+# boot directly from the Cloud-Init image
+qm set 9000 --boot order=scsi0
+
+# configure a serial console and use it as a display
+qm set 9000 --serial0 socket --vga serial0
+
+# convert to template
+qm template 9000
+----
+
