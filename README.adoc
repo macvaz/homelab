@@ -39,7 +39,7 @@ Currently, there is only one hyper-converged node in the deployment: *"proxmox1"
 
 CPU model and motherboard were specifically selected trying to maximize a relative metric (performance / power) rather than an absolute one (like clock speed or MIPS). *With a TDP (thermal design power) of 10 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
-*All disks are SSD*, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
+*All disks are SSD (Solid State Disks)*, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
 === Emergency power supply
 
