@@ -66,13 +66,11 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 === KVM access
 
-Connecting a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. S
-
 Using a KVM extender during host OS installation has a main benefit: installing with the server places in its definitive location with final network connectivity.
 
 === Installation
 
-After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
+After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
 === OS disk layout
 
