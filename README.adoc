@@ -198,7 +198,8 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 |Ubuntu Server 22.04
 |3
 |3 GBs
-|2 vDisks
+|- 2 vDisks +
+- shared-storage SMB drives
 
 |nas
 |Proxmox VM
