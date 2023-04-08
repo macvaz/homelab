@@ -212,7 +212,7 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 
 In case of creating VMs from a general purpose Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google.
 
-=== docker VM
+=== "docker" VM
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
 
@@ -260,7 +260,7 @@ In analysis:
 
 https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
 
-=== nas VM
+=== "nas" VM
 
 Description of open media vault installatioin and setup.
 
