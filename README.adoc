@@ -258,7 +258,8 @@ In analysis:
 
 ==== Docker-compose
 
-https://github.com/macvaz/homelab/tree/main/src/docker[YAML file]
+https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
+[YAML file]
 
 === "nas" VM
 
