@@ -106,7 +106,7 @@ Proxmox graphical installer comes with very good disk management defaults. *Prox
 
 |===
 
-For clarity, in the above table only LVM logical volumes (LV) are shown. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
+For clarity, in the above table only LVM logical volumes (LVs) are shown. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
 
 === Data disks layout
 
