@@ -217,7 +217,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 |===
 
-==== Logical architecture
+=== Logical architecture
 
 Next is shown a logical architecture diagram of the main software services running in the "proxmox1" hyper-converged node, including:
 
