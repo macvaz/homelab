@@ -77,7 +77,7 @@ Using a KVM extender during host OS installation has a main benefit: installing 
 Proxmox graphical installer comes with very good disk management defaults. *Proxmox software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 |===
-|Partition |LVM|Type| Goal
+|Partition |LVM LV|Type| Goal
 
 |sdb1
 |-
@@ -90,17 +90,17 @@ Proxmox graphical installer comes with very good disk management defaults. *Prox
 |EFI System Partition (ESP), which makes it possible to boot on EFI systems. Linux kernel images are stored in this partition and mounted in /boot/efi
 
 |sdb3
-|LV: *swap*
+|*swap*
 |swap
 |lvm LV where Proxmox VE places the swap space
 
 |sdb3
-|LV: *root*
+|*root*
 |ext4
 |lvm LG mounted as the root file system (/) of Proxmox
 
 |sdb3
-|LV: *data*
+|*data*
 |LVM-thin
 |lvm thin provisioning volume used to store vDisks
 
