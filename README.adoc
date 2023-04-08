@@ -199,7 +199,7 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 |3
 |3 GBs
 |- 2 vDisks +
-- shared-storage SMB drives
+- external SMB drives
 
 |nas
 |Proxmox VM
