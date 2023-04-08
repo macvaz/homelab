@@ -6,9 +6,9 @@
 
 == 1. Hardware architecture
 
-Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on general-purpose unified hardware platform, without the need of specialized appliances.
+Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on a general-purpose unified hardware platform, without the need of specialized appliances like NAS servers.
 
-Enterprise-level HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
+Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
 
@@ -16,18 +16,18 @@ image::img/physical_architecture.png[]
 
 === HCI node specs
 
-Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure where storage and computing resources are defined by software (virtualized) on aa unified hardware platform. Consequently no specialized hardware appliances are required for computation and storage.
+Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure strategy where storage and computing virtualized on a unified hardware platform. Consequently no specialized hardware appliances are required for computation and storage.
 
 ==== Host OS (proxmox nodes)
 
-Currently, there is only one hyperconverged node in the deployment: proxmox1. It's hardware specs are the following:
+Currently, there is only one hyper-converged node in the deployment: proxmox1. Its hardware specs are the following:
 
 |===
 |Host OS name | Service IP| Operating System| CPUs | Cores| RAM | SSD
 
 |proxmox1
 |192.168.1.6
-|Proxmox VE 7.36
+|Proxmox VE 7.36 (based on Debian Linux)
 |1 Intel Celeron (J5040)
 |4
 |16 GBs
@@ -35,13 +35,15 @@ Currently, there is only one hyperconverged node in the deployment: proxmox1. It
  -2x 1TB (DATA disks)
 |===
 
-*Low power consumption was a design principle* used during hardware selection. Since CPU performance requirements for a domestic server are quite easy to fulfill, even with low-end processors like Intel Celeron family, CPU model and motherboard were specifically selected trying to maximize the ratio of performance / power. With a TDP (thermal design power) of 10 watts, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+*Low power consumption was a requirement for hardware selection*. Since processing performance for a domestic server is normally high, low-end processor families like Intel Celeron are enough.
 
-All disks are SSD, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
+CPU model and motherboard were specifically selected trying to maximize a relative metric (performance / power) rather than an absolute one (like clock speed or MIPS). *With a TDP (thermal design power) of 10 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+
+*All disks are SSD*, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
 === Emergency power supply
 
-One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, having a reliable power supply to our storage server is key to guarantee a safe long-term data archival of my family media and sensitive documents.
+One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, *having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
 
 *PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during an hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node. Having a very power efficient hardware (around 20 watts) is key to have a emergency power supply of almost an hour.
 
@@ -55,7 +57,7 @@ Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy acce
 
 A *keyboard, video, and mouse (KVM) extender enables users to work on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to proxmox1 server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a r**emote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system.
 
-As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during that time.
+As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during KVM usage.
 
 image::img/kvm_extender.png[KVM extender,350,300]
 image::img/kvm_extender_diagram.png[]
@@ -128,7 +130,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 Eventually, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
 
-The final approach was to *create a VM (nas), in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM (nas) detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
+The final approach was to *create a VM "nas", in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
 *All storage-related tasks are centralized in the OpenMediaVault*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
@@ -148,16 +150,18 @@ The final deployment consists in 2 ip networks:
 |Physical devices and VM vNICs
 
 |10.10.10.0/24
-|Internal to docker VM
+|Internal to "docker" VM
 |Virtual devices (docker0) in Docker
 |Docker containers
 
 |===
 
 
-Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in proxmox1 node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside proxmox1 node*. This bridged network setup is very convenient in a homelab environment (each VM gets a physical IP address from the router, making all VMs available from all devices), but it assigns several IP addresses to the same physical NIC (proxmox's eno1). This setup is normally not allowed in CSPs (Cloud Service Providers), where networking equipment (CSP routers and switches) block traffic coming from different VMs with the same MAC address.
+Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in proxmox1 node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside proxmox1 node*. This bridged network setup is very convenient in a homelab environment as each VM gets an IP directly from the router address space, making guest OS (VMs)  indistinguishable from host nodes (hypervisors) from a networking point of view.
 
-Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to docker VM, exists a software-defined  network (10.10.10.0/24), only used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
+This bridged configuration assigns several IP addresses (host OS and guest OSs) to the same physical NIC (proxmox's eno1). This setup is normally not allowed in CSPs (Cloud Service Providers), where networking equipment (CSP routers and switches) block traffic coming from different VMs with the same MAC address.
+
+Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to "docker" VM, exists a software-defined  network (10.10.10.0/24), only used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
 
 Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in proxmox1 node have only 1 vNIC.
 
@@ -173,7 +177,7 @@ There are 2 VMs with very different responsibilities:
 
 
 |===
-|VM name |Type |Goal
+|VM name |Resource type |Goal
 
 |docker
 |Computation
