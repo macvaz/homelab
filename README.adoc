@@ -174,10 +174,11 @@ image::img/network_diagram.png[]
 
 After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
 
+=== Virtual resources
+
 This chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on each virtual machine.
 
 There are 2 VMs with very different responsibilities:
-
 
 |===
 |VM name |Resource type |Goal
@@ -215,6 +216,8 @@ A more detailed description of the virtual resources of each VMs is listed here:
 - 2 SDD physical disks (via disk passthrough)
 
 |===
+
+==== Logical architecture
 
 Next is shown a logical architecture diagram of the main software services running in the "proxmox1" hyper-converged node, including:
 
