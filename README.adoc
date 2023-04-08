@@ -180,7 +180,7 @@ There are 2 VMs with very different responsibilities:
 
 |docker
 |Computation
-|VM where all docker containers are executed. Uses shared storage drives served by nas VM.
+|VM where all docker containers are executed. Uses shared storage drives served by "nas" VM.
 
 |nas
 |Storage
