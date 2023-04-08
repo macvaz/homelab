@@ -216,7 +216,13 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 |===
 
-A logical architecture diagram of the services running in the "proxmox1" hyper-converged node is presented here:
+Next is shown a logical architecture diagram of the main software services running in the "proxmox1" hyper-converged node, including:
+
+[source]
+----
+- "proxmox1" hypervisor (192.168.1.6)
+- "nas" VM (192.168.1.5)
+- "docker" VM (192.168.1.2).
 
 image::img/logical_architecture.png[]
 
