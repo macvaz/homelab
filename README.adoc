@@ -176,9 +176,7 @@ After describing the hardware architecture in chapter 1 and the hypervisor setup
 
 === Virtual infrastructure
 
-This chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on each virtual machine.
-
-There are 2 VMs with very different responsibilities:
+This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 VMs with very different responsibilities:
 
 |===
 |VM name |Resource type |Goal
@@ -219,14 +217,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 === Logical architecture
 
-Next is shown a logical architecture diagram of the main software services running in the "proxmox1" hyper-converged node, including:
-
-[source]
-----
-- "proxmox1" hypervisor (192.168.1.6)
-- "nas" VM (192.168.1.5)
-- "docker" VM (192.168.1.2)
-----
+In the next logical architecture diagram, the main software services running in the homelab are presented. This diagram includes services running in both bare-metal infrastructure (hypervisor) and the above described virtual machines.
 
 image::img/logical_architecture.png[]
 
