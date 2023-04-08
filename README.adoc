@@ -216,6 +216,8 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 |===
 
+image::img/logical_architecture.png[]
+
 === "docker" VM
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
