@@ -6,17 +6,19 @@
 
 == 1. Hardware architecture
 
-Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on a general-purpose unified hardware platform, without the need of specialized appliances like NAS servers.
+Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on a general-purpose unified hardware platform, without the need of specialized appliances for storage like NAS servers.
 
-Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
+Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common out-of-the-shelf open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
+
+The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
 === HCI node specs
 
-Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure strategy where storage and computing virtualized on a unified hardware platform. Consequently no specialized hardware appliances are required for computation and storage.
+Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure configuration where storage and computing is virtualized on a unified hardware platform. Consequently no specialized hardware appliances are required for computation and storage.
 
 ==== Host OS (proxmox nodes)
 
