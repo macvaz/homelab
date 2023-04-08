@@ -20,7 +20,7 @@ Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure str
 
 ==== Host OS (proxmox nodes)
 
-Currently, there is only one hyper-converged node in the deployment: proxmox1. Its hardware specs are the following:
+Currently, there is only one hyper-converged node in the deployment: *"proxmox1"*. Its hardware specs are the following:
 
 |===
 |Host OS name | Service IP| Operating System| CPUs | Cores| RAM | SSD
@@ -53,7 +53,7 @@ After installing the UPS monitor agent in the host OS (proxmox), all this unreli
 
 === KVM extender
 
-Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access to the machine when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
+Since *"proxmox1" node* is placed at the top of a bookshelf, there is no easy access to the machine when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
 A *keyboard, video, and mouse (KVM) extender enables users to work on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to proxmox1 server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a r**emote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system.
 
