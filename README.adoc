@@ -206,7 +206,8 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 |Debian 11
 |2
 |2 GBs
-|1 vDisk + 2 SDD disks (via disk passthrough)
+|- 1 vDisk +
+-2 SDD disks (via disk passthrough)
 
 |===
 
