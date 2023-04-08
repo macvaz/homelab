@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-Due to the lack of free physical space at home, a software-defined IT infrastructure approach like *hyper-converged infrastructure (HCI)* was found ideal. HCI allows virtualizing most traditional hardware equipment using software-defined computing, networking and storage.
+Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on general-purpose unified hardware platform, without the need of specialized appliances.
 
 Enterprise-level HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
@@ -14,9 +14,11 @@ image::img/physical_architecture.png[]
 
 === HCI node specs
 
-Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure where storage and computing resources are defined by software (virtualized). Consequently no specialized hardware appliances are required for computation and storage.
+Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure where storage and computing resources are defined by software (virtualized) on aa unified hardware platform. Consequently no specialized hardware appliances are required for computation and storage.
 
 ==== Host OS (proxmox nodes)
+
+Currently, there is only one hyperconverged node in the deployment: proxmox1. It's hardware specs are the following:
 
 |===
 |Host OS name | Service IP| Operating System| CPUs | Cores| RAM | SSD
@@ -31,7 +33,9 @@ Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure whe
  -2x 1TB (DATA disks)
 |===
 
-The smaller SSD disk (OS disk) is for installing Proxmox VE. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
+*Low power consumption was a design principle* used during hardware selection. Since CPU performance requirements for a domestic server are quite easy to fulfill, even with low-end processors like Intel Celeron family, CPU model and motherboard were specifically selected trying to maximize the ratio of performance / power. With a TDP (thermal design power) of 10 watts, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+
+All disks are SSD, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
 === KVM access
 
@@ -43,9 +47,9 @@ Just connect a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse)
 
 One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, having a reliable power supply to our storage server is key to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage  for near 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during that hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node.
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during an hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node. Having a very power efficient hardware (around 20 watts) is key to have a emergency power supply of almost an hour.
 
-In order to control the graceful shutdown, *a monitoring agent has to be installed in the proxmox1 HCI node*. There were to possibilities for this installation: in the host OS (proxmox1) or in  guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS and the monitor running in a VM was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
+In order to control the graceful shutdown, *a monitoring agent has to be installed in the proxmox1 HCI node*. There were to possibilities for this installation: installing in the host OS (proxmox1) or in a guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS with the virtualized monitor agent was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
 
 After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from vendor's website:
 
@@ -64,58 +68,40 @@ If there is a KVM (Keyboard Video Mouse) available, the recommended way of insta
 
 === OS disk layout
 
-Proxmox graphical installer comes with very good disk management defaults. P*roxmox software is installed only in one disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
+Proxmox graphical installer comes with very good disk management defaults. *Proxmox software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 |===
-|Partition |Volume group |Type| Goal
+|Partition |LVM|Type| Goal
 
 |sdb1
 |-
-|
-|
+|ext2?
+|Grub2 OS-independent bootloader partition
 
 |sdb2
 |-
 |vfat
-|/boot/efi is where OS-independent bootloader is stored (grub2 in my case)
+|EFI System Partition (ESP), which makes it possible to boot on EFI systems. Linux kernel images are stored in this partition and mounted in /boot/efi
 
 |sdb3
-|pve-swap
+|-PV: pve -VG: pve +
+-LV: swap
 |swap
-|lvm volume group where Proxmox VE placed the swap space
+|lvm LV where Proxmox VE places the swap space
 
 |sdb3
-|pve-root
+|-PV: pve -VG: pve +
+-LV: root
 |ext4
-|lvm volume group where the root file system (/) of Proxmox is placed
+|lvm LG mounted as the root file system (/) of Proxmox
 
 |sdb3
-|pve-data_tmeta
-|lvm thing provisioning
-|lvm-based thin provisioning volume used to store (metadata) of virtual hard disks of VMs
+|-PV: pve -VG: pve +
+-LV: data
+|LVM-thin
+|lvm thin provisioning volume used to store vDisks
 
-|sdb3
-|pve-data_tdata
-|lvm thing provisioning
-|lvm-based thin provisioning volume used to store (data) of virtual hard disks of VMs
 |===
-
-[source]
-----
->> root@proxmox:~$ lsblk
-sdb
-├─sdb1
-├─sdb2                       vfat        FAT32                    /boot/efi
-└─sdb3                       LVM2_member LVM2
-  ├─pve-swap                 swap
-  ├─pve-root                 ext4        1.0      PROXMOX_ROOT    /
-  ├─pve-data_tmeta
-  │ └─pve-data-tpool
-  │   └─pve-data
-  └─pve-data_tdata
-    └─pve-data-tpool
-      └─pve-data
-----
 
 === Data disks layout
 
