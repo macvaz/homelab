@@ -10,6 +10,8 @@ Due to the lack of free physical space at home, using software-defined IT infras
 
 Enterprise-level HCI deployments doesn't require specialized hardware appliances for storage - like NAS appliances - that are very common in traditional IT deployments. Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
+
 image::img/physical_architecture.png[]
 
 === HCI node specs
@@ -37,12 +39,6 @@ Currently, there is only one hyperconverged node in the deployment: proxmox1. It
 
 All disks are SSD, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
-=== KVM access
-
-Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes or boot failures, the KVM extender is really helpful.
-
-Just connect a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. Since there is no additional ethernet cable for the KVM extender, the ethernet cable linking TV and router is reused when utilizing the KVM. TV losses ethernet connectivity when using KVM extender.
-
 === Emergency power supply
 
 One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, having a reliable power supply to our storage server is key to guarantee a safe long-term data archival of my family media and sensitive documents.
@@ -55,11 +51,17 @@ After installing the UPS monitor agent in the host OS (proxmox), all this unreli
 
 == 2. Host operating system (Proxmox hypervisor)
 
-https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
+=== KVM access
+
+Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
+
+Just connect a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. Since there is no additional ethernet cable for the KVM extender, the ethernet cable linking TV and router is reused when utilizing the KVM. TV losses ethernet connectivity when using KVM extender.
+
+Using a KVM extender during host OS installation has a main benefit: installing with the server places in its definitive location with final network connectivity.
+
+=== Installation
 
 After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
-
-If there is a KVM (Keyboard Video Mouse) available, the recommended way of installing Proxmox VE is through the KVM extender. The main benefit is to conduct the OS installation with the server placed in its definitive location with final network connectivity.
 
 === OS disk layout
 
