@@ -47,17 +47,17 @@ CPU model and motherboard were specifically selected trying to maximize a relati
 
 One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, *having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the proxmox1 node. If the external power supply has not been restored during an hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and proxmox1 node. Having a very power efficient hardware (around 20 watts) is key to have a emergency power supply of almost an hour.
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the external power supply has not been restored during an hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and "proxmox1" node. Having a very power efficient hardware (around 20 watts) is key to have a emergency power supply of almost an hour.
 
-In order to control the graceful shutdown, *a monitoring agent has to be installed in the proxmox1 HCI node*. There were to possibilities for this installation: installing in the host OS (proxmox1) or in a guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS with the virtualized monitor agent was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
+In order to control the graceful shutdown, *a monitoring agent has to be installed in the "proxmox1" HCI node*. There were to possibilities for this installation: installing in the host OS ("proxmox1") or in a guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS with the virtualized monitor agent was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
 
-After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from https://www.powermonitor.software/#PowerMasterPlusSoftware[vendor's website].
+After installing the UPS monitor agent directly in the host OS ("proxmox1" node), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from https://www.powermonitor.software/#PowerMasterPlusSoftware[vendor's website].
 
 === KVM extender
 
 Since *"proxmox1" node* is placed at the top of a bookshelf, there is no easy access to the machine when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
-A *keyboard, video, and mouse (KVM) extender enables users to work on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to proxmox1 server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a r**emote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system.
+A *keyboard, video, and mouse (KVM) extender enables users to work locally on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to "proxmox1" server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a **remote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system.
 
 As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during KVM usage.
 
@@ -70,13 +70,13 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 === Installation
 
-After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted proxmox node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
+After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted "proxmox1" node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
 Using a KVM extender during host OS installation has a main benefit: installing the server OS with all the hardware placed in its definitive location with final network connectivity.
 
 === OS disk layout
 
-Proxmox graphical installer comes with very good disk management defaults. *Proxmox software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
+Proxmox VE graphical installer comes with very good disk management defaults. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
 |===
 |Partition |LVM LV|Type| Goal
@@ -110,7 +110,7 @@ Proxmox graphical installer comes with very good disk management defaults. *Prox
 
 For clarity, in the above table only LVM logical volumes (LVs) are shown. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
 
-=== Data disks layout
+=== Shared storage (Data disks layout)
 
 The objective of data disks is to provide a fault-tolerant long-term storage solution for the homelab. Several storage solutions were considered when designing the storage system.
 
@@ -131,7 +131,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 Eventually, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
 
-The final approach was to *create a VM "nas", in proxmox1 node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
+The final approach was to *create a VM "nas", in "proxmox1" node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
 *All storage-related tasks are centralized in the OpenMediaVault*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
@@ -152,19 +152,19 @@ The final deployment consists in 2 ip networks:
 
 |10.10.10.0/24
 |Internal to "docker" VM
-|Virtual devices (docker0) in Docker
+|Virtual switch (docker0) in Docker
 |Docker containers
 
 |===
 
 
-Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in proxmox1 node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside proxmox1 node*. This bridged network setup is very convenient in a homelab environment as each VM gets an IP directly from the router address space, making guest OS (VMs)  indistinguishable from host nodes (hypervisors) from a networking point of view.
+Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in "proxmox1" node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside "proxmox1" node*. This bridged network setup is very convenient in a homelab environment as each VM gets an IP directly from the router address space, making guest OS (VMs)  indistinguishable from host nodes (hypervisors) from a networking point of view.
 
-This bridged configuration assigns several IP addresses (host OS and guest OSs) to the same physical NIC (proxmox's eno1). This setup is normally not allowed in CSPs (Cloud Service Providers), where networking equipment (CSP routers and switches) block traffic coming from different VMs with the same MAC address.
+This bridged configuration assigns several IP addresses (host's IP and guests' IPs) to the same physical NIC ("proxmox1" eno1). This setup is normally not allowed in CSPs (Cloud Service Providers), where networking equipment block traffic coming from different VMs with the same MAC address.
 
-Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to "docker" VM, exists a software-defined  network (10.10.10.0/24), only used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
+Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to "docker" VM, a software-defined  network (10.10.10.0/24) is created, only being used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
 
-Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in proxmox1 node have only 1 vNIC.
+Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in "proxmox1" node have only 1 vNIC.
 
 The network diagram of the proxmox1 node (without docker containers) is the following:
 
@@ -172,7 +172,9 @@ image::img/network_diagram.png[]
 
 == 3. Guest operating systems (Proxmox VMs)
 
-After describing the hardware architecture (host OS and physical devices) in chapter 1 and 2, this chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on the VMs.
+After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
+
+This chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on each virtual machine.
 
 There are 2 VMs with very different responsibilities:
 
@@ -182,17 +184,17 @@ There are 2 VMs with very different responsibilities:
 
 |docker
 |Computation
-|VM where all docker containers are executed. Uses shared storage drives served by "nas" VM.
+|VM where all docker containers are executed. Uses SMB shared storage drives served by "nas" VM.
 
 |nas
 |Storage
-|Centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault (OMV)
+|Centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
 |===
 
-A more detailed description of the hardware specs of the guest VMs is listed here:
+A more detailed description of the virtual resources of each VMs is listed here:
 
 |===
-|Guest OS name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
+|VM name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
 |Proxmox VM
@@ -213,8 +215,6 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 - 2 SDD physical disks (via disk passthrough)
 
 |===
-
-In case of creating VMs from a general purpose Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google.
 
 === "docker" VM
 
@@ -243,17 +243,17 @@ Running containers
   - Portainer
   - Heimdall
   - Uptime-kuma
-  - Photoview
-  - Mariadb
   - Watchtower
+  - Nextcloud
+  - Nginx Proxy Manager
 ----
+
+In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
 
 In analysis:
 
 [source]
 ----
-  - Traefik
-  - Next-cloud
   - Homeassistant
   - Plex / kodi / jellybin / emby
   - freeipa
@@ -267,7 +267,16 @@ https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
 
 === "nas" VM
 
-Description of open media vault installatioin and setup.
+Description of https://www.openmediavault.org/[OpenMediaVault] installation and setup
+
+[source]
+----
+  - RAID 1
+  - File systems
+  - SMB shares
+  - quotas
+  - user permissions
+----
 
 
 
