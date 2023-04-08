@@ -190,7 +190,7 @@ There are 2 VMs with very different responsibilities:
 A more detailed description of the hardware specs of the guest VMs is listed here:
 
 |===
-|Guest OS name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | vDisks
+|Guest OS name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
 |Proxmox VM
