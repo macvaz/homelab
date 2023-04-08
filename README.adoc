@@ -203,7 +203,7 @@ A more detailed description of the hardware specs of the guest VMs is listed her
 |nas
 |Proxmox VM
 |192.168.1.5
-|Debian 11
+|OpenMediaVault (based on Debian 11)
 |2
 |2 GBs
 |- 1 vDisk (for OS) +
