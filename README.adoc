@@ -53,9 +53,14 @@ After installing the UPS monitor agent in the host OS (proxmox), all this unreli
 
 Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
-Since there is no additional ethernet cable for the KVM extender, the ethernet cable linking TV and router is reused when utilizing the KVM. TV losses ethernet connectivity when using KVM extender.
+A *keyboard, video, and mouse (KVM) extender enables users to work on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to proxmox1 server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a r**emote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system.
 
-image::img/kvm_extender.png[]
+As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during that time.
+
+image::img/kvm_extender.png[KVM extender,350,300]
+image::img/kvm_extender_diagram.png[]
+
+Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
 == 2. Host operating system (Proxmox hypervisor)
 
