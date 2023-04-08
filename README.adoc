@@ -53,13 +53,15 @@ After installing the UPS monitor agent in the host OS (proxmox), all this unreli
 
 Since *proxmox1 node* is placed at the top of a bookshelf, there is no easy access when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
+Since there is no additional ethernet cable for the KVM extender, the ethernet cable linking TV and router is reused when utilizing the KVM. TV losses ethernet connectivity when using KVM extender.
+
 image::img/kvm_extender.png[]
 
 == 2. Host operating system (Proxmox hypervisor)
 
 === KVM access
 
-Connecting a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. Since there is no additional ethernet cable for the KVM extender, the ethernet cable linking TV and router is reused when utilizing the KVM. TV losses ethernet connectivity when using KVM extender.
+Connecting a USB keyboard and mouse to the receiver KVM (Keyboard Video Mouse) device. S
 
 Using a KVM extender during host OS installation has a main benefit: installing with the server places in its definitive location with final network connectivity.
 
