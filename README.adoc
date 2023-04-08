@@ -174,7 +174,7 @@ image::img/network_diagram.png[]
 
 After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
 
-=== Virtual resources
+=== Virtual infrastructure
 
 This chapter describes the software-defined infrastructure (VMs and virtual networks) and the logical architecture of the software deployed on each virtual machine.
 
