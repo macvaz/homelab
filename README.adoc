@@ -61,7 +61,7 @@ A *keyboard, video, and mouse (KVM) extender enables users to work locally on a 
 
 As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during KVM usage.
 
-image::img/kvm_extender.png[KVM extender,150,300]
+image::img/kvm_extender.png[KVM extender,150,200]
 image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
