@@ -51,12 +51,7 @@ One of the most important goals of the homelab is to remove our dependency with 
 
 In order to control the graceful shutdown, *a monitoring agent has to be installed in the proxmox1 HCI node*. There were to possibilities for this installation: installing in the host OS (proxmox1) or in a guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS with the virtualized monitor agent was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shutted down the guest OS and not the complete node).
 
-After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from vendor's website:
-
-[source]
-----
-- PowerMaster+: UPS monitor from https://www.powermonitor.software/#PowerMasterPlusSoftware (PowerWalker)
-----
+After installing the UPS monitor agent in the host OS (proxmox), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from https://www.powermonitor.software/#PowerMasterPlusSoftware[vendor's website].
 
 == 2. Host operating system (Proxmox hypervisor)
 
