@@ -222,7 +222,8 @@ Next is shown a logical architecture diagram of the main software services runni
 ----
 - "proxmox1" hypervisor (192.168.1.6)
 - "nas" VM (192.168.1.5)
-- "docker" VM (192.168.1.2).
+- "docker" VM (192.168.1.2)
+----
 
 image::img/logical_architecture.png[]
 
