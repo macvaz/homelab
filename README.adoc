@@ -216,7 +216,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 === Logical architecture
 
-In the next logical architecture diagram, the main software services running in the homelab are presented. This diagram includes services running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" VMs).
+In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes services running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" VMs).
 
 image::img/logical_architecture.png[]
 
