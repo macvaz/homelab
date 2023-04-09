@@ -8,9 +8,9 @@
 
 Due to the lack of free physical space at home, using software-defined IT infrastructure like *hyper-converged infrastructure (HCI)* was ideal. HCI allows virtualizing most traditional hardware equipment (mainly computing and storage) on a general-purpose unified hardware platform, without the need of specialized appliances for storage like NAS servers.
 
-Both computing and storage infrastructure can be virtualized by software using hypervisors. Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common out-of-the-shelf open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices making most of virtual infrastructure provision and operation very comfortable (like automatic vDisk backups, VM migrations, etc).
 
-https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete HCI (Hyper-converged Infrastructure) solution ready for professional datacenter management**. Proxmox provides a lot of out-of-the-shelf solutions and best practices making most of the hardware and infrastructure chores very comfortable (like automatic backups, VM migrations, etc).
+Since *https://www.proxmox.com/en/proxmox-ve[Proxmox Virtual Environment (VE)] is the most common out-of-the-shelf open-source Type 1 hypervisor* available, it was selected as the base technology of the HCI server.
 
 The complete hardware architecture of the homelab is the following:
 
