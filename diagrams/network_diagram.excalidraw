@@ -4137,8 +4137,8 @@
     },
     {
       "type": "text",
-      "version": 296,
-      "versionNonce": 2054428952,
+      "version": 383,
+      "versionNonce": 2059825263,
       "isDeleted": false,
       "id": "9Z1iyEIJcS8S5THWr7r70",
       "fillStyle": "hachure",
@@ -4147,26 +4147,26 @@
       "roughness": 1,
       "opacity": 100,
       "angle": 0,
-      "x": 507.8372485637665,
-      "y": 414.21717953681946,
+      "x": 476.8372485637665,
+      "y": 413.21717953681946,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
-      "width": 98.49620056152344,
+      "width": 183.93637084960938,
       "height": 60,
       "seed": 1615237925,
       "groupIds": [],
       "roundness": null,
       "boundElements": [],
-      "updated": 1680804702504,
+      "updated": 1681028390540,
       "link": null,
       "locked": false,
       "fontSize": 16,
       "fontFamily": 1,
-      "text": "Router\nDHCP server\nGateway",
+      "text": "Router (192.168.1.0/24)\nDHCP server\nGateway",
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "Router\nDHCP server\nGateway",
+      "originalText": "Router (192.168.1.0/24)\nDHCP server\nGateway",
       "lineHeight": 1.25
     },
     {
@@ -10742,7 +10742,7 @@
       "seed": 1957696280,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false
@@ -10770,7 +10770,7 @@
         "rOuiyQmD2PPVqxGn79vZR"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false,
@@ -10807,7 +10807,7 @@
         "rOuiyQmD2PPVqxGn79vZR"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false
@@ -10837,7 +10837,7 @@
         "rOuiyQmD2PPVqxGn79vZR"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false
@@ -10869,7 +10869,7 @@
       "roundness": {
         "type": 2
       },
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false,
@@ -10934,7 +10934,7 @@
         "rOuiyQmD2PPVqxGn79vZR"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false
@@ -10966,7 +10966,7 @@
       "roundness": {
         "type": 2
       },
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false,
@@ -11007,7 +11007,7 @@
       "seed": 526871320,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804743021,
       "link": null,
       "locked": false,
@@ -11043,7 +11043,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false
@@ -11075,7 +11075,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11142,7 +11142,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11193,7 +11193,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11237,7 +11237,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11306,7 +11306,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11375,7 +11375,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11444,7 +11444,7 @@
         "fqqKYC3y4pWNK3OcG74vM"
       ],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804748242,
       "link": null,
       "locked": false,
@@ -11509,7 +11509,7 @@
       "seed": 1248724328,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false,
@@ -11550,7 +11550,7 @@
       "seed": 991080040,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804702507,
       "link": null,
       "locked": false,
@@ -11584,7 +11584,7 @@
       "seed": 1212390504,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804762267,
       "link": null,
       "locked": false,
@@ -11625,7 +11625,7 @@
       "seed": 1873328232,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1680804743021,
       "link": null,
       "locked": false,
