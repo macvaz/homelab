@@ -216,7 +216,17 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 === Logical architecture
 
-In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" VMs). It also presents the main external services used by the system like NameCheap (Domain register), CloudFlare (DNS management), Let'sEncrypt (SSL certificates issuance) and Mega.io (off-site backup).
+In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" VMs).
+
+In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
+
+[source]
+----
+NameCheap: Domain register (thehomelab.site)
+CloudFlare: DNS management
+Let'sEncrypt: SSL certificates issuance
+Mega.io: off-site backup
+----
 
 image::img/logical_architecture.png[]
 
