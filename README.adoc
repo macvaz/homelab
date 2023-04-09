@@ -239,8 +239,7 @@ Most of the applications running in the minipc are deployed as docker containers
 - docker-compose: Multi-container docker applications
 - rclone: Off-site backup
 - minidlna: Export media content via DLNA to smart TV
-- ssmpt: Link mail command line tool to ssmpt allowing security emails reach my personal account
-- mutt: Command line email client to easily sending email programaticaly from shell scripts
+- ssmtp: Link mail command line tool to ssmpt allowing security emails reach my personal account
 - ddclient: Register dynamic IP in cloudflare
 ----
 
@@ -251,13 +250,14 @@ Running containers
 [source]
 ----
   - Pihole
-  - Syncthing
   - Portainer
+  - Portfolio
   - Heimdall
   - Uptime-kuma
   - Watchtower
   - Nextcloud
   - Nginx Proxy Manager
+  - Transmission
 ----
 
 In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
@@ -266,10 +266,8 @@ In analysis:
 
 [source]
 ----
-  - Homeassistant
   - Plex / kodi / jellybin / emby
   - freeipa
-  - teleport
 ----
 
 ==== Docker-compose
