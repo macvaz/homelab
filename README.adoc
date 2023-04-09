@@ -224,7 +224,7 @@ In addition, the logical architecture diagram also presents the main external se
 ----
 - NameCheap: Domain register (thehomelab.site)
 - CloudFlare: DNS management
-- Let'sEncrypt: SSL certificates issuance
+- Let's Encrypt: SSL certificates issuance
 - Mega.io: off-site backup
 ----
 
