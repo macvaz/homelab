@@ -63,7 +63,7 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
-As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable linking TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during KVM usage. Since a KVM is a professional equipment typically used in datacenters, there are normally expensive for a domestic deployment. However a KVM extender can be found in Aliexpress or Amazon for around 40 EUR.
+As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable connecting TV and router is reused when utilizing the KVM, TV losses ethernet connectivity during KVM usage. Since a KVM is a professional equipment typically used in datacenters, there are normally expensive for a domestic deployment. However a KVM extender can be found in Aliexpress or Amazon for around 40 EUR.
 
 == 2. Host operating system (Proxmox hypervisor)
 
