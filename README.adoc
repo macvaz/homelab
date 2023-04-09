@@ -268,7 +268,7 @@ In analysis:
 [source]
 ----
   - Plex / kodi / jellybin / emby
-  - freeipa
+  - freeipa / Authelia / Keycloack / goauthentik.io/
 ----
 
 ==== Docker-compose
