@@ -47,24 +47,6 @@ https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/confi
 Editar en /etc/ImageMagick-6/policy.xml
 https://help.nextcloud.com/t/cant-see-pdf-thumbnails-in-new-grid-view-but-works-in-the-demo-instance/43759/13
 
-
-screen -S preview
-docker exec -u 33 -t nextcloud /var/www/html/occ preview:generate-all -vvv
-ctl-a d
-
-screen -r preview
-
-// Ampliar espacio
-
-qm resize 101 scsi1 +10G
-sudo resize2fs /dev/sdb
-
-// Ocupan muchísimo los previews
-// Hay que cambiarlo
-https://luxagraf.net/src/solving-common-nextcloud-problems
-https://github.com/nextcloud/previewgenerator/issues/94
-
-
 # Fix preview generation
 https://luxagraf.net/src/solving-common-nextcloud-problems
 
