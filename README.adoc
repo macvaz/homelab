@@ -282,7 +282,7 @@ In order to run pihole DNS service on Ubuntu server, disable systemd-resolved lo
 
 With Nextcloud Files, users have easy access and can share and collaborate on their files, photos and documents wherever they are. All that without any data leaks to third parties and having full control over their data.
 
-Nextcloud operation documentation can be found here link:Nextcloud.adoc
+Nextcloud operation documentation can be found here link:nextcloud.adoc
 
 ===== Nginx Proxy Manager
 
