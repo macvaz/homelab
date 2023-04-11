@@ -1,12 +1,12 @@
-manually added smbclient package and created a docker image with it) Docker image from a running container: https://www.dataset.com/blog/create-docker-image/
-
-EXTCLOUD
+NEXTCLOUD
 
 https://docs.nextcloud.com/server/latest/admin_manual/installation/index.html
 https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/index.html
 
 Imagen base:
 https://www.dataset.com/blog/create-docker-image/
+
+manually added smbclient package and created a docker image with it) Docker image from a running container: https://www.dataset.com/blog/create-docker-image/
 
 docker commit nextcloud nextcloud:smb_and_preview
 

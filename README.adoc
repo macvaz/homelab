@@ -286,7 +286,7 @@ Nextcloud operation documentation can be found xref:nextcloud.adoc[here].
 
 ===== Nginx Proxy Manager
 
-
+===== Containers to analyze
 
 In analysis:
 
