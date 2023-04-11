@@ -31,35 +31,35 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
     networks:
       - homelab
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
       - $VOL_DATA/db.nextcloud:/var/lib/mysql
-    environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=1
-      - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
     restart: unless-stopped
 
   nextcloud:
-    image: nextcloud
+    image: 'nextcloud:smb_and_preview'
     container_name: nextcloud
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db.nextcloud
     networks:
       - homelab
     links:
       - nextcloud-db
     volumes:
       - $VOL_DATA/nextcloud:/var/www/html
-    environment:
-      - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db.nextcloud
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
     restart: unless-stopped
 
   transmission:

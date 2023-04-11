@@ -1,0 +1,89 @@
+manually added smbclient package and created a docker image with it) Docker image from a running container: https://www.dataset.com/blog/create-docker-image/
+
+EXTCLOUD
+
+https://docs.nextcloud.com/server/latest/admin_manual/installation/index.html
+https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/index.html
+
+Imagen base:
+https://www.dataset.com/blog/create-docker-image/
+
+docker commit nextcloud nextcloud:smb_and_preview
+
+agregar: smbclient y apt install imagemagick, ffmpeg
+
+
+Index
+
+docker exec -u 33 -it nextcloud bash
+./occ files:scan --all
+./occ files:scan --generate-metadata --all
+
+
+
+Preview generator
+
+https://apps.nextcloud.com/apps/previewgenerator
+
+./occ preview:generate-all -vvv (manual execution)
+/var/www/nextcloud/occ preview:pre-generate (from cron)
+
+Añadir esto a config.php:
+https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html?highlight=pdf#previews
+
+'enabledPreviewProviders' => [
+        'OC\Preview\PNG',
+        'OC\Preview\JPEG',
+        'OC\Preview\GIF',
+        'OC\Preview\BMP',
+        'OC\Preview\XBitmap',
+        'OC\Preview\MP3',
+        'OC\Preview\TXT',
+        'OC\Preview\MarkDown',
+        'OC\Preview\OpenDocument',
+        'OC\Preview\Krita',
+],
+
+Editar en /etc/ImageMagick-6/policy.xml
+https://help.nextcloud.com/t/cant-see-pdf-thumbnails-in-new-grid-view-but-works-in-the-demo-instance/43759/13
+
+
+screen -S preview
+docker exec -u 33 -t nextcloud /var/www/html/occ preview:generate-all -vvv
+ctl-a d
+
+screen -r preview
+
+// Ampliar espacio
+
+qm resize 101 scsi1 +10G
+sudo resize2fs /dev/sdb
+
+// Ocupan muchísimo los previews
+// Hay que cambiarlo
+https://luxagraf.net/src/solving-common-nextcloud-problems
+https://github.com/nextcloud/previewgenerator/issues/94
+
+
+# Fix preview generation
+https://luxagraf.net/src/solving-common-nextcloud-problems
+
+docker exec -u 33 -it nextcloud bash
+
+./occ config:app:set previewgenerator squareSizes --value="32 256"
+./occ config:app:set previewgenerator widthSizes  --value="256 384"
+./occ config:app:set previewgenerator heightSizes --value="256"
+./occ config:system:set preview_max_x --value 500
+./occ config:system:set preview_max_y --value 500
+./occ config:system:set jpeg_quality --value 60
+./occ config:app:set preview jpeg_quality --value="60"
+
+Syncroniza DB and previews (importante si se regenera la caché borrando el direcotrio preview)
+./occ files:scan-app-data
+
+Genera previews
+./occ preview:generate-all -vvv
+
+# Locks
+mysql -u nextcloud nextcloud -p
+TRUNCATE TABLE oc_file_locks;

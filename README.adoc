@@ -228,6 +228,19 @@ In addition, the logical architecture diagram also presents the main external se
 
 image::img/logical_architecture.png[]
 
+=== "nas" VM
+
+Description of https://www.openmediavault.org/[OpenMediaVault] installation and setup
+
+[source]
+----
+  - RAID 1
+  - File systems
+  - SMB shares
+  - quotas
+  - user permissions
+----
+
 === "docker" VM
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
@@ -263,6 +276,18 @@ Running containers
 
 In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
 
+===== PiHole
+
+===== Nextcloud
+
+With Nextcloud Files, users have easy access and can share and collaborate on their files, photos and documents wherever they are. All that without any data leaks to third parties and having full control over their data.
+
+Nextcloud operation documentation can be found here link:Nextcloud.adoc
+
+===== Nginx Proxy Manager
+
+
+
 In analysis:
 
 [source]
@@ -276,18 +301,7 @@ In analysis:
 https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
 [YAML file]
 
-=== "nas" VM
 
-Description of https://www.openmediavault.org/[OpenMediaVault] installation and setup
-
-[source]
-----
-  - RAID 1
-  - File systems
-  - SMB shares
-  - quotas
-  - user permissions
-----
 
 
 
