@@ -193,7 +193,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 |Virtual server name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
-|Proxmox LXC Container
+|LXC Container
 |192.168.1.2
 |Ubuntu Server 22.04
 |3
@@ -202,7 +202,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 - external SMB drives
 
 |nas
-|Proxmox VM
+|Virtual Machine
 |192.168.1.5
 |OpenMediaVault 6.3 (based on Debian 11)
 |2
