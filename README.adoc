@@ -193,7 +193,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 |Virtual server name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
-|Proxmox VM
+|Proxmox LXC Container
 |192.168.1.2
 |Ubuntu Server 22.04
 |3
