@@ -126,7 +126,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Eventually, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
+Since HCI technologies normally relies on creating cluster with several nodes for fault tolerance, both HCI storage technologies were discarded and started to explore approaches similar to *traditional NAS appliances*. NAS servers are a very common IT solution that provides both large storage capacity and fault-tolerance. However, the lack of free space at home, makes having a dedicated hardware NAS appliance not a valid option.
 
 The final approach was to *create a VM "nas", in "proxmox1" node, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault]*. Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
@@ -214,7 +214,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 === Logical architecture
 
-In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" VMs).
+In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
 In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
 
