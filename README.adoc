@@ -198,7 +198,7 @@ A more detailed description of the virtual server's specs is listed here:
 |Proxmox LXC debian 11 template
 |3
 |4 GBs
-|- 2 vDisks +
+|- 1 vDisks (docker images storage) +
 - external SMB drives
 
 |nas
