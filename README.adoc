@@ -63,7 +63,7 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable connecting TV and router is reused when utilizing the KVM extender, TV losses ethernet connectivity during KVM usage. Since a KVM is a professional equipment typically used in datacenters, there are normally expensive for a domestic deployment. However, a KVM extender can be found in Aliexpress or Amazon starting from around 40 EUR.
 
-== 2. Host operating system (Proxmox hypervisor)
+== 2. Proxmox node (Hypervisor)
 
 === Installation
 
@@ -167,7 +167,7 @@ The network diagram of the proxmox1 node (without docker containers) is the foll
 
 image::img/network_diagram.png[]
 
-== 3. Guest operating systems: Proxmox Virtual Servers (VM and LXC containers)
+== 3. Proxmox virtual servers (VMs and LXC containers)
 
 After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
 
