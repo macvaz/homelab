@@ -167,7 +167,7 @@ The network diagram of the proxmox1 node (without docker containers) is the foll
 
 image::img/network_diagram.png[]
 
-== 3. Guest operating systems (Proxmox VMs)
+== 3. Guest operating systems: Proxmox Virtual Servers (VM and LXC containers)
 
 After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
 
@@ -194,7 +194,7 @@ A more detailed description of the virtual resources of each VMs is listed here:
 
 |docker
 |LXC Container
-|192.168.1.2
+|192.168.1.4 192.168.1.7
 |Ubuntu Server 22.04
 |3
 |4 GBs
