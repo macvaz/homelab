@@ -159,7 +159,7 @@ Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration
 
 Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to "docker" VM, a software-defined  network (10.10.10.0/24) is created, only being used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
 
-Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. All VMs created in "proxmox1" node have only 1 vNIC.
+Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. No VLANs involved neither.
 
 The network diagram of the proxmox1 node (without docker containers) is the following:
 
