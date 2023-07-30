@@ -174,7 +174,7 @@ image::img/network_diagram.png[]
 This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 virtual servers (1 VM and 1 Linux Container) with very different responsibilities:
 
 |===
-|Virtual server name |Resource type |ServerIPs |Goal
+|Virtual server name |Resource type |IP addresses |Goal
 
 |docker
 |Computation
