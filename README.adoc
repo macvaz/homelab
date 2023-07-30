@@ -63,11 +63,11 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 As the physical architecture diagram depicts, *there is no additional ethernet cable for connecting the 2 KVM extender units*. Since ethernet cable connecting TV and router is reused when utilizing the KVM extender, TV losses ethernet connectivity during KVM usage. Since a KVM is a professional equipment typically used in datacenters, there are normally expensive for a domestic deployment. However, a KVM extender can be found in Aliexpress or Amazon starting from around 40 EUR.
 
-== 2. Proxmox node (Hypervisor)
+== 2. Proxmox hypervisor (PVE node)
 
 === Installation
 
-After downloading *Proxmox VE 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted "proxmox1" node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
+After downloading *Proxmox Virtual Environment (PVE) 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted "proxmox1" node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
 Using a KVM extender during host OS installation has a main benefit: installing the server OS with all the hardware placed in its definitive location with final network connectivity.
 
