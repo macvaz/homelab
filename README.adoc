@@ -140,16 +140,16 @@ The final deployment consists in 2 ip networks:
 
 
 |===
-|Network address |Visibility|Virtualization technology|Connected devices
+|Network address |Network type|Virtualization technology|Connected devices
 
 |192.168.1.0/24
-|External
-|Physical + virtual switch (vmbr0) in Proxmox VE
+|Physical
+|Physical network + virtual bridge in proxmox1 node
 |Physical devices and VM vNICs
 
 |10.10.10.0/24
-|Internal to "docker" VM
-|Virtual switch (docker0) in Docker
+|Virtul
+|Virtual bridge (docker0) in Docker
 |Docker containers
 
 |===
