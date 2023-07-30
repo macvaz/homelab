@@ -174,14 +174,16 @@ image::img/network_diagram.png[]
 This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 virtual servers (1 VM and 1 Linux Container) with very different responsibilities:
 
 |===
-|Virtual server name |Resource type |Goal
+|Virtual server name |Resource type |ServerIPs |Goal
 
 |docker
 |Computation
+|192.168.1.4 192.168.1.7
 |Linux Container (LXC) where all docker containers are executed. Uses SMB shared storage drives served by "nas" VM.
 
 |nas
 |Storage
+|192.168.1.5
 |Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
 |===
 
@@ -191,11 +193,10 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 A more detailed description of the virtual server's hardware specs is:
 
 |===
-|Virtual server name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
+|Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
 |LXC Container
-|192.168.1.4 192.168.1.7
 |Proxmox LXC debian 11 template
 |3
 |4 GBs
@@ -204,7 +205,6 @@ A more detailed description of the virtual server's hardware specs is:
 
 |nas
 |Virtual Machine
-|192.168.1.5
 |OpenMediaVault 6.3 (based on Debian 11)
 |2
 |3 GBs
