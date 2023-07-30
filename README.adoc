@@ -14,13 +14,13 @@ The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
-=== HCI node specs
+=== Virtualizacion nodes (Hypervisor node)
 
 Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure configuration where storage and computing is virtualized on a unified hardware platform. Consequently, no specialized hardware appliances are required for computation and storage.
 
-==== Host OS (proxmox nodes)
+==== Host OS (proxmox node)
 
-Currently, there is only one hyper-converged node in the deployment: *"proxmox1"*. Its hardware specs are the following:
+Currently, there is only one virtualization node in the deployment: *"proxmox1"*. Its hardware specs are the following:
 
 |===
 |Host OS name | Service IP| Operating System| CPUs | Cores| RAM | SSD
@@ -169,9 +169,7 @@ image::img/network_diagram.png[]
 
 == 3. Proxmox virtual servers (VMs and LXC containers)
 
-After describing the hardware architecture in chapter 1 and the hypervisor setup in chapter 2, an in depth review of the logical architecture is described in chapter 3.
-
-=== Virtual infrastructure
+=== Virtual servers
 
 This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 virtual servers (1 VM and 1 Linux Container) with very different responsibilities:
 
@@ -187,7 +185,10 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 |Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
 |===
 
-A more detailed description of the virtual server's specs is listed here:
+
+=== Virtual infrastructure
+
+A more detailed description of the virtual server's hardware specs is:
 
 |===
 |Virtual server name | Type | Service IP| Guest OS| vCPUs (Cores)| RAM | Storage
@@ -214,7 +215,7 @@ A more detailed description of the virtual server's specs is listed here:
 
 === Logical architecture
 
-In the next logical architecture diagram, the *main software services and batch jobs running* in the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
+In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
 In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
 
