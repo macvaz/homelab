@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a residential environment, optimizing the number of specilized physical hardware appliences is key for reducing space. Using modern virtualization servers (hypervisors), make possible running virtual IT infrastructure in an unified general-purpose hardware appliance.
+In a residential environment, optimizing the number of specilized hardware appliences is key for reducing space. Using modern virtualization servers (hypervisors), make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices making most of virtual infrastructure provision and operation very comfortable (like automatic vDisk backups, VM migrations, etc).
 
