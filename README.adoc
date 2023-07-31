@@ -27,8 +27,8 @@ image::img/physical_architecture.png[]
 |1 Intel Celeron (J5040)
 |4
 |16 GBs
-|-1x 0.5TB SSD
-|-2x 1TB SSD
+|1x 0.5TB SSD
+|2x 1TB SSD
 |===
 
 Low power consumption was a requirement for hardware selection. *With a TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
