@@ -14,6 +14,10 @@ The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
+=== Networking devices
+
+
+
 === Virtualization node
 
 **Only 1 virtualization node (proxmox1) hosts virtual infrastructure** in the homelab. Its hardware specs are the following:
@@ -35,6 +39,7 @@ Low power consumption was a requirement for hardware selection. *With a TDP (the
 
 Since *all disks are SSD (Solid State Disks)*, IO is not only very performant but also power efficient (less than 1 watt of power consumption per disk). 
 
+
 === Emergency power supply
 
 *Having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
@@ -49,7 +54,8 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
-== 2. Virtualization server (Proxmox hypervisor)
+
+== 2. Virtualization node (Proxmox hypervisor)
 
 Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing any Linux-based OS. I used *ventoy* to flash ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
@@ -118,7 +124,7 @@ To check the final solution, read "nas" VM section. (3.1)
 
 Proxmox installer detected my home physical network (192.168.1.0/24) out of the box, allowing to set up easily a fixed IP address for proxmox1 (192.168.1.6).
 
-Virtualization server has only 1 NIC directly attached to my home network. However, proxmox can setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged networking configuration)], extending the physical network address space to the virtual servers started inside the hypervisor. 
+Virtualization server has only 1 NIC directly attached to my home network. However, proxmox can setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged networking configuration], extending the physical network address space to the virtual servers started inside the hypervisor. 
 
 In addition, there is a virtual server that runs docker, having its own virtual isolated network for connecting the Docker containers. The next table presents both network addressing details: 
 
@@ -138,8 +144,6 @@ In addition, there is a virtual server that runs docker, having its own virtual 
 
 |===
 
-
-image::img/network_diagram.png[]
 
 == 3. Virtual servers (Proxmox VMs and LXC containers)
 
@@ -180,24 +184,7 @@ A more detailed description of the virtual server's hardware specs is:
 |3 GBs
 |- 1 vDisk (for OS) +
 - 2 SDD physical disks (via disk passthrough)
-
 |===
-
-== 4. Logical architecture
-
-In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
-
-In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
-
-[source]
-----
-- NameCheap: Domain register (thehomelab.site)
-- CloudFlare: DNS management
-- Let's Encrypt: SSL certificates issuance
-- Mega.io: off-site backup
-----
-
-image::img/logical_architecture.png[]
 
 === "nas" VM
 
@@ -230,6 +217,24 @@ Most of the applications running in the minipc are deployed as docker containers
 - minidlna: Export media content via DLNA to smart TV
 - ssmtp: Link mail command line tool to ssmpt allowing security emails reach my personal account
 ----
+
+== 4. Logical architecture
+
+In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
+
+In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
+
+[source]
+----
+- NameCheap: Domain register (thehomelab.site)
+- CloudFlare: DNS management
+- Let's Encrypt: SSL certificates issuance
+- Mega.io: off-site backup
+----
+
+image::img/logical_architecture.png[]
+
+
 
 ==== Containers
 
