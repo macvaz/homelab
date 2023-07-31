@@ -16,7 +16,7 @@ image::img/physical_architecture.png[]
 
 === Virtualization node (proxmox1)
 
-CThere is only one virtualization node in the deployment: *"proxmox1"*. Its hardware specs are the following:
+There is only one virtualization node (proxmox1) that hosts all the virtual infrastructure of the homelab. Its hardware specs are the following:
 
 |===
 |Host OS name | IP address| Operating System| CPUs | Cores| RAM | SSD
