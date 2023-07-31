@@ -8,7 +8,7 @@
 
 In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment and space requirements can be very demanding compared with a professional datacenters. 
 
-Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. Relying on virtualization technologies may help in both aspects.
+Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: having less hardware appliances by virtualizing IT infrastructure and reducing power consumption**.
 
 The selected hardware equipment for the homelab is:
 
@@ -45,9 +45,9 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO] network with a unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and the virtualization server) are connecting using wired ethernet.
+My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO] network with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and the virtualization server) are connecting using wired ethernet.
 
-router1 manages 3 different IP local networks and negociates via PPPoE a public IP from the ISP. The most meaningful details of the physical networks are the following:
+router1 manages 3 different IP local networks. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
 
 |===
 |Network address |Network name | Description |Connected devices
@@ -69,7 +69,7 @@ router1 manages 3 different IP local networks and negociates via PPPoE a public 
 
 |===
 
-Since virtual networking is internal to proxmox1 (virtualization server), the next diagram only shows physical networking: 
+Since **virtual networking is internal to proxmox1 (virtualization server)**, the next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
