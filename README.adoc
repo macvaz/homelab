@@ -45,7 +45,7 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO] network with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and the virtualization server) are connecting using wired ethernet.
+My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and the proxmox1) are connecting using wired ethernet.
 
 router1 manages 3 different IP local networks. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
 
