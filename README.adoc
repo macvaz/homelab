@@ -44,11 +44,7 @@ CPU model and motherboard were specifically selected trying to maximize a relati
 
 One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, *having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the external power supply has not been restored during an hour, the UPS starts a graceful shutdown of the node via the monitoring USB cable that connects the UPS and "proxmox1" node. Having a very power efficient hardware (around 20 watts) is key to have an emergency power supply of almost an hour.
-
-In order to control the graceful shutdown, *a monitoring agent has to be installed in the "proxmox1" HCI node*. There were to possibilities for this installation: installing in the host OS ("proxmox1") or in a guest OS (VM). Proxmox VE is able to easily virtualize a USB device connected to the host OS, making it available for the guest OS. However, the connection of the UPS with the virtualized monitor agent was neither reliable (sometimes it didn't detect changes in UPS status) nor safe (it only shut down the guest OS and not the complete node).
-
-After installing the UPS monitor agent directly in the host OS ("proxmox1" node), all this unreliable behaviour stopped. *UPS monitor is the only software installed directly in the hypervisor (host OS)*, without creating any VM or LXC container. The monitoring agent is distributed directly from https://www.powermonitor.software/#PowerMasterPlusSoftware[vendor's website].
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the battery is running out of energy, the UPS starts a gracefull shutdown via the USB-C cable that connects the UPS and "proxmox1" node.
 
 === KVM extender
 
