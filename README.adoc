@@ -146,7 +146,7 @@ image::img/network_diagram.png[]
 
 == 3. Virtual servers (Proxmox VMs and LXC containers)
 
-This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 virtual servers (1 VM and 1 Linux Container) with very different responsibilities:
+This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. 
 
 |===
 |Virtual server name |Resource type |IP addresses |Goal
