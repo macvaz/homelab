@@ -182,7 +182,7 @@ Since both HCI native storage technologies supported by Proxmox where discarded,
 
 A VM ("nas"), based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] was created and **both data disks were directly attached to the "nas" VM by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (sda and sdc) are not used directly neither by the hypervisor nor other virtual servers, allowing a central management of the storage services from this VM. 
 
-To check the final solution, read "nas" VM section. (3.1)
+To check the final solution, read "nas" VM section.
 
 === Network topology
 
@@ -209,12 +209,18 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 |Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
 |===
 
+The network diagram of the complete networking infrastructure, including both, physical and virtual, is presented:
 
-A more detailed description of the virtual server's hardware specs is:
+image::img/network_diagram.png[]
+
+
+
 
 
 
 === "nas" VM
+
+A more detailed description of the virtual server's hardware specs is:
 
 |===
 |Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
