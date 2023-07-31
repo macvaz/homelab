@@ -142,8 +142,6 @@ The final deployment consists in 2 ip networks:
 
 Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in "proxmox1" node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside "proxmox1" node*. This bridged network provides to each virtual server an IP directly from the router address space.
 
-The network diagram of the proxmox1 node (without docker containers) is the following:
-
 image::img/network_diagram.png[]
 
 == 3. Virtual servers (Proxmox VMs and LXC containers)
