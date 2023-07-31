@@ -152,8 +152,6 @@ image::img/network_diagram.png[]
 
 == 3. Virtual servers (Proxmox VMs and LXC containers)
 
-=== Virtual servers
-
 This chapter describes the software-defined infrastructure (VMs and virtual networks) created to run the homelab. There are 2 virtual servers (1 VM and 1 Linux Container) with very different responsibilities:
 
 |===
@@ -170,8 +168,6 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 |Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
 |===
 
-
-=== Virtual infrastructure
 
 A more detailed description of the virtual server's hardware specs is:
 
