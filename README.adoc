@@ -140,11 +140,7 @@ The final deployment consists in 2 ip networks:
 |===
 
 
-Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in "proxmox1" node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside "proxmox1" node*. This bridged network setup is very convenient in a homelab environment as each VM gets an IP directly from the router address space, making guest OS (VMs)  indistinguishable from host nodes (hypervisors) from a networking point of view.
-
-Apart from virtual networking devices created by Proxmox VE, there also another networking virtualization technology: Docker. *Internal to "docker" VM, a software-defined  network (10.10.10.0/24) is created, only being used by docker containers to communicate each other*. Physical devices (like mikrotik router, TV and mobile clients) are totally unaware of this internal network, that is not addressable from them.
-
-Proxmox VE allows to create additional virtual networks (based on bridged, routed or NATed configurations). No extra virtual networks were created or used. No VLANs involved neither.
+Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in "proxmox1" node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside "proxmox1" node*. This bridged network provides to each virtual server an IP directly from the router address space.
 
 The network diagram of the proxmox1 node (without docker containers) is the following:
 
