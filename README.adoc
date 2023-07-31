@@ -43,9 +43,7 @@ Since *all disks are SSD (Solid State Disks)*, IO is not only very performant bu
 
 === KVM extender
 
-There is no easy physical access to the virtulization server when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
-
-A *keyboard, video, and mouse (KVM) extender enables users to work locally on a computer from a distance*. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals.
+There is no easy physical access to the virtulization server when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy. A *keyboard, video, and mouse (KVM) extender* enables users to work locally on a computer from a distance. 
 
 image::img/kvm_extender_diagram.png[]
 
