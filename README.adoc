@@ -153,7 +153,7 @@ The network diagram of the proxmox1 node (without docker containers) is the foll
 
 image::img/network_diagram.png[]
 
-== 3. Proxmox virtual servers (VMs and LXC containers)
+== 3. Virtual servers (Proxmox VMs and LXC containers)
 
 === Virtual servers
 
