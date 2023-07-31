@@ -212,16 +212,12 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 
 A more detailed description of the virtual server's hardware specs is:
 
+
+
+=== "nas" VM
+
 |===
 |Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
-
-|docker
-|LXC Container
-|Proxmox LXC debian 11 template
-|3
-|4 GBs
-|- 1 vDisks (docker images storage) +
-- external SMB drives
 
 |nas
 |Virtual Machine
@@ -231,8 +227,6 @@ A more detailed description of the virtual server's hardware specs is:
 |- 1 vDisk (for OS) +
 - 2 SDD physical disks (via disk passthrough)
 |===
-
-=== "nas" VM
 
 Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
@@ -251,6 +245,18 @@ Description of https://www.openmediavault.org/[OpenMediaVault] installation and 
 ----
 
 === "docker" LXC Container
+
+|===
+|Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
+
+|docker
+|LXC Container
+|Proxmox LXC debian 11 template
+|3
+|4 GBs
+|- 1 vDisks (docker images storage) +
+- external SMB drives
+|===
 
 Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
 
