@@ -65,7 +65,7 @@ router1 manages 3 different IP local networks and negociates via PPPoE a public 
 |10.1.1.0/24
 |Guest Wifi network
 |Untrusted devices connects here
-|It provides only internet connection. Any connection in internal IPs is baned.
+|It provides only internet connection. Any connection to internal IPs is banned.
 
 |===
 
@@ -115,7 +115,7 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 === Complete hardware architecture
 
-The complete hardware architecture of the homelab is the following:
+Once described into some detail all devices, a complete hardware architecture is shown:
 
 image::img/physical_architecture.png[]
 
