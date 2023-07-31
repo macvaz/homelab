@@ -10,12 +10,6 @@ In a residential environment, optimizing the number of specilized hardware appli
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
-The complete hardware architecture of the homelab is the following:
-
-image::img/physical_architecture.png[]
-
-=== Networking devices
-
 image::img/networking_devices.png[]
 
 === Virtualization node
@@ -39,7 +33,6 @@ Low power consumption was a requirement for hardware selection. *With a TDP (the
 
 Since *all disks are SSD (Solid State Disks)*, IO is not only very performant but also power efficient (less than 1 watt of power consumption per disk). 
 
-
 === Emergency power supply
 
 *Having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
@@ -54,6 +47,11 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
+=== Complete hardware architecture
+
+The complete hardware architecture of the homelab is the following:
+
+image::img/physical_architecture.png[]
 
 == 2. Virtualization node (Proxmox hypervisor)
 
