@@ -45,27 +45,34 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO] network. 
+My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO] network with a unique network device (Mikrotik AX2) acting like a router, an ethernet switch and a WIFI access point. There is an external model (ONT) from the ISP provider. Most of the devices are connected thorugh wireless internfaces. Only 2 devices (TV and the virtualization server) are connecting using wired ethernet.
+
+router1 manages 3 different IP local networks and negociates via PPPoE a public IP from the ISP. The most meaningfull details of the physical networks are the following:
+
+|===
+|Network address |Network name | Description |Connected devices
+
+|192.168.1.0/24
+|LAN
+|Main network of the router
+|Virtualization server, TV and trusted wireless devices connects here
+
+|192.168.100.0/24
+|VPN
+|Network for connecting to LAN network from the internet
+|Trusted devices connected from Internet using wireguard peers
+
+|10.1.1.0/24
+|Guest Wifi network
+|Untrusted devices connects here
+|It provides only internet connection. Any connection in internal IPs is baned.
+
+|===
+
+Since virtual networking is internal to proxmox1 (virtualization server), the next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
-In addition, there is a virtual server that runs docker, having its own virtual isolated network for connecting the Docker containers. The next table presents both network addressing details: 
-
-
-|===
-|Network address |Network type |Virtualization technology |Connected devices
-
-|192.168.1.0/24
-|Physical
-|Physical network + virtual bridge in proxmox1 node
-|Physical devices and VM vNICs
-
-|10.10.10.0/24
-|Virtual
-|Virtual bridge (docker0) in Docker
-|Docker containers
-
-|===
 
 === Virtualization node
 
