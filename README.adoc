@@ -6,9 +6,11 @@
 
 == 1. Hardware architecture
 
-In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment and space requirements can be very demanding compered with a professional datacenters. Selecting devices with small form factors are a must. Power efficiency is also mandatory for devices that operate  24x7 but running low computational loads.
+In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment and space requirements can be very demanding compared with a professional datacenters. 
 
-The selected hardware equipment fo the homelab is:
+Selecting devices with small form factors is a must. Power efficiency is also mandatory for devices that operate 24x7 but normally running low computational load.
+
+The selected hardware equipment for the homelab is:
 
 |===
 |Device name | Device type |Model |Description| IP address
@@ -34,12 +36,12 @@ The selected hardware equipment fo the homelab is:
 |-
 |KVM extender
 |-
-|Keabord vide mouse extender for maning locally a remote server
+|Keybord video mouse (KVM) extender for managing locally a remote server
 |-
 
 |===
 
-In the following sections, each device is described briefly. In the next chapter, the solution gets into deeper details.
+In the following sections, each device is described briefly. In next chapters, the solution gets described into deeper details.
 
 === Network topology
 
