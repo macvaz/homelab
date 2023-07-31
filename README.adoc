@@ -14,12 +14,9 @@ The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
-=== Virtualization node
+=== Virtualization node (proxmox1)
 
-Using Proxmox VE, creating a software-defined IT infrastructure where both storage and computing run on a unified hardware platform is possible. Consequently, no specialized hardware appliances are required for computation and storage.
-
-
-Currently, there is only one virtualization node in the deployment: *"proxmox1"*. Its hardware specs are the following:
+CThere is only one virtualization node in the deployment: *"proxmox1"*. Its hardware specs are the following:
 
 |===
 |Host OS name | IP address| Operating System| CPUs | Cores| RAM | SSD
@@ -34,9 +31,7 @@ Currently, there is only one virtualization node in the deployment: *"proxmox1"*
  -2x 1TB (DATA disks)
 |===
 
-*Low power consumption was a requirement for hardware selection*. Since CPU utilization on a domestic server is normally reduced, low-end processor families like Intel Celeron are enough.
-
-CPU model and motherboard were specifically selected trying to maximize a relative metric (performance / power) rather than an absolute one (like clock speed or MIPS). *With a TDP (thermal design power) of 10 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+*Low power consumption was a requirement for hardware selection*. CPU model and motherboard were specifically selected trying to maximize a relative metric (performance / power) rather than an absolute one (like clock speed or MIPS). *With a TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
 *All disks are SSD (Solid State Disks)*, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). The smallest SSD disk (OS disk) is for installing Proxmox VE hypervisor. The other 2 SDD disks (DATA disks) are set up in a RAID 1 deployment to provide fault-tolerant long-term storage (check https://github.com/macvaz/homelab#data-disks-layout[Data disks layout]).
 
