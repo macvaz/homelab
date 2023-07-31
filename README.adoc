@@ -45,8 +45,7 @@ One of the most important goals of the homelab is to remove our dependency with 
 
 Since *"proxmox1" node* is placed at the top of a bookshelf, there is no easy access to the machine when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
-A *keyboard, video, and mouse (KVM) extender enables users to work locally on a computer from a distance*. Typically, it is a set of transmitter and receiver appliances. The *KVM transmitter unit is connected to "proxmox1" server* and captures the peripheral signals such as universal serial bus (USB) for keyboard and mouse, audio, and video. These signals are extended to a **remote user station where the monitors, keyboards, and mouse are powered by the KVM receiver unit**. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals anywhere from 15 feet to several miles away from the system *using an ethernet cable*.
-
+A *keyboard, video, and mouse (KVM) extender enables users to work locally on a computer from a distance*. 
 image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
