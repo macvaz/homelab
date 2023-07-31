@@ -14,7 +14,7 @@ The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
-=== Virtualization node (proxmox1)
+=== Virtualization node
 
 There is only one virtualization node (proxmox1) that hosts all the virtual infrastructure of the homelab. Its hardware specs are the following:
 
@@ -51,7 +51,7 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
-== 2. Hypervisor (virtualization server)
+== 2. Virtualization server (Proxmox hypervisor)
 
 === Hypervisor installation
 
