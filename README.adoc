@@ -6,9 +6,42 @@
 
 == 1. Hardware architecture
 
-=== Networking devices
+In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment and space requirements can be very demanding compered with a professional datacenters. Selecting devices with small form factors are a must. Power efficiency is also mandatory for devices that operate  24x7 but running low computational loads.
 
-In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
+The selected hardware equipment fo the homelab is:
+
+|===
+|Device name | Device type |Model |Description| IP address
+
+|router1
+|Networking device
+|Mikrotik AX2
+|Flexible SOHO router running RouterOS
+|192.168.1.1
+
+|proxmox1
+|Virtualization node
+|Assembled computer (not a unique vendor)
+|Flexible low power server for running Proxmox VE hypervisor
+|192.168.1.6
+
+|-
+|UPS unit
+|PowerWalker VI 1000 STL
+|Uninterrupted power supply unit
+|-
+
+|-
+|KVM extender
+|-
+|Keabord vide mouse extender for maning locally a remote server
+|-
+
+|===
+
+In the following sections, each device is described briefly. In the next chapter, the solution gets into deeper details.
+
+=== Network topology
 
 image::img/networking_devices.png[]
 
@@ -31,6 +64,8 @@ In addition, there is a virtual server that runs docker, having its own virtual 
 |===
 
 === Virtualization node
+
+In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
