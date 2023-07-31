@@ -57,7 +57,7 @@ Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing
 
 === OS disk
 
-Proxmox VE installer provides a simple but professional disk OS disk layout by default. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*.
+Proxmox VE installer provides a simple but professional OS disk layout by default. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other 2 disks for data storage*.
 
 |===
 |OS disk partition | LVM LV| Type| Goal
