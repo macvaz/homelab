@@ -183,7 +183,7 @@ A more detailed description of the virtual server's hardware specs is:
 
 |===
 
-=== Logical architecture
+== 4. Logical architecture
 
 In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
