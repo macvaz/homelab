@@ -16,7 +16,7 @@ image::img/physical_architecture.png[]
 
 === Networking devices
 
-
+image::img/networking_devices.png[]
 
 === Virtualization node
 
