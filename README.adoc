@@ -14,16 +14,16 @@ The complete hardware architecture of the homelab is the following:
 
 image::img/physical_architecture.png[]
 
-=== Virtualizacion nodes (Hypervisor node)
+=== Proxmox hypervisor
 
-Hyper-converged infrastructure (HCI) is a software-defined IT infrastructure configuration where storage and computing is virtualized on a unified hardware platform. Consequently, no specialized hardware appliances are required for computation and storage.
+Using Proxmox VE, creating a software-defined IT infrastructure where both storage and computing are virtualized on a unified hardware platform is possible. Consequently, no specialized hardware appliances are required for computation and storage.
 
 ==== Host OS (proxmox node)
 
 Currently, there is only one virtualization node in the deployment: *"proxmox1"*. Its hardware specs are the following:
 
 |===
-|Host OS name | Service IP| Operating System| CPUs | Cores| RAM | SSD
+|Host OS name | IP address| Operating System| CPUs | Cores| RAM | SSD
 
 |proxmox1
 |192.168.1.6
@@ -66,6 +66,18 @@ As the physical architecture diagram depicts, *there is no additional ethernet c
 == 2. Proxmox hypervisor (PVE node)
 
 === Installation
+
+|===
+|Hypervisor name |IP addresses | OS | RAM | Physical disks
+
+|proxmox1
+|192.168.1.6
+|Promox VE 7.3
+|16 GB
+|-1 nvme SSD 0.5 TB
+ - 2 SATA SSD 1 TB
+|===
+
 
 After downloading *Proxmox Virtual Environment (PVE) 7.3* ISO file, I used *ventoy* to flash it in a USB stick. I booted "proxmox1" node from the USB drive and conducted a common installation using the KVM extender. With good defaults, installing a Type 1 hypervisor is not harder than installing a general purpose OS.
 
