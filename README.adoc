@@ -110,7 +110,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Since both HCI native storage technologies supported by Proxmox where discarded, **both data disks are not managed by the Proxmox hypervisor**. A VM, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault]* was created and **both data disks where directly attached to the VM by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (sda and sdc) are not used neither by the hypervisor nor other virtual servers, allowing a central management of the storage services from this VM.
+Since both HCI native storage technologies supported by Proxmox where discarded, **both data disks are not managed by the Proxmox hypervisor**. A VM ("nas"), based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] was created and **both data disks were directly attached to the "nas" VM by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (sda and sdc) are not used directly neither by the hypervisor nor other virtual servers, allowing a central management of the storage services from this VM. To access the final deployment, check the details in the "nas" VM section.
 
 === Network topology
 
