@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a residential environment, optimizing the number of specilized hardware appliences is key for reducing space. Using modern virtualization servers (hypervisors), make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
+In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using modern virtualization servers (hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
@@ -19,7 +19,7 @@ image::img/physical_architecture.png[]
 There is only one virtualization node (proxmox1) that hosts all the virtual infrastructure of the homelab. Its hardware specs are the following:
 
 |===
-|Host OS name | IP address| Operating System| CPUs | Cores| RAM | SSD
+|Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
 
 |proxmox1
 |192.168.1.6
@@ -27,23 +27,23 @@ There is only one virtualization node (proxmox1) that hosts all the virtual infr
 |1 Intel Celeron (J5040)
 |4
 |16 GBs
-|-1x 0.5TB (OS disk) +
- -2x 1TB (DATA disks)
+|-1x 0.5TB SSD
+|-2x 1TB SSD
 |===
 
 Low power consumption was a requirement for hardware selection. *With a TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
-*All disks are SSD (Solid State Disks)*, which not only are very performant with very low latency times but also power efficient (less than 1 watt of power consumption per disk). 
+Since *all disks are SSD (Solid State Disks)*, IO is not only very performant but also power efficient (less than 1 watt of power consumption per disk). 
 
 === Emergency power supply
 
-One of the most important goals of the homelab is to remove our dependency with external cloud storage providers (like Google Drive), creating a fault-tolerant long-term private storage for domestic use. Consequently, *having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
+*Having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the battery is running out of energy, the UPS starts a gracefull shutdown via the USB-C cable that connects the UPS and "proxmox1" node.
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the battery is running out of energy, the UPS starts a gracefull shutdown via the USB-C cable that connects the UPS with the "proxmox1" node.
 
 === KVM extender
 
-Since *"proxmox1" node* is placed at the top of a bookshelf, there is no easy access to the machine when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
+There is no easy physical access to the virtulization server when SSH is not available. For core admin chores like UEFI changes, host OS installation or debugging boot failures, a KVM extender is really handy.
 
 A *keyboard, video, and mouse (KVM) extender enables users to work locally on a computer from a distance*. KVM extenders overcome the distance limitation of HDMI®, DisplayPort™, and USB cables and transport these signals.
 
@@ -53,18 +53,16 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 == 2. Virtualization server (Proxmox hypervisor)
 
-=== Hypervisor installation
+=== Installation
 
-Installing *Proxmox Virtual Environment (PVE) 7.3* ISO file, is not harder to install than any Linux-based OS. I used *ventoy* to flash it in a USB stick. I booted "proxmox1" node from the USB drive and conducted a common installation using the KVM extender. 
-
-Using a KVM extender during host OS installation has a main benefit: installing the server OS with all the hardware placed in its definitive location with final network connectivity.
+Installing *Proxmox Virtual Environment (PVE) 7.3* ISO file, is not harder than installing any Linux-based OS. I used *ventoy* to flash ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
-Proxmox VE graphical installer comes with very good disk management defaults. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk looks very professional and at the same time, simple to understand:
+Proxmox VE installer provides a simple but professional disk OS disk layout by default. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*.
 
 |===
-|Partition |LVM LV|Type| Goal
+|OS disk partition | LVM LV| Type| Goal
 
 |sdb1
 |-
@@ -93,11 +91,11 @@ Proxmox VE graphical installer comes with very good disk management defaults. *P
 
 |===
 
-For clarity, in the above table only LVM logical volumes (LVs) are shown. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
+Above table only shows LVM LVs. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
 
 === Data disks
 
-The objective of data disks is to provide a fault-tolerant long-term storage solution for the homelab. Several storage solutions were considered when designing the storage system.
+Fault-tolerant long-term storage solution for the homelab is built over the 2 data disks. Several storage solutions were considered when designing the storage system.
 
 Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different HCI storage technologies]:
 
@@ -106,26 +104,27 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |Ceph
 |A both self-healing and self-managing shared, reliable and highly scalable storage system
-|Cluster technology. Thought for having several nodes. Extra administration complexity. Not an appealing option.
+|Cluster technology designed for having several nodes. Extra administration complexity. Not a simple solution for only 1 node.
 
 |ZFS
 |A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots
-|Memory intensive. Recommended ECC memory. Not really an option
+|Memory intensive. Recommended ECC memory, not available in minipc. Not really an option.
 
 |===
 
-Since HCI technologies normally relies on creating a physical cluster with several nodes for fault tolerance, both HCI storage technologies were discarded. 
-The final approach was to *create a VM "nas", based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault]* and configuring disk-passthrough from the hypervisor to "nas" vm.
+Since both HCI native storage technologies supported by Proxmox where discarded, both data disks are not managed by the Proxmox hypervisor. A VM, based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault]* was created and both data disks where directly attached to the VM by enabling disk-passthrough at hypervisor level. Using this configuration, data disks (sda and sdc) are not physically attached no any other VM, allowing a central management of the storage services from the VM.
 
 === Network topology
 
-Using Proxmox graphical interface makes networking setup quite easy. It detected my home physical network (192.168.1.0/24) out of the box and allowed to set up easily a fixed IP address for proxmox1 (192.168.1.6).
+Proxmox installer detected my home physical network (192.168.1.0/24) out of the box, allowing to set up easily a fixed IP address for proxmox1 (192.168.1.6).
 
-The final deployment consists in 2 ip networks:
+Virtualization server has only 1 NIC directly attached to my home network. However, proxmox can setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged networking configuration)], extending the physical network address space to the virtual servers started inside the hypervisor. 
+
+In addition, there is a virtual server that runs docker, having its own virtual isolated network for connecting the Docker containers. The next table presents both network addressing details: 
 
 
 |===
-|Network address |Network type|Virtualization technology|Connected devices
+|Network address |Network type |Virtualization technology |Connected devices
 
 |192.168.1.0/24
 |Physical
@@ -139,8 +138,6 @@ The final deployment consists in 2 ip networks:
 
 |===
 
-
-Proxmox creates by default ** https://pve.proxmox.com/wiki/Network_Configuration[a virtual bridge (vmbr0)]** in "proxmox1" node. *This bridge works as a switch, effectively extending my home physical network (192.168.1.0/24) to any VM created inside "proxmox1" node*. This bridged network provides to each virtual server an IP directly from the router address space.
 
 image::img/network_diagram.png[]
 
