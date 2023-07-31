@@ -53,7 +53,7 @@ Some content of this section is taken from https://video.matrox.com/, that provi
 
 === Installation
 
-Installing *Proxmox Virtual Environment (PVE) 7.3* ISO file, is not harder than installing any Linux-based OS. I used *ventoy* to flash ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing any Linux-based OS. I used *ventoy* to flash ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
