@@ -51,7 +51,7 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
-== 2. Proxmox hypervisor (PVE node)
+== 2. Hypervisor (virtualization server)
 
 === Hypervisor installation
 
@@ -59,7 +59,7 @@ Installing *Proxmox Virtual Environment (PVE) 7.3* ISO file, is not harder to in
 
 Using a KVM extender during host OS installation has a main benefit: installing the server OS with all the hardware placed in its definitive location with final network connectivity.
 
-=== OS disk layout
+=== OS disk
 
 Proxmox VE graphical installer comes with very good disk management defaults. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other disks for data storage*. The final layout of the OS disk (/dev/sdb) looks very professional and at the same time, simple to understand:
 
@@ -95,7 +95,7 @@ Proxmox VE graphical installer comes with very good disk management defaults. *P
 
 For clarity, in the above table only LVM logical volumes (LVs) are shown. There is also one physical volume (PV) called "pve" and a volume group (VG) called "pve".
 
-=== Shared storage (Data disks layout)
+=== Data disks
 
 The objective of data disks is to provide a fault-tolerant long-term storage solution for the homelab. Several storage solutions were considered when designing the storage system.
 
