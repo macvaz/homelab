@@ -10,6 +10,24 @@ In a residential environment, optimizing the number of specilized hardware appli
 
 image::img/networking_devices.png[]
 
+In addition, there is a virtual server that runs docker, having its own virtual isolated network for connecting the Docker containers. The next table presents both network addressing details: 
+
+
+|===
+|Network address |Network type |Virtualization technology |Connected devices
+
+|192.168.1.0/24
+|Physical
+|Physical network + virtual bridge in proxmox1 node
+|Physical devices and VM vNICs
+
+|10.10.10.0/24
+|Virtual
+|Virtual bridge (docker0) in Docker
+|Docker containers
+
+|===
+
 === Virtualization node
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
@@ -123,24 +141,6 @@ To check the final solution, read "nas" VM section. (3.1)
 Proxmox installer detected my home physical network (192.168.1.0/24) out of the box, allowing to set up easily a fixed IP address for proxmox1 (192.168.1.6).
 
 Virtualization server has only 1 NIC directly attached to my home network. However, proxmox can setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged networking configuration], extending the physical network address space to the virtual servers started inside the hypervisor. 
-
-In addition, there is a virtual server that runs docker, having its own virtual isolated network for connecting the Docker containers. The next table presents both network addressing details: 
-
-
-|===
-|Network address |Network type |Virtualization technology |Connected devices
-
-|192.168.1.0/24
-|Physical
-|Physical network + virtual bridge in proxmox1 node
-|Physical devices and VM vNICs
-
-|10.10.10.0/24
-|Virtual
-|Virtual bridge (docker0) in Docker
-|Docker containers
-
-|===
 
 
 == 3. Virtual servers (Proxmox VMs and LXC containers)
