@@ -6,6 +6,8 @@
 
 == 1. Hardware architecture
 
+=== Networking devices
+
 In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
 
 image::img/networking_devices.png[]
