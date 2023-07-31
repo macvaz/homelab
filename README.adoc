@@ -27,7 +27,7 @@ image::img/physical_architecture.png[]
 |1 Intel Celeron (J5040)
 |4
 |16 GBs
-|1x 0.5TB SSD
+|0.5TB SSD
 |2x 1TB SSD
 |===
 
