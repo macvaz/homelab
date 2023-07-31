@@ -63,7 +63,7 @@ My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home
 |Trusted devices connected from Internet using wireguard peers
 
 |10.1.1.0/24
-|Guest Wifi network
+|Guest Wifi
 |Untrusted devices connects here
 |It provides only internet connection. Any connection to internal IPs is banned.
 
@@ -103,7 +103,7 @@ Since *all disks are SSD (Solid State Disks)*, IO is not only very performant bu
 
 *Having a reliable power supply to our storage server is key* to guarantee a safe long-term data archival of my family media and sensitive documents.
 
-*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the battery is running out of energy, the UPS starts a gracefull shutdown via the USB-C cable that connects the UPS with the "proxmox1" node.
+*PowerWalker VI 1000 STL is a monitorized UPS (uninterrupted power supply)* that ensures power supply in event of power outage for nearly 1 hour to the router and the "proxmox1" node. If the battery is running out of energy, the UPS starts a gracefull shutdown via the USB-B cable that connects the UPS with the "proxmox1" node.
 
 === KVM extender
 
