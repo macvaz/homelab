@@ -6,13 +6,13 @@
 
 == 1. Hardware architecture
 
-In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using modern virtualization servers (hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
-
-https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
+In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
 
 image::img/networking_devices.png[]
 
 === Virtualization node
+
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
 **Only 1 virtualization node (proxmox1) hosts virtual infrastructure** in the homelab. Its hardware specs are the following:
 
