@@ -51,6 +51,7 @@ My home network is a traditional https://community.fs.com/blog/what-is-a-small-o
 * setup of 3 different local IP networks
 * PPPoE negociation with the ISP to get a public IP for the WAN interface
 * VPN server setup based on Wireguard
+* update of public IP in cloudflare DNS service using this link:/router/cloudflare.rsc[custom routerOS script]
  
 The most meaningful details of the physical networks are the following:
 
