@@ -8,7 +8,7 @@
 
 In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be hard to achieve. 
 
-Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: space savings and power efficiency**.
+Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. *Virtualization technologies may help in both aspects: space savings and power efficiency*.
 
 The selected hardware equipment for the homelab is:
 
@@ -45,7 +45,7 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, DHCP server, internet gateway, ethernet switch, WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
+My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a *unique network device (Mikrotik AX2) acting like a router, DHCP server, internet gateway, ethernet switch, WIFI access point and a VPN server*. There is an external modem (ONT) from the ISP provider. Most of the devices are connected through wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
 
 .All physical networking is configured in the Mikrotik Hap AX2 device using https://wiki.mikrotik.com/wiki/Manual:Winbox[winbox client], including:
 * setup of 3 different local IP networks
@@ -75,7 +75,7 @@ The most meaningful details of the physical networks are the following:
 
 |===
 
-Since **virtual networking is internal to the virtualization server**, the next diagram only shows physical networking: 
+Since *virtual networking is internal to the virtualization server*, the next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
@@ -85,9 +85,9 @@ Virtual networking is presented in <<virtual_servers, virtual servers chapter>>,
 
 In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance like proxmox1.
 
-https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a complete virtualization solution ready for professional datacenter management*. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
-**Only 1 virtualization node (proxmox1) hosts virtual infrastructure** in the homelab. Its hardware specs are the following:
+*Only 1 virtualization node (proxmox1) hosts all virtual infrastructure* in the homelab. Its hardware specs are the following:
 
 |===
 |Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
@@ -102,7 +102,7 @@ https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualiza
 |2x 1TB SSD
 |===
 
-Proxmox **hypervisor allows the creation of virtual servers (VMs and LXC containers) by sharing the underlying hardware** of the virtualization node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers at creation time. Each virtual server thinks its hardware resources are dedicated.
+Proxmox *hypervisor allows the creation of virtual servers (VMs and LXC containers) by sharing the underlying hardware* of the virtualization node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers at creation time. Each virtual server thinks its hardware resources are dedicated.
 
 Hardware selection was basically driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
@@ -130,11 +130,11 @@ image::img/physical_architecture.png[]
 
 == 2. Virtualization node (Proxmox hypervisor)
 
-Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing any Linux-based OS. I used *ventoy* to flash ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing any Linux-based OS. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
-Proxmox VE installer provides a simple but professional OS disk layout by default. *Proxmox VE software is installed only in the OS disk (/dev/sdb), letting the other 2 disks for data storage*.
+Proxmox VE installer provides by default a simple but professional OS disk layout. *Proxmox VE software is installed only in the OS disk (/dev/sdb), reserving the other 2 disks for data storage*.
 
 |===
 |OS disk partition | LVM LV| Type| Goal
@@ -187,13 +187,13 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Since both HCI native storage technologies supported by Proxmox where discarded, **finally oth data disks are not managed by the Proxmox hypervisor**. 
+Since both HCI native storage technologies supported by Proxmox where discarded, *finally data disks are not managed by the Proxmox hypervisor in order to provide a storage backend*. 
 
-A VM named "nas" was created with **both data disks directly attached to it by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
+A VM named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
 This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services exported from OMV to the rest of the homelab.  
 
-To get a detailed description of the long-term fault-tolerant storage design, check section "NAS server".
+To get a detailed description of the long-term fault-tolerant storage design, check section <<nas_server, NAS server>>.
 
 === Network topology
 
@@ -201,7 +201,7 @@ Proxmox installer detected LAN physical network (192.168.1.0/24) out of the box,
 
 Virtualization node has only 1 NIC directly attached to my router. However, Proxmox allow to setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged network configuration], extending LAN network address space to the virtual servers started inside the hypervisor. 
 
-**Proxmox creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.** This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
+*Proxmox creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.* This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
 
 
 == 3. Virtual servers [[virtual_servers]]
@@ -228,7 +228,7 @@ The network diagram of the complete networking infrastructure, including both, p
 
 image::img/network_diagram.png[]
 
-=== NAS server
+=== NAS server [[nas_server]]
 
 A more detailed description of the virtual server's hardware specs is:
 
@@ -260,7 +260,7 @@ Description of https://www.openmediavault.org/[OpenMediaVault] installation and 
   - user permissions
 ----
 
-=== Docker server
+=== Docker server [[docker_server]]
 
 |===
 |Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
