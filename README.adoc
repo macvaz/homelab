@@ -228,7 +228,7 @@ image::img/network_diagram.png[]
 
 === NAS server [[nas_server]]
 
-.This storage server is used to deploy the open-source NAS server OpenMediaVault (OMV). This software makes quite simple to create a storage server over commodity hardware like proxmox1. OMV takes care of all storage-realated tasks like:
+.This storage server is used to deploy the open-source NAS server OpenMediaVault (OMV). *OMV makes quite simple to create a storage server over commodity hardware* like proxmox1. OMV takes care of all storage-realated tasks like:
 * managing physical disks
 * creation and monitoring of fault tolerant storage devices (like RAID devices) over disks
 * creation of file systems and SMB shares
