@@ -59,8 +59,8 @@ All physical networking is configured on the Mikrotik Hap AX2 device, **includin
 
 |192.168.100.0/24
 |VPN
-|Network for connecting to LAN network from the internet
-|Trusted devices connected from Internet using wireguard peers
+|Network for connecting securely to LAN network from the internet
+|Trusted devices properly configured in wireguard VPN server
 
 |10.1.1.0/24
 |Guest
@@ -96,7 +96,9 @@ https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualiza
 |2x 1TB SSD
 |===
 
-Low power consumption was a requirement for hardware selection. *With a TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+Proxmox hypervisor allows the creation of virtual servers (mainly virtual machines o LXC containers), getting each guest system isolated resources from the virtulization server. Proxmox hypervisor manages physical hardware as resource pools that are asigned to virtual servers when guests are created. Each virtual server thinks its hardware resources are dedicated, making working with virtual servers really simple.
+
+Hardware selection was basiclly driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
 Since *all disks are SSD (Solid State Disks)*, IO is not only very performant but also power efficient (less than 1 watt of power consumption per disk). 
 
