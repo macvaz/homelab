@@ -228,7 +228,19 @@ image::img/network_diagram.png[]
 
 === NAS server [[nas_server]]
 
-A more detailed description of the virtual server's hardware specs is:
+.This storage server is used to deploy the open-source NAS server OpenMediaVault (OMV). This software makes quite simple to create a storage server over commodity hardware like proxmox1. OMV takes care of all storage-realated tasks like:
+* managing disks
+* creation of fault tolerant storage devices (like RAID devices) over disks
+* creation of file systems
+* monitoring of RAID devices
+* SMB shares creation
+* user management
+* policy definition and enforcing
+* quota mangement
+
+The only storage management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
+
+A more detailed description of the NAS virtul server specs is:
 
 |===
 |Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
@@ -237,14 +249,14 @@ A more detailed description of the virtual server's hardware specs is:
 |Virtual Machine
 |OpenMediaVault 6.3 (based on Debian 11)
 |2
-|3 GBs
+|3 GB
 |- 1 vDisk (for OS) +
 - 2 SSD physical disks (via disk passthrough)
 |===
 
-Proxmox VE allows to create a VM with direct access to both data disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault VM "nas" detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
+Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
 
-*All storage-related tasks are centralized in the OpenMediaVault*: managing disks, creating file systems, administering RAID devices, creating SMB shares, creating users, creating and enforcing access policies, controlling quotas, etc. The only data management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
+
 
 
 Description of https://www.openmediavault.org/[OpenMediaVault] installation and setup
