@@ -6,9 +6,9 @@
 
 == 1. Hardware architecture
 
-In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment where space requirements can be very demanding compared with a professional datacenters. 
+In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment where space restrictions can be hard overcome compared with a professional datacenter. 
 
-Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: having less hardware appliances by virtualizing IT infrastructure and reducing power consumption**.
+Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: space savings and power eficiency**.
 
 The selected hardware equipment for the homelab is:
 
