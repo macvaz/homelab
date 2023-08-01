@@ -79,7 +79,7 @@ Since **virtual networking is internal to proxmox1 (virtualization server)**, th
 
 image::img/networking_devices.png[]
 
-Virtual networking is presented in chapter3, where virtual servers are described. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines.
+Virtual networking is presented in <<virtual_servers, virtual servers chapter>>, where virtual servers are described. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines.
 
 === Virtualization node
 
@@ -205,6 +205,8 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 
 
 == 3. Virtual servers 
+
+[[virtual_servers]]
 
 **Proxmox allows creating 2 types of virtual servers: KVM VMs and LXC containers**. This chapter describes the software-defined infrastructure -virtual servers and networks- created to run the homelab. 
 
