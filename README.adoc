@@ -252,9 +252,9 @@ The hardware specs are the following:
 
 Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*.
 
-Using OMV administration and monitoring web tool, creating a fault tolerant 1 TB RAID 1 device with both SATA disks is quite simple. Once the RAID 1 device (/dev/md0) is up&running, an ext4 file system was created on the device. 
+Using OMV administration and monitoring web tool, creating a fault tolerant 1 TB RAID 1 device with both SATA disks is quite simple. It manages mdadm tool under the hood, offering a really smooth experience. Once the RAID 1 device (/dev/md0) is up&running, an ext4 file system was created on the device with similar experience.
 
-Finally, 3 SMB drives were created and exported to allow data storage from remote servers like docker and hypervisor:
+Finally, 3 SMB drives were created and published to allow data reand and storage from other parts of the homelab like docker server and hypervisor:
 
 |===
 |Drive name | Technology | Description| Authorized users
