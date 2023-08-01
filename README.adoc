@@ -83,7 +83,7 @@ Virtual networking is presented in <<virtual_servers, virtual servers chapter>>,
 
 === Virtualization node
 
-In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance.
+In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance like proxmox1.
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualization solution ready for professional datacenter management**. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
@@ -102,9 +102,9 @@ https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualiza
 |2x 1TB SSD
 |===
 
-Proxmox **hypervisor allows the creation of virtual servers (VMs and LXC containers) by sharing the underlying hardware** of the virtualization node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers when created. Each virtual server thinks its hardware resources are dedicated, making working with virtual servers really simple.
+Proxmox **hypervisor allows the creation of virtual servers (VMs and LXC containers) by sharing the underlying hardware** of the virtualization node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers at creation time. Each virtual server thinks its hardware resources are dedicated.
 
-Hardware selection was basiclly driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
+Hardware selection was basically driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
 Since *all disks are SSD (Solid State Disks)*, IO is not only very performant but also power efficient (less than 1 watt of power consumption per disk). 
 
