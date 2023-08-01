@@ -218,7 +218,7 @@ The network diagram of the complete networking infrastructure, including both, p
 
 image::img/network_diagram.png[]
 
-=== "nas" VM
+=== NAS server
 
 A more detailed description of the virtual server's hardware specs is:
 
@@ -250,7 +250,7 @@ Description of https://www.openmediavault.org/[OpenMediaVault] installation and 
   - user permissions
 ----
 
-=== "docker" LXC Container
+=== Docker server
 
 |===
 |Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
