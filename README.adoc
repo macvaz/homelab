@@ -198,7 +198,9 @@ Virtualization server has only 1 NIC directly attached to my home network. Howev
 
 == 3. Virtual servers 
 
-Proxmox allows creating both kind of virtual servers: KVM VMs and LXC containers. This chapter describes the software-defined infrastructure, virtual servers and networks, created to run the homelab. There are 2 virtual servers specialized in computing and storage:
+Proxmox allows creating both kind of virtual servers: KVM VMs and LXC containers. This chapter describes the software-defined infrastructure -virtual servers and networks- created to run the homelab. 
+
+2 virtual servers, with specialized roles in computing services and storage, were deployed:
 
 |===
 |Virtual server name |Server type |IP addresses |Goal
