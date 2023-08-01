@@ -185,7 +185,7 @@ Since both HCI native storage technologies supported by Proxmox where discarded,
 
 A VM named "nas" was created with **both data disks directly attached to it by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
-This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault (OMV)] allowing a central management of the storage services exported from OMV to the rest of the homelab.  
+This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services exported from OMV to the rest of the homelab.  
 
 To get a detailed description of the storage design, check section "NAS server".
 
