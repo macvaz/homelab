@@ -195,7 +195,7 @@ Proxmox installer detected LAN physical network (192.168.1.0/24) out of the box,
 
 Virtualization node has only 1 NIC directly attached to my router. However, Proxmox allow to setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged network configuration], extending LAN network address space to the virtual servers started inside the hypervisor. 
 
-**This networking setup creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.** This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
+**Proxmox creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.** This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
 
 
 == 3. Virtual servers 
