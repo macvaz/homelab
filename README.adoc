@@ -75,7 +75,7 @@ The most meaningful details of the physical networks are the following:
 
 |===
 
-Since **virtual networking is internal to proxmox1 (virtualization server)**, the next diagram only shows physical networking: 
+Since **virtual networking is internal to the virtualization server**, the next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
