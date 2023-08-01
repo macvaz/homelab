@@ -8,7 +8,7 @@
 
 In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment where space restrictions can be hard overcome compared with a professional datacenter. 
 
-Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: space savings and power eficiency**.
+Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: space savings and power efficiency**.
 
 The selected hardware equipment for the homelab is:
 
@@ -64,8 +64,8 @@ All physical networking is configured on the Mikrotik Hap AX2 device, **includin
 
 |10.1.1.0/24
 |Guest
-|Untrusted wireless devices connects here
 |Provides internet access only, blocking all internal traffic to LAN network
+|Untrusted wireless devices connects here
 
 |===
 
@@ -181,19 +181,21 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Since both HCI native storage technologies supported by Proxmox where discarded, **bfinally oth data disks are not managed by the Proxmox hypervisor**. 
+Since both HCI native storage technologies supported by Proxmox where discarded, **finally oth data disks are not managed by the Proxmox hypervisor**. 
 
 A VM named "nas" was created with **both data disks directly attached to it by enabling disk-passthrough** at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
 This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services exported from OMV to the rest of the homelab.  
 
-To get a detailed description of the storage design, check section "NAS server".
+To get a detailed description of the long-term fault-tolerant storage design, check section "NAS server".
 
 === Network topology
 
 Proxmox installer detected LAN physical network (192.168.1.0/24) out of the box, allowing to set up easily a fixed IP address for proxmox1 (192.168.1.6).
 
-Virtualization node has only 1 NIC directly attached to my router. However, Proxmox allow to setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged networking configuration], extending LAN network address space to the virtual servers started inside the hypervisor. **This networking setup creates a Linux bridge interface (vmbr0) to where all virtual servers are connected.** This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
+Virtualization node has only 1 NIC directly attached to my router. However, Proxmox allow to setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged network configuration], extending LAN network address space to the virtual servers started inside the hypervisor. 
+
+**This networking setup creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.** This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
 
 
 == 3. Virtual servers 
