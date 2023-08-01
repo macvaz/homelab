@@ -189,7 +189,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 Since both HCI native storage technologies supported by Proxmox where discarded, *finally data disks are not managed by the Proxmox hypervisor in order to provide a storage backend*. 
 
-Consequently, a virtual machine (not the hypervisor) will host the storage server. A VM named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
+Consequently, a virtual server (not the hypervisor) will host the storage server. A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
 This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services. To get a detailed description of the long-term fault-tolerant storage design, check section <<nas_server, NAS server>>.
 
