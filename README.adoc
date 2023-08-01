@@ -47,7 +47,7 @@ In the following sections, each device is described briefly. In next chapters, t
 
 My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, DHCP server, internet gateway, ethernet switch, WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
 
-All physical networking is configured in the Mikrotik Hap AX2 device using winbox client, including:
+.All physical networking is configured in the Mikrotik Hap AX2 device using https://wiki.mikrotik.com/wiki/Manual:Winbox[winbox client], including:
 * setup of 3 different local IP networks
 * PPPoE negociation with the ISP to get a public IP for the WAN interface
 * VPN server setup based on Wireguard
