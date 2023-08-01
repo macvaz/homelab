@@ -208,12 +208,12 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 |docker
 |Application server
 |192.168.1.4 192.168.1.7
-|Linux Container (LXC) where all docker containers are executed. Uses SMB shared storage drives served by "nas" VM.
+|Linux Container (LXC) where all docker containers are executed. Uses SMB shared storage drives served by storage server.
 
 |nas
 |Storage server
 |192.168.1.5
-|Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, access control). Based on open-source NAS server OpenMediaVault
+|Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, storage management). Based on open-source NAS server OpenMediaVault (OMV)
 |===
 
 The network diagram of the complete networking infrastructure, including both, physical and virtual, is presented:
