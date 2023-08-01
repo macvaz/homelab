@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment where space restrictions can be hard overcome compared with a professional datacenter. 
+In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be hard to achieve. 
 
 Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: space savings and power efficiency**.
 
@@ -47,7 +47,12 @@ In the following sections, each device is described briefly. In next chapters, t
 
 My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, DHCP server, internet gateway, ethernet switch, WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
 
-All physical networking is configured on the Mikrotik Hap AX2 device, **including the setup of 3 different local IP networks**. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
+All physical networking is configured in the Mikrotik Hap AX2 device, including:
+ - setup of 3 different local IP networks
+ - PPPoE negociation with the ISP to get a public IP for the WAN interface
+ - VPN server setup based on Wireguard
+ 
+The most meaningful details of the physical networks are the following:
 
 |===
 |Network address |Network name | Description |Connected devices
