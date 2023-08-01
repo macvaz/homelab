@@ -211,15 +211,16 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 |===
 |Name |Server type |IP addresses |Goal
 
+|nas
+|Storage server
+|192.168.1.5
+|Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, storage management). Based on open-source NAS server OpenMediaVault (OMV)
+
 |docker
 |Application server
 |192.168.1.4 192.168.1.7
 |Linux Container (LXC) where all docker containers are executed. Uses SMB shared storage drives served by storage server.
 
-|nas
-|Storage server
-|192.168.1.5
-|Virtual machine that centralizes all shared storage devices, technologies and services (RAID 1, SMB drives, storage management). Based on open-source NAS server OpenMediaVault (OMV)
 |===
 
 The network diagram of the complete networking infrastructure, including both, physical and virtual, is presented:
@@ -246,23 +247,35 @@ The hardware specs are the following:
 |3 GB
 |- 1 vDisk (for OS) +
 - 2 SSD physical disks (via disk passthrough)
+
 |===
 
-Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*, making very easy to create a RAID 1 device over them.
+Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*.
+
+Using OMV administration and monitoring web tool, creating a fault tolerant 1 TB RAID 1 device with both SATA disks is quite simple. Once the RAID 1 device (/dev/md0) is up&running, an ext4 file system was created on the device. 
+
+Finally, 3 SMB drives were created and exported to allow data storage from remote servers like docker and hypervisor:
+
+|===
+|Drive name | Technology | Description| Authorized users
+
+|backups
+|SMB
+|
+|proxmox
+
+|documents
+|SMB
+|
+|docker
+
+|media
+|SMB
+|
+|docker
 
 
-
-
-Description of https://www.openmediavault.org/[OpenMediaVault] installation and setup
-
-[source]
-----
-  - RAID 1
-  - File systems
-  - SMB shares
-  - quotas
-  - user permissions
-----
+|===
 
 === Docker server [[docker_server]]
 
