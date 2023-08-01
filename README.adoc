@@ -230,11 +230,9 @@ image::img/network_diagram.png[]
 
 .This storage server is used to deploy the open-source NAS server OpenMediaVault (OMV). *OMV makes quite simple to create a storage server over commodity hardware* like proxmox1. OMV takes care of all storage-realated tasks like:
 * managing physical disks
-* creation and monitoring of fault tolerant storage devices (like RAID devices) over disks
+* creation and monitoring of fault tolerant storage devices (like RAID devices)
 * creation of file systems and SMB shares
 * policy definition and enforcing: users, permissions and quotas
-
-The only storage management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure. Everything else is run by OMV.
 
 The hardware specs are the following:
 
