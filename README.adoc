@@ -209,7 +209,7 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 2 virtual servers, with specialized roles as application servers and storage server, were deployed:
 
 |===
-|Nname |Server type |IP addresses |Goal
+|Name |Server type |IP addresses |Goal
 
 |docker
 |Application server
@@ -231,7 +231,7 @@ image::img/network_diagram.png[]
 A more detailed description of the virtual server's hardware specs is:
 
 |===
-|Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
+|Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
 
 |nas
 |Virtual Machine
@@ -261,7 +261,7 @@ Description of https://www.openmediavault.org/[OpenMediaVault] installation and 
 === Docker server [[docker_server]]
 
 |===
-|Virtual server name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
+|Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
 
 |docker
 |LXC Container
