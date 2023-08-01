@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment and space requirements can be very demanding compared with a professional datacenters. 
+In a production-grade hardware architecture, several specialized appliances are normally deployed. However, a homelab is in a residential environment where space requirements can be very demanding compared with a professional datacenters. 
 
 Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. **Virtualization technologies may help in both aspects: having less hardware appliances by virtualizing IT infrastructure and reducing power consumption**.
 
@@ -17,19 +17,19 @@ The selected hardware equipment for the homelab is:
 
 |router1
 |Networking device
-|Mikrotik AX2
+|https://mikrotik.com/product/hap_ax2[Mikrotik Hap ax²]
 |Flexible SOHO router running RouterOS
 |192.168.1.1
 
 |proxmox1
 |Virtualization node
-|Assembled computer (not a unique vendor)
+|Components bought from different vendors
 |Flexible power-efficient server for running Proxmox VE hypervisor
 |192.168.1.6
 
 |ups
 |UPS unit
-|PowerWalker VI 1000 STL
+|https://powerwalker.com/product/10121074/[PowerWalker VI 1000 STL]
 |Uninterrupted power supply unit
 |-
 
@@ -45,7 +45,7 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://en.wikipedia.org/wiki/Small_office/home_office[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
+My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
 
 **router1 manages 3 different local IP networks**. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
 
