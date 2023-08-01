@@ -236,7 +236,7 @@ image::img/network_diagram.png[]
 
 The only storage management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
 
-A more detailed description of the NAS virtul server specs is:
+A more detailed description of the hardware specs is:
 
 |===
 |Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
