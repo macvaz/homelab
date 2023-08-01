@@ -96,7 +96,7 @@ https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a **complete virtualiza
 |2x 1TB SSD
 |===
 
-Proxmox hypervisor allows the creation of virtual servers (mainly virtual machines o LXC containers), getting each guest system isolated resources from the virtulization server. Proxmox hypervisor manages physical hardware as resource pools that are asigned to virtual servers when guests are created. Each virtual server thinks its hardware resources are dedicated, making working with virtual servers really simple.
+Proxmox **hypervisor allows the creation of virtual servers (mainly virtual machines o LXC containers)** sharing the hardware of "proxmox1" node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers when created. Each virtual server thinks its hardware resources are dedicated, making working with virtual servers really simple.
 
 Hardware selection was basiclly driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
 
