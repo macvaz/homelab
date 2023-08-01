@@ -23,6 +23,7 @@
       "height": 284.28571428571433,
       "seed": 1563270102,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612725812,
@@ -55,6 +56,7 @@
       "height": 488.285714285714,
       "seed": 921978070,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -83,6 +85,7 @@
       "height": 306.3260869565218,
       "seed": 2060799031,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704068,
@@ -115,6 +118,7 @@
       "height": 647.142857142857,
       "seed": 1007596758,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -143,6 +147,7 @@
       "height": 161.48235294117652,
       "seed": 260488793,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704068,
@@ -175,6 +180,7 @@
       "height": 214.00000000000003,
       "seed": 455911863,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704068,
@@ -207,6 +213,7 @@
       "height": 211.0619902120719,
       "seed": 1683286329,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704068,
@@ -239,6 +246,7 @@
       "height": 215.00000000000003,
       "seed": 2107212535,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704068,
@@ -271,6 +279,7 @@
       "height": 15,
       "seed": 1780416855,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -314,6 +323,7 @@
       "height": 13,
       "seed": 78108503,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -357,6 +367,7 @@
       "height": 313.4285716312413,
       "seed": 373667321,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -404,6 +415,7 @@
       "height": 249.7473677886311,
       "seed": 1596400279,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -451,6 +463,7 @@
       "height": 233.7694225048615,
       "seed": 1644129785,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -498,6 +511,7 @@
       "height": 303.7392423668621,
       "seed": 762942839,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -545,6 +559,7 @@
       "height": 5,
       "seed": 379263479,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -588,6 +603,7 @@
       "height": 40,
       "seed": 406476601,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680614284878,
@@ -600,7 +616,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Fiber \n",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -622,6 +639,7 @@
       "height": 60,
       "seed": 53135255,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -634,7 +652,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "HG8310G ONU ONT\n\n  ",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 54
     },
     {
       "type": "text",
@@ -656,6 +675,7 @@
       "height": 140,
       "seed": 394872249,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1681028082384,
@@ -668,7 +688,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "router1 (192.168.1.1)\n\nMikrotik HAP ax2\nNetwork: 192.168.1.0/24 \n\n\n",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 134
     },
     {
       "type": "text",
@@ -690,6 +711,7 @@
       "height": 20,
       "seed": 2031277081,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -702,7 +724,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "LG webOS UM7100PLB",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -724,6 +747,7 @@
       "height": 20,
       "seed": 1683110423,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680614403927,
@@ -736,12 +760,13 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Powerwalker vi 1000 stl ",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
-      "version": 336,
-      "versionNonce": 214250287,
+      "version": 346,
+      "versionNonce": 440442826,
       "isDeleted": false,
       "id": "BJFTh1RuW4eCxRFiuz4dW",
       "fillStyle": "hachure",
@@ -754,23 +779,25 @@
       "y": 401.04538428783417,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
-      "width": 349.31268310546875,
+      "width": 347.37664794921875,
       "height": 160,
       "seed": 279433177,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1681027651297,
+      "updated": 1690875115537,
       "link": null,
       "locked": false,
       "fontSize": 16,
       "fontFamily": 1,
-      "text": "proxmox1 (192.168.1.6)\n\nAsrock J5040-ITX \nJ5040 Gemini Lake (10w TDP)\n16 GB DDR4\n1 SATA HDD 512 GB (OS): Proxmox VE 7.36\n2 SATA HDD 1 TB (DATA): RAID 1\n",
+      "text": "proxmox1 (192.168.1.6)\n\nAsrock J5040-ITX \nJ5040 Gemini Lake (10w TDP)\n16 GB DDR4\n1 SATA SSD 0.5 TB (OS): Proxmox VE 7.36\n2 SATA SSD 1 TB (DATA): RAID 1\n",
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "proxmox1 (192.168.1.6)\n\nAsrock J5040-ITX \nJ5040 Gemini Lake (10w TDP)\n16 GB DDR4\n1 SATA HDD 512 GB (OS): Proxmox VE 7.36\n2 SATA HDD 1 TB (DATA): RAID 1\n",
-      "lineHeight": 1.25
+      "originalText": "proxmox1 (192.168.1.6)\n\nAsrock J5040-ITX \nJ5040 Gemini Lake (10w TDP)\n16 GB DDR4\n1 SATA SSD 0.5 TB (OS): Proxmox VE 7.36\n2 SATA SSD 1 TB (DATA): RAID 1\n",
+      "lineHeight": 1.25,
+      "baseline": 154
     },
     {
       "type": "text",
@@ -792,6 +819,7 @@
       "height": 20,
       "seed": 1009032087,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -804,12 +832,13 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<fiber modem>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
-      "version": 354,
-      "versionNonce": 59769999,
+      "version": 362,
+      "versionNonce": 2019371914,
       "isDeleted": false,
       "id": "X2OoO2NQqihAV59XkMYpi",
       "fillStyle": "hachure",
@@ -822,23 +851,25 @@
       "y": 423.04538428783405,
       "strokeColor": "#e67700",
       "backgroundColor": "transparent",
-      "width": 215.15243530273438,
+      "width": 220.4164276123047,
       "height": 40,
       "seed": 1909853623,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1681028087207,
+      "updated": 1690875073627,
       "link": null,
       "locked": false,
       "fontSize": 16,
       "fontFamily": 1,
-      "text": "<<router>> <<FW>>\n<<switch>> <<Wireless AP>>",
+      "text": "<<router>> <<FW>> <<VPN>>\n<<switch>> <<Wireless AP>>",
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "<<router>> <<FW>>\n<<switch>> <<Wireless AP>>",
-      "lineHeight": 1.25
+      "originalText": "<<router>> <<FW>> <<VPN>>\n<<switch>> <<Wireless AP>>",
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -860,6 +891,7 @@
       "height": 20,
       "seed": 2018887159,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -872,7 +904,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<< ISP >>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -894,6 +927,7 @@
       "height": 40,
       "seed": 1720402007,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -906,7 +940,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<DHCP Client>>\n<<DNLA Client>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -928,6 +963,7 @@
       "height": 20,
       "seed": 2134838391,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -940,12 +976,13 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<Monitorized UPS>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
-      "version": 134,
-      "versionNonce": 1961854914,
+      "version": 187,
+      "versionNonce": 2069793226,
       "isDeleted": false,
       "id": "Y9_mHxF1dJy2ARTjM2uLw",
       "fillStyle": "hachure",
@@ -958,23 +995,25 @@
       "y": 555.3302036490829,
       "strokeColor": "#e67700",
       "backgroundColor": "transparent",
-      "width": 336.25665283203125,
+      "width": 203.07244873046875,
       "height": 60,
       "seed": 1405270519,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1680973821379,
+      "updated": 1690875051669,
       "link": null,
       "locked": false,
       "fontSize": 16,
       "fontFamily": 1,
-      "text": "<<HCI node>>: Hypervisor + NAS + Docker \n<<DNS server>>\n<<DLNA server>>",
+      "text": "<<Virtualization server>> \n<<DNS server>>\n<<DLNA server>>",
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "<<HCI node>>: Hypervisor + NAS + Docker \n<<DNS server>>\n<<DLNA server>>",
-      "lineHeight": 1.25
+      "originalText": "<<Virtualization server>> \n<<DNS server>>\n<<DLNA server>>",
+      "lineHeight": 1.25,
+      "baseline": 54
     },
     {
       "type": "image",
@@ -996,6 +1035,7 @@
       "height": 132,
       "seed": 1081189975,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1028,6 +1068,7 @@
       "height": 132,
       "seed": 707985369,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1060,6 +1101,7 @@
       "height": 40,
       "seed": 174284409,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680973762226,
@@ -1072,7 +1114,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "KVM Extender\n",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -1094,6 +1137,7 @@
       "height": 20,
       "seed": 1812092313,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1106,7 +1150,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<Receiver>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1128,6 +1173,7 @@
       "height": 20,
       "seed": 1722524951,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680973740742,
@@ -1140,7 +1186,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "KVM Extender",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1162,6 +1209,7 @@
       "height": 20,
       "seed": 1820276921,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1174,7 +1222,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<Sender>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -1196,6 +1245,7 @@
       "height": 97.83915085179706,
       "seed": 482646617,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1239,6 +1289,7 @@
       "height": 20,
       "seed": 428371927,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680973775482,
@@ -1251,7 +1302,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "KVM ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -1273,6 +1325,7 @@
       "height": 23.99593728911543,
       "seed": 1509677881,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1316,6 +1369,7 @@
       "height": 20,
       "seed": 426820663,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680973781934,
@@ -1328,7 +1382,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "KVM ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "image",
@@ -1350,6 +1405,7 @@
       "height": 490,
       "seed": 1796868759,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1382,6 +1438,7 @@
       "height": 40,
       "seed": 1533932151,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1394,7 +1451,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "HDMI\n(TV input)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "line",
@@ -1416,6 +1474,7 @@
       "height": 68.34549417444362,
       "seed": 250707703,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1463,6 +1522,7 @@
       "height": 146.0296772693697,
       "seed": 158359223,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1510,6 +1570,7 @@
       "height": 40,
       "seed": 213386839,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1522,7 +1583,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "USB-A\n(M input)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -1544,6 +1606,7 @@
       "height": 40,
       "seed": 150729143,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704069,
@@ -1556,7 +1619,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "USB-A \n(K input)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "text",
@@ -1578,6 +1642,7 @@
       "height": 20,
       "seed": 1994776119,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1590,7 +1655,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "USB-B",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1612,6 +1678,7 @@
       "height": 20,
       "seed": 549526487,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1624,7 +1691,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Power",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1646,6 +1714,7 @@
       "height": 20,
       "seed": 631053751,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1658,7 +1727,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Power",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1680,6 +1750,7 @@
       "height": 20,
       "seed": 1213157303,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1692,7 +1763,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1714,6 +1786,7 @@
       "height": 20,
       "seed": 865496185,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1681027841798,
@@ -1726,7 +1799,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "text",
@@ -1748,6 +1822,7 @@
       "height": 20,
       "seed": 1392596279,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1760,7 +1835,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -1782,6 +1858,7 @@
       "height": 116.26075763313793,
       "seed": 524423831,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1837,6 +1914,7 @@
       "height": 40,
       "seed": 825369079,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1849,7 +1927,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "USB-B \n(M&K input)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "line",
@@ -1871,6 +1950,7 @@
       "height": 158.69048983624782,
       "seed": 928282135,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1918,6 +1998,7 @@
       "height": 40,
       "seed": 1746586743,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -1930,7 +2011,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "HDMI \n(server output)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 34
     },
     {
       "type": "line",
@@ -1952,6 +2034,7 @@
       "height": 174.73169733236227,
       "seed": 2100404215,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -1999,6 +2082,7 @@
       "height": 183.9632879283289,
       "seed": 1363562551,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2046,6 +2130,7 @@
       "height": 80,
       "seed": 686022809,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -2058,7 +2143,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Physical control of the server \n(core administration - BIOS, boot problems, etc -\n\n",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 74
     },
     {
       "type": "text",
@@ -2080,6 +2166,7 @@
       "height": 20,
       "seed": 592752343,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704070,
@@ -2092,7 +2179,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "<<KVM>>",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "rectangle",
@@ -2114,6 +2202,7 @@
       "height": 220.1615810956968,
       "seed": 1158646935,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -2142,6 +2231,7 @@
       "height": 1.497697830582979,
       "seed": 161021399,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2185,6 +2275,7 @@
       "height": 20,
       "seed": 419640823,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612789389,
@@ -2197,7 +2288,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Ethernet",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -2219,6 +2311,7 @@
       "height": 1.497697830582979,
       "seed": 327721497,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2262,6 +2355,7 @@
       "height": 20,
       "seed": 763679321,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612789389,
@@ -2274,7 +2368,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Power supply",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -2296,6 +2391,7 @@
       "height": 1.497697830582979,
       "seed": 730847065,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2339,6 +2435,7 @@
       "height": 20,
       "seed": 773943735,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680614309064,
@@ -2351,7 +2448,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "ISP Fiber",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -2373,6 +2471,7 @@
       "height": 1.497697830582979,
       "seed": 1123038105,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2416,6 +2515,7 @@
       "height": 20,
       "seed": 896058681,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612789389,
@@ -2428,7 +2528,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "UPS Monitoring",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "line",
@@ -2450,6 +2551,7 @@
       "height": 1.497697830582979,
       "seed": 1009079639,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2493,6 +2595,7 @@
       "height": 20,
       "seed": 1617904759,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680973709815,
@@ -2505,7 +2608,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "KVM extender",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 14
     },
     {
       "type": "rectangle",
@@ -2527,6 +2631,7 @@
       "height": 839.4285714285711,
       "seed": 718643862,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -2555,6 +2660,7 @@
       "height": 347.1428571428569,
       "seed": 674902934,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -2583,6 +2689,7 @@
       "height": 171.71428571428567,
       "seed": 1705326730,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612739709,
@@ -2615,6 +2722,7 @@
       "height": 171.71428571428567,
       "seed": 1347502218,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612742648,
@@ -2647,6 +2755,7 @@
       "height": 323.1428571428571,
       "seed": 2103067222,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 2
       },
@@ -2690,6 +2799,7 @@
       "height": 50,
       "seed": 87924170,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704071,
@@ -2702,7 +2812,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "WIFI 6 \n(802.11 ax)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 43
     },
     {
       "type": "text",
@@ -2724,6 +2835,7 @@
       "height": 25,
       "seed": 1478885270,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704071,
@@ -2736,7 +2848,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Location 2: Servers ",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2758,6 +2871,7 @@
       "height": 25,
       "seed": 1597976406,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704071,
@@ -2770,7 +2884,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Location 3: Wired clients",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2792,6 +2907,7 @@
       "height": 25,
       "seed": 341131990,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612851741,
@@ -2804,7 +2920,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Location 4: Wireless clients",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2826,6 +2943,7 @@
       "height": 25,
       "seed": 894183126,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612704071,
@@ -2838,7 +2956,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "Location 1: Internet ",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2860,6 +2979,7 @@
       "height": 25,
       "seed": 83323222,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680613372504,
@@ -2872,7 +2992,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "CABLE COLOR CODE",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "image",
@@ -2894,6 +3015,7 @@
       "height": 231,
       "seed": 1442501142,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612733302,
@@ -2926,6 +3048,7 @@
       "height": 120.99999999999999,
       "seed": 796693526,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680612746150,
@@ -2958,6 +3081,7 @@
       "height": 220.1615810956968,
       "seed": 250390038,
       "groupIds": [],
+      "frameId": null,
       "roundness": {
         "type": 3
       },
@@ -2986,6 +3110,7 @@
       "height": 25,
       "seed": 731430922,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680613942350,
@@ -2998,7 +3123,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "LOCATION DETAILS  ",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "type": "text",
@@ -3020,6 +3146,7 @@
       "height": 175,
       "seed": 1245480406,
       "groupIds": [],
+      "frameId": null,
       "roundness": null,
       "boundElements": [],
       "updated": 1680613936887,
@@ -3032,7 +3159,8 @@
       "verticalAlign": "top",
       "containerId": null,
       "originalText": "WIRED::\n  - Location 1: Home communication cabinet \n  - Location 2: Top of bookshelf\n  - Location 3: TV cabinet\n\nWIRELESS:\n  - Location 4: All over the home (WIFI 6)",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 168
     }
   ],
   "appState": {

@@ -45,9 +45,9 @@ In the following sections, each device is described briefly. In next chapters, t
 
 === Network topology
 
-My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, an ethernet switch, a WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
+My home network is a traditional https://community.fs.com/blog/what-is-a-small-office-home-office-soho-network-and-how-to-set-up-one.html[SOHO network] with a **unique network device (Mikrotik AX2) acting like a router, DHCP server, internet gateway, ethernet switch, WIFI access point and a VPN server**. There is an external modem (ONT) from the ISP provider. Most of the devices are connected thorugh wireless interfaces. Only 2 devices (TV and proxmox1) are connecting using wired ethernet.
 
-**router1 manages 3 different local IP networks**. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
+All physical networking is configured on the Mikrotik Hap AX2 device, **managing 3 different local IP networks**. It also negociates with the ISP via PPPoE  in order to get a public IP for the WAN interface. The most meaningful details of the physical networks are the following:
 
 |===
 |Network address |Network name | Description |Connected devices
@@ -63,9 +63,9 @@ My home network is a traditional https://community.fs.com/blog/what-is-a-small-o
 |Trusted devices connected from Internet using wireguard peers
 
 |10.1.1.0/24
-|Guest Wifi
-|Untrusted devices connects here
-|It provides only internet connection. Any connection to internal IPs is banned.
+|Guest
+|Untrusted wireless devices connects here
+|Provides internet access only, blocking all internal traffic to LAN network
 
 |===
 
@@ -73,6 +73,7 @@ Since **virtual networking is internal to proxmox1 (virtualization server)**, th
 
 image::img/networking_devices.png[]
 
+Virtual networking is presented in chapter3, where virtual servers are described. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines.
 
 === Virtualization node
 
@@ -212,11 +213,6 @@ This chapter describes the software-defined infrastructure (VMs and virtual netw
 The network diagram of the complete networking infrastructure, including both, physical and virtual, is presented:
 
 image::img/network_diagram.png[]
-
-
-
-
-
 
 === "nas" VM
 
