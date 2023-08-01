@@ -234,9 +234,9 @@ image::img/network_diagram.png[]
 * creation of file systems and SMB shares
 * policy definition and enforcing: users, permissions and quotas
 
-The only storage management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure.
+The only storage management task done by Proxmox VE is running SMART checks in data disks and sending alarms in the event of failure. Everything else is run by OMV.
 
-A more detailed description of the hardware specs is:
+The hardware specs are the following:
 
 |===
 |Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
