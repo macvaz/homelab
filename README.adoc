@@ -326,6 +326,50 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 With a running docker environment, it's time to describe the containers deployed in the homelab.
 
+https://www.linuxserver.io/
+docker hub
+
+|===
+|Application | Description
+
+|pihole
+|
+
+|portainer
+|
+
+|portfolio
+|
+
+|heimdall
+|
+
+|checkmk
+|
+
+|nextcloud
+|
+
+|Nginx Proxy Manager
+|
+
+|transmission
+|
+
+|photoprism
+|
+
+|mariadb
+|
+
+|postgresql
+|
+
+
+
+|===
+
+
 [source]
 ----
   - Pihole
