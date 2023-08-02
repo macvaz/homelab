@@ -85,7 +85,7 @@ In a residential environment, optimizing the number of specilized hardware appli
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a complete virtualization solution ready for professional datacenter management. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
-*In the homelag, there is only 1 virtualization node (proxmox1), that hosts all virtual infrastructure*. Its hardware specs are the following:
+*In the homelab, there is only 1 virtualization node (proxmox1), that hosts all virtual infrastructure*. Its hardware specs are the following:
 
 |===
 |Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
@@ -187,7 +187,7 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 Since both HCI native storage technologies supported by Proxmox where discarded, *finally data disks are not managed by the Proxmox hypervisor in order to provide a storage backend*. 
 
-Consequently, a virtual server (not the hypervisor) will host the storage server. A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
+Consequently, a virtual server (not the hypervisor) hosts the storage server. A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
 This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services. To get a detailed description of the long-term fault-tolerant storage design, check section <<nas_server, NAS server>>.
 
@@ -197,14 +197,14 @@ Proxmox installer detected LAN physical network (192.168.1.0/24) out of the box,
 
 Virtualization node has only 1 NIC directly attached to my router. However, Proxmox allow to setup a https://pve.proxmox.com/wiki/Network_Configuration[bridged network configuration], extending LAN network address space to the virtual servers started inside the hypervisor. 
 
-*Proxmox creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.* This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router.
+*Proxmox creates a Linux bridge interface (vmbr0) to which all virtual servers are connected.* This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router. Consequently, virtual servers can be assigned IP addresses from my LAN physical network. 
 
 
 == 3. Virtual servers [[virtual_servers]]
 
-*Proxmox allows creating 2 types of virtual servers: KVM VMs and LXC containers*. This chapter describes the software-defined infrastructure -virtual servers and networks- created to run the homelab. 
+*Proxmox allows creating 2 types of virtual servers: KVM VMs and LXC containers*. This chapter describes the software-defined infrastructure -virtual servers and networks- that were created. 
 
-2 virtual servers, with specialized roles as application servers and storage server, were deployed:
+For running the homelab, 2 virtual servers were deployed, acting as application server and storage server:
 
 |===
 |Name |Server type |IP addresses |Goal
