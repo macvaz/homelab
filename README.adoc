@@ -75,17 +75,17 @@ The most meaningful details of the physical networks are the following:
 
 |===
 
-*Virtual networking, which is created within the virtualization server*, is described in <<virtual_servers, virtual servers chapter>>. The next diagram only shows physical networking: 
+*Virtual networking, which is created within the virtualization server*, are described in <<virtual_servers, virtual servers chapter>>. The next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
 === Virtualization node
 
-In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance like proxmox1.
+In a residential environment, optimizing the number of specilized hardware appliances is key for reducing required space. *Using virtualization servers (a.k.a hypervisors) make possible running virtual IT infrastructure in an single general-purpose hardware appliance* like proxmox1.
 
-https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a complete virtualization solution ready for professional datacenter management*. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
+https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a complete virtualization solution ready for professional datacenter management. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
-*Only 1 virtualization node (proxmox1) hosts all virtual infrastructure* in the homelab. Its hardware specs are the following:
+*In the homelag, there is only 1 virtualization node (proxmox1), that hosts all virtual infrastructure*. Its hardware specs are the following:
 
 |===
 |Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
