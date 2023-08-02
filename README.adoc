@@ -255,9 +255,9 @@ Proxmox VE allows to create virtual machines with direct access to physical disk
 
 Using OMV administration web tool, *creating a fault tolerant 1 TB RAID 1 device* with 2 SATA disks is quite simple. OMV manages *mdadm (Linux software RAID)* under the hood, offering a really smooth experience. As I wanted to create a file-based storage server (no block-based storaged required), an ext4 file system was created over the RAID device using OMV web GUI.
 
-Now is time to choose which file-based remote storage technology to expose to the clients. OMV mainly offers NFS and SMB. *SMB protocol was finally choosen due to its security* features. 
+Now was time to choose which file-based network protocol to use in order to give access to the clients. OMV mainly offers NFS and SMB. *SMB protocol was finally choosen due to its security* features. 
 
-Finally, using OMV administration tool again, 3 drives were created for external access. Each drive was secured with a user and password. The main features of the SMB drives are listed below:  
+Using OMV administration tool again, 3 storage drives were created for external access. Each drive was secured with a user and password. The main features of the SMB drives created in OMV are listed below:  
 
 |===
 |Drive name | Protocol | Description | Authorized users
