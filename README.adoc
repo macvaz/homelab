@@ -298,13 +298,13 @@ debian 11 template
 
 |===
 
-Contrary to the NAS server, *docker server was built based on a Linux Container (LXC)* instead of a virtual machine. Using Linux Containers has several advantages like reducing RAM consumption, since hypervisor and containers share a unique Linux kernel. However, this deployment model has several limitations on how certain tasks are done and not all software can be deployed inside a Linux Container. 
+Contrary to the NAS server, *docker server was built based on a Linux Container (LXC)* instead of a virtual machine. Using Linux Containers has several advantages like reducing RAM consumption, since *hypervisor and containers share a unique Linux kernel*. However, this deployment model has several limitations on how certain tasks are done and not all software can be deployed inside a Linux Container. 
 
 *OpenMediaVault is a product*, distributed both as an ISO file or as a .deb package. Several errors occurred during the installation of the .deb package in one LXC container. Due to that errors, OMV was finally deployed in a virtual machine from the ISO file. 
 
-On the other waay, Docker packages worked perfectly well in LXC containers using the Debian 11 template. After runing Linux Containers for a while, I can recommend this technology, very few limitations detected however isolation is lower than with virtual machines. Anyway, a complete and isolated docker server using only 80 MB of RAM, great resource utilization.
+On the other way, Docker packages worked perfectly well inside LXC containers using the Debian 11 template. After running Linux Containers for a while, I can recommend this technology, very few limitations detected however isolation is lower than with virtual machines. Anyway, a complete and isolated docker server using only 80 MB of RAM, great resource utilization.
 
-To installing a decker environment in the LXC container, it was required to install from debian repositories these packages: 
+For installing a docker environment in the LXC container, it was required to install from debian repositories these packages: 
 
 [source]
 ----
