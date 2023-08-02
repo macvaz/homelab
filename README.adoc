@@ -242,7 +242,8 @@ The hardware specs are the following:
 
 |nas
 |Virtual Machine
-|OpenMediaVault 6.3 (based on Debian 11)
+|OpenMediaVault 6.3 + 
+(based on Debian 11)
 |2
 |3 GB
 |- 1 vDisk (for OS) +
