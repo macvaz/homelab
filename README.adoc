@@ -365,25 +365,8 @@ docker hub
 |postgresql
 |
 
-
-
 |===
 
-
-[source]
-----
-  - Pihole
-  - Portainer
-  - Portfolio
-  - Heimdall
-  - Checkmk
-  - Nextcloud
-  - Nginx Proxy Manager
-  - Transmission
-  - Photoprism
-  - mariadb
-  - postgresql
-----
 
 In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. 
 
