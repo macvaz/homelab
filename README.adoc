@@ -170,7 +170,7 @@ Above table only shows LVM LVs. There is also one physical volume (PV) called "p
 
 *Fault-tolerant long-term storage solution needs to be desgined and built* over two 1 TB SSD data disks (/dev/sda and /dev/sdc). Several storage solutions were considered when designing the storage system.
 
-Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different native HCI storage technologies]:
+The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There were https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different native HCI storage technologies]:
 
 |===
 |Technology |Description | Comments
@@ -185,9 +185,9 @@ Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 d
 
 |===
 
-Since both HCI native storage technologies supported by Proxmox where discarded, *finally data disks are not managed by the Proxmox hypervisor in order to provide a storage backend*. 
+Since both HCI native storage technologies supported by Proxmox where discarded, *the storage solution was built from the scratch* in a virtual server. Data disks are not managed by the Proxmox hypervisor but by a virtual machine acting as storage server.
 
-Consequently, a virtual server (not the hypervisor) hosts the storage server. A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
+A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
 This virtual machine is based on the open-source NAS server https://www.openmediavault.org/[OpenMediaVault] (OMV) allowing a central management of the storage services. To get a detailed description of the long-term fault-tolerant storage design, check section <<nas_server, NAS server>>.
 
