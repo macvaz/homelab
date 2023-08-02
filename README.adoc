@@ -264,19 +264,18 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 |backups
 |SMB
-|Long-term storage of virtual servers backups. When backing up NAS server VM, NFS storage is disabled so this VM has a special 2-steps backup process. 
+|Long-term storage of virtual servers backup files. When Proxmox backs up *nas* VM, NFS storage is frozen so this VM has a special 2-steps backup process.
 |proxmox
 
 |documents
 |SMB
-|
+|Long-term storage for important documents. This drive is used by https://nextcloud.com/[NextCloud] application from docker server.
 |docker
 
 |media
 |SMB
-|
+|Long-term storage for family media (photos and videos). This drive is used by https://www.photoprism.app/[PhotoPrism] application from docker server.
 |docker
-
 
 |===
 
