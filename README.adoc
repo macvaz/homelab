@@ -324,7 +324,11 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 ==== Containers
 
-With a running docker environment, it's time to describe the containers deployed in the homelab.
+With a running docker environment, it's time to describe the containers deployed in the homelab. 
+
+https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
+[YAML file]
+
 
 https://www.linuxserver.io/
 docker hub
@@ -389,18 +393,11 @@ In addition, the logical architecture diagram also presents the main external se
 image::img/logical_architecture.png[]
 
 
-
-
-
-===== PiHole
-
 ===== Nextcloud
 
 With Nextcloud Files, users have easy access and can share and collaborate on their files, photos and documents wherever they are. All that without any data leaks to third parties and having full control over their data.
 
 Nextcloud operation documentation can be found xref:nextcloud.adoc[here].
-
-===== Nginx Proxy Manager
 
 ===== Containers to analyze
 
@@ -411,12 +408,6 @@ In analysis:
   - Plex / kodi / jellybin / emby
   - freeipa / Authelia / Keycloack / goauthentik.io/
 ----
-
-==== Docker-compose
-
-https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
-[YAML file]
-
 
 
 
