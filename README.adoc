@@ -238,7 +238,7 @@ image::img/network_diagram.png[]
 The hardware specs are the following:
 
 |===
-|Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
+|Name | Type | OS| vCPUs | RAM | Storage
 
 |nas
 |Virtual Machine
