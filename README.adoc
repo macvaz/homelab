@@ -253,7 +253,7 @@ The hardware specs are the following:
 
 Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*.
 
-Using OMV administration web tool, creating a *fault tolerant 1 TB RAID 1 device* with 2 SATA disks is quite simple. It manages *mdadm (Linux software RAID)* under the hood, offering a really smooth experience. As I wanted to create a file-based storage server (no block-based storaged required), an ext4 file system was created over the RAID device using OMV web GUI.
+Using OMV administration web tool, *creating a fault tolerant 1 TB RAID 1 device* with 2 SATA disks is quite simple. It manages *mdadm (Linux software RAID)* under the hood, offering a really smooth experience. As I wanted to create a file-based storage server (no block-based storaged required), an ext4 file system was created over the RAID device using OMV web GUI.
 
 Now is time to choose which file-based remote storage technology to expose to the clients. OMV mainly offers NFS and SMB. SMB was finally choose due to its security improves over NFS. Finally, using OMV administratiion toool, 3 SMB drives were created over the storage server file system: 
 
