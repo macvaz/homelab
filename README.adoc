@@ -281,19 +281,7 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 === Docker server [[docker_server]]
 
-|===
-|Name | Type | Guest OS| vCPUs (Cores)| RAM | Storage
-
-|docker
-|LXC Container
-|Proxmox LXC debian 11 template
-|3
-|4 GB
-|- 1 vDisks (docker images storage) +
-- external SMB drives
-|===
-
-Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt
+Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt:
 
 [source]
 ----
@@ -304,6 +292,39 @@ Most of the applications running in the minipc are deployed as docker containers
 - minidlna: Export media content via DLNA to smart TV
 - ssmtp: Link mail command line tool to ssmpt allowing security emails reach my personal account
 ----
+
+|===
+|Name | Type | Guest OS| vCPUs | RAM | Storage
+
+|docker
+|LXC Container
+|Proxmox LXC debian 11 template
+|3
+|4 GB
+|- 1 vDisks (docker images storage) +
+- external SMB drives
+|===
+
+==== Containers
+
+Running containers
+
+[source]
+----
+  - Pihole
+  - Portainer
+  - Portfolio
+  - Heimdall
+  - Checkmk
+  - Nextcloud
+  - Nginx Proxy Manager
+  - Transmission
+  - Photoprism
+----
+
+In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
+
+
 
 == 4. Logical architecture
 
@@ -323,24 +344,7 @@ image::img/logical_architecture.png[]
 
 
 
-==== Containers
 
-Running containers
-
-[source]
-----
-  - Pihole
-  - Portainer
-  - Portfolio
-  - Heimdall
-  - Checkmk
-  - Nextcloud
-  - Nginx Proxy Manager
-  - Transmission
-  - photoprism
-----
-
-In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
 
 ===== PiHole
 
