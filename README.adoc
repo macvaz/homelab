@@ -170,7 +170,7 @@ Above table only shows LVM LVs. There is also one physical volume (PV) called "p
 
 *A fault-tolerant long-term storage solution needs to be selected* for the two 1 TB SSD data disks (/dev/sda and /dev/sdc). Several storage solutions were considered when designing the storage system.
 
-The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There were https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different storage technologies]:
+The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There are https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different storage technologies]:
 
 |===
 |Technology |Description | Comments
@@ -252,9 +252,9 @@ The hardware specs are the following:
 
 Proxmox VE allows to create virtual machines with direct access to physical disks using https://pve.proxmox.com/wiki/Passthrough_Physical_Disk_to_Virtual_Machine_(VM)[disk passthrough]. *OpenMediaVault detects both data disks as attached SATA disks*.
 
-Using OMV administration and monitoring web tool, creating a fault tolerant 1 TB RAID 1 device with both SATA disks is quite simple. It manages mdadm tool under the hood, offering a really smooth experience. Once the RAID 1 device (/dev/md0) is up&running, an ext4 file system was created on the device with similar experience.
+Using OMV administration web tool, creating a *fault tolerant 1 TB RAID 1 device* with 2 SATA disks is quite simple. It manages *mdadm (Linux software RAID)* under the hood, offering a really smooth experience. As I wanted to create a file-based storage server (no block-based storaged required), an ext4 file system was created over the RAID device using OMV web GUI.
 
-Finally, 3 SMB drives were created and published to allow data reand and storage from other parts of the homelab like docker server and hypervisor:
+Now is time to choose which file-based remote storage technology to expose to the clients. OMV mainly offers NFS and SMB. SMB was finally choose due to its security improves over NFS. Finally, using OMV administratiion toool, 3 SMB drives were created over the storage server file system: 
 
 |===
 |Drive name | Technology | Description| Authorized users
