@@ -168,7 +168,7 @@ Above table only shows LVM LVs. There is also one physical volume (PV) called "p
 
 === Data disks
 
-Fault-tolerant long-term storage solution for the homelab is built over the 2 data disks. Several storage solutions were considered when designing the storage system.
+*Fault-tolerant long-term storage solution for the homelab is built over the 2 data disks*. Several storage solutions were considered when designing the storage system.
 
 Proxmox supports https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different native HCI storage technologies]:
 
