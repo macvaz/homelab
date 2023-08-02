@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be hard to achieve. 
+In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be limiting for hardware selection. 
 
 Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. *Virtualization technologies may help in both aspects: space savings and power efficiency*.
 
@@ -286,7 +286,7 @@ Finally, 3 SMB drives were created and published to allow data reand and storage
 |LXC Container
 |Proxmox LXC debian 11 template
 |3
-|4 GBs
+|4 GB
 |- 1 vDisks (docker images storage) +
 - external SMB drives
 |===
