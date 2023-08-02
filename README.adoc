@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be limiting factor for hardware selection. 
+In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be the limiting factor for hardware selection. 
 
 Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. *Virtualization technologies may help in both aspects: space savings and power efficiency*.
 
@@ -199,7 +199,6 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 
 Proxmox creates a *Linux bridge interface (vmbr0)* to which all virtual servers are connected. This bridge is also connected to the physical NIC, reusing DHCP server and internet gateway from my Mikrotik router. Consequently, *virtual servers belong to the same IP network (LAN) than the rest of my home devices*. 
 
-
 == 3. Virtual servers [[virtual_servers]]
 
 *Proxmox allows creating 2 types of virtual servers: KVM VMs and LXC containers*. This chapter describes the software-defined infrastructure -virtual servers and networks- that were created. 
@@ -281,17 +280,9 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 === Docker server [[docker_server]]
 
-Most of the applications running in the minipc are deployed as docker containers. However, these ubuntu packages are required to be installed using apt:
+Docker is the facto standard for building, shipping and running containerized applications not only in the enterprise world but also in homelabs. Not a surprise than almost all the user-facing applications running in the homelab are deployed as docker containers. 
 
-[source]
-----
-- qemu-guest-agent: Guest agent for better power managent from host
-- docker.io: Docker engine
-- docker-compose: Multi-container docker applications
-- rclone: Off-site backup
-- minidlna: Export media content via DLNA to smart TV
-- ssmtp: Link mail command line tool to ssmpt allowing security emails reach my personal account
-----
+Before describing containers running in the docker server, let's describe the underlying hardware of the virtual server. The main specs are the following: 
 
 |===
 |Name | Type | Guest OS| vCPUs | RAM | Storage
@@ -303,11 +294,32 @@ Most of the applications running in the minipc are deployed as docker containers
 |4 GB
 |- 1 vDisks (docker images storage) +
 - external SMB drives
+
 |===
+
+This virtual server, contrary to the NAS server, was built based on a Linux Container (LXC) instead of a virtul machine. Proxmox allows to work with both virtualization technologies seamlessly. OMV is a product distributed in a ISO file with its own operating system, ready to be installed in bare metal or in a virtual machine. Linux containers share the kernel with the hypervisor, OMV ISO file is just not designed to work like that. However, a system build from the scratch from a Proxmox LXC Debian 11 template worked perfectly. 
+
+Since this LXC template does not distribute a docker environment by default, it was required to install it from debian repositories: 
+
+[source]
+----
+- docker.io: Docker engine
+- docker-compose: Multi-container docker applications
+----
+
+Aditionally, some extra system packages were installed for house-keeping tasks and automations:
+
+[source]
+----
+- qemu-guest-agent: Guest agent for better power managent from hypervisor
+- rclone: Off-site backup
+- minidlna: Export media content via DLNA to smart TV
+- ssmtp: mail command line tool redirected to my gmail account
+----
 
 ==== Containers
 
-Running containers
+With a running docker environment, it's time to describe the containers deployed in the homelab.
 
 [source]
 ----
@@ -320,9 +332,11 @@ Running containers
   - Nginx Proxy Manager
   - Transmission
   - Photoprism
+  - mariadb
+  - postgresql
 ----
 
-In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. A good practice is to point primary name server to a local DNS server (if existing) and a secondary name server to a well-known DNS server like Google (8.8.8.8).
+In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. 
 
 
 
