@@ -6,7 +6,7 @@
 
 == 1. Hardware architecture
 
-In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be limiting for hardware selection. 
+In a production-grade IT hardware architecture, several specialized appliances are normally deployed. However, homelabs are placed in residential environments where space restrictions can be limiting factor for hardware selection. 
 
 Selecting devices with small form factors is a must to reduce physical space requirements. In addition, power efficiency is also mandatory for this kind of devices as they operate 24x7 but normally running low computational loads. *Virtualization technologies may help in both aspects: space savings and power efficiency*.
 
@@ -75,11 +75,9 @@ The most meaningful details of the physical networks are the following:
 
 |===
 
-Since *virtual networking is internal to the virtualization server*, the next diagram only shows physical networking: 
+*Virtual networking, which is created within the virtualization server*, is described in <<virtual_servers, virtual servers chapter>>. The next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
-
-Virtual networking is presented in <<virtual_servers, virtual servers chapter>>, where virtual servers are described. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines.
 
 === Virtualization node
 
@@ -223,7 +221,7 @@ Virtualization node has only 1 NIC directly attached to my router. However, Prox
 
 |===
 
-The network diagram of the complete networking infrastructure, including both, physical and virtual, is presented:
+After describing the virtual servers in isolation, a network diagram can help to understand how they are connected. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines. The complete network diagram, including physical and virtual networking, can be found here:
 
 image::img/network_diagram.png[]
 
