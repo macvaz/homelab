@@ -257,7 +257,7 @@ Using OMV administration web tool, *creating a fault tolerant 1 TB RAID 1 device
 
 Now was time to choose which file-based network protocol to use in order to give access to the clients. OMV mainly offers NFS and SMB. *SMB protocol was finally choosen due to its security* features. 
 
-Using OMV administration tool again, 3 storage drives were created for external access. Each drive was secured with a user and password. The main features of the SMB drives created in OMV are listed below:  
+Using OMV administration tool again, 3 storage drives were created for external access. Each drive was secured with a user and password. The main features of each SMB drive are listed below:  
 
 |===
 |Drive name | Protocol | Description | Authorized users
