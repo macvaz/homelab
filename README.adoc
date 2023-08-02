@@ -257,10 +257,10 @@ Using OMV administration web tool, *creating a fault tolerant 1 TB RAID 1 device
 
 Now is time to choose which file-based remote storage technology to expose to the clients. OMV mainly offers NFS and SMB. *SMB protocol was finally choosen due to its security* features. 
 
-Finally, using OMV administratiion tool again, 3 drives were created over the storage server file system and exposed via SMB protocol: 
+Finally, using OMV administration tool again, 3 drives were created for external access. Each drive was secured with a user and password. The main features of the SMB drives are listed below:  
 
 |===
-|Drive name | Technology | Description| Authorized users
+|Drive name | Protocol | Description | Authorized users
 
 |backups
 |SMB
