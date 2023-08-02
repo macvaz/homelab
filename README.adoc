@@ -75,7 +75,7 @@ The most meaningful details of the physical networks are the following:
 
 |===
 
-*Virtual networking, which is created within the virtualization server*, are described in <<virtual_servers, virtual servers chapter>>. The next diagram only shows physical networking: 
+*Virtual networking, which is created within the virtualization server*, is described in <<virtual_servers, virtual servers chapter>>. The next diagram only shows physical networking: 
 
 image::img/networking_devices.png[]
 
@@ -170,7 +170,7 @@ Above table only shows LVM LVs. There is also one physical volume (PV) called "p
 
 *A fault-tolerant long-term storage solution needs to be selected* for the two 1 TB SSD data disks (/dev/sda and /dev/sdc). Several storage solutions were considered when designing the storage system.
 
-The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There were https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different native HCI storage technologies]:
+The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There were https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different storage technologies]:
 
 |===
 |Technology |Description | Comments
