@@ -264,7 +264,7 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 |backups
 |SMB
-|Stores virtual servers backups for long term storage. As storage server is a VM, can't store directly into this drive when backing up this VM. Storage server backup is done in 2 steps.
+|Long-term storage of virtual servers backups. When backing up NAS server VM, NFS storage is disabled so this VM has a special 2-steps backup process. 
 |proxmox
 
 |documents
