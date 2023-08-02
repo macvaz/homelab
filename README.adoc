@@ -298,7 +298,9 @@ debian 11 template
 
 |===
 
-docker virtual server, contrary to the NAS server, was *built based on a Linux Container (LXC)* instead of a virtual machine. Proxmox allows to work with both virtualization technologies seamlessly. *OMV is a product distributed in a ISO file with its own operating system*, ready to be installed in bare metal or in a virtual machine. *Linux containers share the kernel with the hypervisor*, OMV ISO file is just not designed to work like that. However, a system build from the scratch from a Proxmox LXC Debian 11 template worked perfectly. 
+*docker* virtual server, contrary to the NAS server, was *built based on a Linux Container (LXC)* instead of a virtual machine. Proxmox allows to work with both virtualization technologies seamlessly. 
+
+*OMV is a product distributed in a ISO file with its own operating system*, ready to be installed in bare metal or in a virtual machine. *Linux containers share the kernel with the hypervisor*, OMV ISO file is just not designed to work like that. However, a system build from the scratch from a Proxmox LXC Debian 11 template worked perfectly. 
 
 Since this LXC template does not distribute a docker environment by default, it was required to install it from debian repositories: 
 
