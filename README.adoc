@@ -168,7 +168,7 @@ Above table only shows LVM LVs. There is also one physical volume (PV) called "p
 
 === Data disks
 
-*Fault-tolerant long-term storage solution needs to be desgined and built* over two 1 TB SSD data disks (/dev/sda and /dev/sdc). Several storage solutions were considered when designing the storage system.
+*A fault-tolerant long-term storage solution needs to be selected* for the two 1 TB SSD data disks (/dev/sda and /dev/sdc). Several storage solutions were considered when designing the storage system.
 
 The first approach was checking fault-tolerant storage backends provided natively by Proxmox VE. There were https://pve.proxmox.com/wiki/Hyper-converged_Infrastructure[2 different native HCI storage technologies]:
 
@@ -181,11 +181,11 @@ The first approach was checking fault-tolerant storage backends provided nativel
 
 |ZFS
 |A combined file system and logical volume manager with extensive protection against data corruption, various RAID modes, fast and cheap snapshots
-|Memory intensive. Recommended ECC memory, not available in minipc. Not really an option.
+|Memory intensive. The lack of recommended ECC memory was a no-go.
 
 |===
 
-Since both HCI native storage technologies supported by Proxmox where discarded, *the storage solution was built from the scratch* in a virtual server. Data disks are not managed by the Proxmox hypervisor but by a virtual machine acting as storage server.
+Since both HCI native storage technologies supported by Proxmox where discarded, *the storage solution was built from the scratch* in a virtual server. Data disks are not managed by the Proxmox hypervisor which delegates that task to a virtual machine acting as storage server.
 
 A virtual machine named "nas" was created with *both data disks directly attached to it by enabling disk-passthrough* at hypervisor level. Using this configuration, data disks (/dev/sda and /dev/sdc) are not used directly neither by the hypervisor nor other virtual servers. 
 
