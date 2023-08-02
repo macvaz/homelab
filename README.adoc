@@ -221,7 +221,9 @@ For running the homelab, 2 virtual servers were deployed, acting as application 
 
 |===
 
-After describing the virtual servers in isolation, a network diagram can help to understand how they are connected. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines. The complete network diagram, including physical and virtual networking, can be found here:
+After describing the virtual servers in isolation, a *network diagram* can help to understand how they are connected. In order to differenciate physical from virtual networking, the former uses black lines and the latter uses green lines. 
+
+The complete network diagram, including physical and virtual networking, can be found here:
 
 image::img/network_diagram.png[]
 
