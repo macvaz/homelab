@@ -280,16 +280,17 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 === Docker server [[docker_server]]
 
-Docker is the facto standard for building, shipping and running containerized applications not only in the enterprise world but also in homelabs. Not a surprise than almost all the user-facing applications running in the homelab are deployed as docker containers. 
+Docker is the facto standard for building, shipping and running containerized applications not only in the enterprise but also in homelabs. Not a surprise than almost all the user-facing applications running in the homelab are deployed as docker containers. 
 
-Before describing containers running in the docker server, let's describe the underlying hardware of the virtual server. The main specs are the following: 
+Before describing containers running in the docker server, let's describe the underlying server specs:  
 
 |===
-|Name | Type | Guest OS| vCPUs | RAM | Storage
+|Name | Server Type | Guest OS| vCPUs | RAM | Storage
 
 |docker
 |LXC Container
-|Proxmox LXC debian 11 template
+|Proxmox LXC + 
+debian 11 template
 |3
 |4 GB
 |- 1 vDisks (docker images storage) +
