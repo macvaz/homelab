@@ -374,7 +374,7 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://hub.docker.com/r/photoprism/photoprism[Docker hub]
 
-|https://mariadb.org/[mariadb]
+|https://mariadb.org/[MariaDB]
 |Open-source relational database
 |Public
 |https://hub.docker.com/_/mariadb[Docker hub]
