@@ -128,7 +128,7 @@ image::img/physical_architecture.png[]
 
 == 2. Virtualization node
 
-Since proxmox virtualization server is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal directly over hardware. Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+Since proxmox virtualization server is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal, directly over proxmox1's hardware. Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
