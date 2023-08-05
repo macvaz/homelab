@@ -344,7 +344,7 @@ With a running docker environment, it's time to describe the containers deployed
 |Private
 |Docker hub
 
-|Heimdall
+|https://heimdall.site/[Heimdall]
 |Dashboard for all applications and services deployed in the homelab
 |Public
 |https://docs.linuxserver.io/images/docker-heimdall[LinuxServer]
