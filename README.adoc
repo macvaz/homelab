@@ -85,21 +85,6 @@ In a residential environment, optimizing the number of specilized hardware appli
 
 https://www.proxmox.com/en/proxmox-ve[Proxmox VE] offers a complete virtualization solution ready for professional datacenter management. Proxmox VE is based on KVM kernel virtualization technology and provides a lot of out-of-the-shelf solutions and best practices.
 
-*In the homelab, there is only 1 virtualization node (proxmox1), that hosts all virtual infrastructure*. Its hardware specs are the following:
-
-|===
-|Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
-
-|proxmox1
-|192.168.1.6
-|Proxmox VE 7.36 (based on Debian Linux)
-|1 Intel Celeron (J5040)
-|4
-|16 GBs
-|0.5TB SSD
-|2x 1TB SSD
-|===
-
 Proxmox *hypervisor allows the creation of virtual servers (VMs and LXC containers) by sharing the underlying hardware* of the virtualization node. Hypervisor manages physical hardware as resource pools that are asigned to virtual servers at creation time. Each virtual server thinks its hardware resources are dedicated.
 
 Hardware selection was basically driven by power efficency. *With a combined TDP (thermal design power) of 15 watts*, both CPU model (Intel Celeron J5040) and mother-board (Asrock J5040 ITX) were outstanding options.
@@ -120,15 +105,30 @@ image::img/kvm_extender_diagram.png[]
 
 Some content of this section is taken from https://video.matrox.com/, that provides a great description of what a KVM extender is and how it works.
 
-=== Complete hardware architecture
+=== Hardware architecture diagram
 
 Once described into some detail all devices, a complete hardware architecture is shown:
 
 image::img/physical_architecture.png[]
 
-== 2. Virtualization node
+== 2. Virtualization server
 
-Since proxmox virtualization server is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal, *directly over hardware*. Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+*There is only 1 virtualization node (proxmox1) where virtualization server (Proxmox VE) is installed . Its hardware specs are the following:
+
+|===
+|Host OS name | IP address| Operating System| CPUs | Cores| RAM | OS Disk | Data disks
+
+|proxmox1
+|192.168.1.6
+|Proxmox VE 7.36 (based on Debian Linux)
+|1 Intel Celeron (J5040)
+|4
+|16 GBs
+|0.5TB SSD
+|2x 1TB SSD
+|===
+
+Since Proxmox Virtual Environment (VE) is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal, *directly over hardware*. Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
@@ -404,7 +404,7 @@ Above containers are deployed in *2 different docker-compose stacks* (homelab.ym
 All docker IPs are privave and not reacheble from docker virtual server without going troguth proxy container. Only pihole container is reachable from the rest of the homelab in order to expose DNS services to the client network components (mobile phones, tables and pcs)
 
 
-=== Logical architecture
+=== Logical architecture diagram
 
 In this section, *main services and batch jobs* deployed on the homelab are presented. This diagram includes, from a logical point of view, software running in both bare-metal infrastructure (hypervisor) and virtual servers ("nas" and "docker").
 
