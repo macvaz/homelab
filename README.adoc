@@ -392,14 +392,10 @@ The list of docker containers available in the homelab is the following:
 
 |===
 
-All above containers are easily 
-
-https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
-[YAML file]
+All above contaienrs are deployed a 2 different docker-compose stacks. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here]:
 
 
-https://www.linuxserver.io/
-docker hub
+=== Logical architecture
 
 In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
