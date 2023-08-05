@@ -324,11 +324,11 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 == 4. Logical architecture
 
-With a running docker environment up&running as described in <<docker_server, docker server section>>, it's time to describe all customer facing applications deployed in the homelab and how they cooperate in a logical architecture.
+Once both virtual servers -storage and applications- are up&running, it's time to deploy customer facing applications over them. In the following sections, applications are presented in both a static and dynamic way.
 
 === Containers
 
-All application exposed to users are deployed as Docker containers. Most of them are open-source community driven applications that ship its own docker images in external repositorios like Docker Hub or Linux Servers. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
+All application exposed to end users are deployed as Docker containers. Most of them are open-source community driven applications that can be found easilly in docker image repositories like  Docker Hub or Linux Servers. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
 
 The list of docker containers available in the homelab is the following: 
 
