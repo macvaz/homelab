@@ -126,9 +126,9 @@ Once described into some detail all devices, a complete hardware architecture is
 
 image::img/physical_architecture.png[]
 
-== 2. Virtualization node (Proxmox hypervisor)
+== 2. Virtualization node
 
-Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than installing any Linux-based OS. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+Since proxmox virtualization server is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal directly over hardware. Installing *Proxmox Virtual Environment (PVE) 7.3* is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
@@ -392,10 +392,10 @@ The list of docker containers available in the homelab is the following:
 
 |===
 
-All above contaienrs are deployed a 2 different docker-compose stacks. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here]:
+All above contaienrs are deployed a 2 different docker-compose stacks. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
 
 
-=== Logical architecture
+=== Software architecture
 
 In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
