@@ -364,7 +364,7 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://hub.docker.com/r/jc21/nginx-proxy-manager[Docker hub]
 
-|Transmission
+|https://transmissionbt.com/[Transmission]
 |A Fast, Easy and Free Bittorrent Client
 |Public
 |https://docs.linuxserver.io/images/docker-transmission[LinuxServer]
