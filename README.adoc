@@ -392,7 +392,7 @@ The list of docker containers available in the homelab is the following:
 
 |===
 
-Above containers are deployed in *2 different docker-compose stacks*. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
+Above containers are deployed in *2 different docker-compose stacks* (homelab and portainer). All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
 
 
 === Software architecture
