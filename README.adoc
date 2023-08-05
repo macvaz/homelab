@@ -324,7 +324,7 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 == 4. Software architecture
 
-Once both virtual servers -storage and applications- are up&running, it's time to deploy customer-facing applications over them. In the following section, applications are described from a funcional standpoint. Finally, the logical architecture of the complete solution is presented in a diagram.
+Once both virtual servers -storage and applications- are up&running, it's time to deploy customer-facing applications over them. In the following sections, a *functional description* of the applications and its *logical architecture* are presented. 
 
 === Containers
 
