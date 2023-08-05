@@ -280,7 +280,7 @@ Using OMV administration tool again, *3 storage drives* were created for externa
 
 === Docker server [[docker_server]]
 
-Docker is the facto standard for building, shipping and running containerized applications not only in the enterprise but also in homelabs. Not a surprise than almost all the user-facing applications running in the homelab are deployed as docker containers. 
+Docker is the facto standard for building, shipping and running *containerized applications* not only in the enterprise but also in homelabs. Not a surprise than almost all the user-facing applications running in the homelab are deployed as docker containers. 
 
 Before describing containers running in the docker server, let's describe the underlying server specs:  
 
@@ -298,13 +298,13 @@ debian 11 template
 
 |===
 
-Contrary to the NAS server, *docker server was built based on a Linux Container (LXC)* instead of a virtual machine. Using Linux Containers has several advantages like reducing RAM consumption, since *hypervisor and containers share a unique Linux kernel*. However, this deployment model has several limitations on how certain tasks are done and not all software can be deployed inside a Linux Container. 
+Contrary to the NAS server, *docker server was built based on a Linux Container (LXC)* instead of a virtual machine. Using Linux Containers has several advantages like reducing RAM consumption, since *hypervisor and containers share a unique Linux kernel*. However, this deployment model has some limitations on how certain tasks are done and not all software can be deployed inside a Linux Container. 
 
 *OpenMediaVault is a product*, distributed both as an ISO file or as a .deb package. *Several errors occurred during the installation* of the .deb package in one LXC container. Official documentation recommends to install OMV in bare metal or in virtual machines, not Linux Containers. Due to that errors, OMV was finally deployed in a virtual machine using the ISO file. 
 
-On the other way, *docker packages worked perfectly well inside LXC containers using the Debian 11 template*. After running Linux Containers for a while, I can recommend this technology, very few limitations detected. A complete and isolated docker server using only 80 MB of RAM, great resource utilization.
+On the other way, *docker packages worked perfectly well inside LXC containers using the Debian 11 template*. After running Linux Containers for a while, I can recommend this technology, very few limitations detected. A complete and isolated docker server using only 80 MB of RAM is great resource utilization.
 
-For installing a docker environment in the LXC container, it was required to install from debian repositories these packages: 
+A docker environment was required to be installed from debian packaged in the LXC container: 
 
 [source]
 ----
