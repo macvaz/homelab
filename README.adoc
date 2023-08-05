@@ -349,9 +349,10 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://docs.linuxserver.io/images/docker-heimdall[LinuxServer]
 
-|checkmk
-|
-|Docker hub
+|https://checkmk.com/[Checkmk Raw Edition]
+|Open-source infrastructure and application monitoring tool
+|Public
+|https://hub.docker.com/r/checkmk/check-mk-raw[Docker hub]
 
 |nextcloud
 |
