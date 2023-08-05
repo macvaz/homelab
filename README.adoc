@@ -326,9 +326,9 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 Once virtual servers -storage and applications- are described, it's time to show what *applications and services* are available in the homelab. In the following sections, a *functional description* of the applications and a complete *logical architecture diagram* are presented. 
 
-=== Containers
+=== Applications
 
-All application exposed to end users are deployed as Docker containers. Most of them are open-source community driven applications that can be found easilly in docker image repositories like https://hub.docker.com/[Docker Hub] or https://www.linuxserver.io/[Linux Servers]. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
+All application exposed to end users are deployed as *Docker containers*. Most of them are open-source community-driven applications that can be easilly found in docker image repositories like https://hub.docker.com/[Docker Hub] or https://www.linuxserver.io/[Linux Servers]. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
 
 The list of docker containers available in the homelab is the following: 
 
@@ -392,7 +392,7 @@ The list of docker containers available in the homelab is the following:
 
 |===
 
-All above contaienrs are deployed a 2 different docker-compose stacks. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
+Above containers are deployed in *2 different docker-compose stacks*. All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
 
 
 === Software architecture
@@ -410,24 +410,6 @@ In addition, the logical architecture diagram also presents the main external se
 ----
 
 image::img/logical_architecture.png[]
-
-
-===== Nextcloud
-
-With Nextcloud Files, users have easy access and can share and collaborate on their files, photos and documents wherever they are. All that without any data leaks to third parties and having full control over their data.
-
-Nextcloud operation documentation can be found xref:nextcloud.adoc[here].
-
-===== Containers to analyze
-
-In analysis:
-
-[source]
-----
-  - Plex / kodi / jellybin / emby
-  - freeipa / Authelia / Keycloack / goauthentik.io/
-----
-
 
 
 
