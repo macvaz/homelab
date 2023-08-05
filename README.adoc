@@ -304,7 +304,7 @@ Contrary to the NAS server, *docker server was built based on a Linux Container 
 
 On the other way, *docker packages worked perfectly well inside LXC containers using the Debian 11 template*. After running Linux Containers for a while, I can recommend this technology, very few limitations detected. A complete and isolated docker server using only 80 MB of RAM is great resource utilization.
 
-A docker environment was required to be installed from debian packaged in the LXC container: 
+A docker environment was required to be installed from debian packages in the LXC container: 
 
 [source]
 ----
@@ -324,7 +324,7 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 == 4. Software architecture
 
-Once both virtual servers -storage and applications- are up&running, it's time to deploy customer facing applications over them. In the following sections, applications are presented in both a static and dynamic way.
+Once both virtual servers -storage and applications- are up&running, it's time to deploy customer facing applications over them. In the following section, applications are described from a funcional standpoint. Finally, the logical architecture of the complete solution is presented in a diagram.
 
 === Containers
 
