@@ -326,53 +326,63 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 With a running docker environment, it's time to describe the containers deployed in the homelab. 
 
+|===
+|Application | Description| Images repository
+
+|https://pi-hole.net/[Pi-hole]
+|Network ad blocker
+|Docker hub
+
+|https://www.portainer.io/[portainer]
+|Docker container management tool
+|Docker hub
+
+|portfolio
+|
+|Docker hub
+
+|heimdall
+|
+|Docker hub
+
+|checkmk
+|
+|Docker hub
+
+|nextcloud
+|
+|Docker hub
+
+|Nginx Proxy Manager
+|
+|Docker hub
+
+|transmission
+|
+|Docker hub
+
+|photoprism
+|
+|Docker hub
+
+|mariadb
+|
+|Docker hub
+
+|postgresql
+|
+|Docker hub
+
+|===
+
+All above containers are easily 
+
 https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
 [YAML file]
 
 
 https://www.linuxserver.io/
 docker hub
-
-|===
-|Application | Description
-
-|pihole
-|
-
-|portainer
-|
-
-|portfolio
-|
-
-|heimdall
-|
-
-|checkmk
-|
-
-|nextcloud
-|
-
-|Nginx Proxy Manager
-|
-
-|transmission
-|
-
-|photoprism
-|
-
-|mariadb
-|
-
-|postgresql
-|
-
-|===
-
-
-In order to run pihole DNS service on Ubuntu server, disable systemd-resolved local DNS server. 
 
 
 
