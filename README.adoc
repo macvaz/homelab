@@ -327,15 +327,15 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 With a running docker environment, it's time to describe the containers deployed in the homelab. 
 
 |===
-|Application | Description| Images repository
+|Application | Description| Image
 
 |https://pi-hole.net/[Pi-hole]
-|Network ad blocker
+|Open-source network ad blocker
 |Docker hub
 
-|https://www.portainer.io/[portainer]
-|Docker container management tool
-|Docker hub
+|https://www.portainer.io/[Portainer CE]
+|Portainer CE - a lightweight service delivery platform for containerized applications
+|https://hub.docker.com/r/portainer/portainer-ce[Docker hub]
 
 |portfolio
 |
