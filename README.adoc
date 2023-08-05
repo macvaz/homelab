@@ -324,11 +324,11 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 == 4. Software architecture
 
-Once both virtual servers -storage and applications- are up&running, it's time to deploy customer facing applications over them. In the following section, applications are described from a funcional standpoint. Finally, the logical architecture of the complete solution is presented in a diagram.
+Once both virtual servers -storage and applications- are up&running, it's time to deploy customer-facing applications over them. In the following section, applications are described from a funcional standpoint. Finally, the logical architecture of the complete solution is presented in a diagram.
 
 === Containers
 
-All application exposed to end users are deployed as Docker containers. Most of them are open-source community driven applications that can be found easilly in docker image repositories like  Docker Hub or Linux Servers. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
+All application exposed to end users are deployed as Docker containers. Most of them are open-source community driven applications that can be found easilly in docker image repositories like https://hub.docker.com/[Docker Hub] or https://www.linuxserver.io/[Linux Servers]. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
 
 The list of docker containers available in the homelab is the following: 
 
