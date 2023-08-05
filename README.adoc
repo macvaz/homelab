@@ -387,7 +387,7 @@ The list of docker containers available in the homelab is the following:
 
 |https://www.postgresql.org/[PostgreSQL]
 |Advanced Open Source Relational Database
-|Yes
+|Public
 |https://hub.docker.com/_/postgres[Docker hub]
 
 |===
