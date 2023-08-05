@@ -397,9 +397,9 @@ Above containers are deployed in *2 different docker-compose stacks* (homelab.ym
 
 === Software architecture
 
-In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
+In this section, *main services and batch jobs* deployed on the homelab are presented. This diagram includes, from a logical point of view, software running in both bare-metal infrastructure (hypervisor) and virtual servers ("nas" and "docker").
 
-In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are fee of use. The main external services used are:
+In addition, the logical architecture diagram also presents the main external services used by the system. Excluding domain registration, all other services are free to use. The main external services used are:
 
 [source]
 ----
