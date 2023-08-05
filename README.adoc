@@ -322,7 +322,7 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 - ssmtp: mail command line tool redirected to my gmail account
 ----
 
-== 4. Logical architecture
+== 4. Software solution
 
 Once both virtual servers -storage and applications- are up&running, it's time to deploy customer facing applications over them. In the following sections, applications are presented in both a static and dynamic way.
 
