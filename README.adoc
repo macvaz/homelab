@@ -340,7 +340,7 @@ With a running docker environment, it's time to describe the containers deployed
 |https://hub.docker.com/r/portainer/portainer-ce[Docker hub]
 
 |Portfolio manager
-|Personal investing tool based on Spanish mutual funds
+|Internal development of a personal investing tool based on Spanish mutual funds
 |Private
 |Docker hub
 
@@ -354,7 +354,7 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://hub.docker.com/r/checkmk/check-mk-raw[Docker hub]
 
-|https://nextcloud.com/[Nextcloud AIO]
+|https://nextcloud.com/[Nextcloud]
 |On-premise file storage and collaboration suite
 |Public
 |https://hub.docker.com/r/nextcloud/all-in-one[Docker hub]
@@ -374,15 +374,15 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://hub.docker.com/r/photoprism/photoprism[Docker hub]
 
-|mariadb
-|
-|
-|Docker hub
+|https://mariadb.org/[mariadb]
+|Open-source relational database
+|Public
+|https://hub.docker.com/_/mariadb[Docker hub]
 
-|postgresql
-|
-|
-|Docker hub
+|https://www.postgresql.org/[PostgreSQL]
+|Advanced Open Source Relational Database
+|Yes
+|https://hub.docker.com/_/postgres[Docker hub]
 
 |===
 
