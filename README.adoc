@@ -359,10 +359,10 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://hub.docker.com/r/nextcloud/all-in-one[Docker hub]
 
-|Nginx Proxy Manager
-|
-|
-|Docker hub
+|https://nginxproxymanager.com/[Nginx Proxy Manager]
+|Reverse proxy for exposing web services in a secure way based on Let's Encrypt
+|Public
+|https://hub.docker.com/r/jc21/nginx-proxy-manager[Docker hub]
 
 |transmission
 |
