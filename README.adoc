@@ -342,11 +342,12 @@ With a running docker environment, it's time to describe the containers deployed
 |Portfolio manager
 |Personal investing tool based on Spanish mutual funds
 |Private
-|https://hub.docker.com/r/macvaz82/portfolio[Docker hub]
-
-|heimdall
-|
 |Docker hub
+
+|Heimdall
+|Dashboard for all applications and services deployed in the homelab
+|Public
+|https://docs.linuxserver.io/images/docker-heimdall[LinuxServer]
 
 |checkmk
 |
