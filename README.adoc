@@ -128,7 +128,7 @@ There is only *one virtualization node (proxmox1) where Proxmox hypervisor shoul
 |2x 1TB SSD
 |===
 
-Since *Proxmox Virtual Environment (PVE)* is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal, *directly over hardware*. Installing Proxmox Virtual Environment is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
+Since *Proxmox Virtual Environment (PVE)* is a https://en.wikipedia.org/wiki/Hypervisor[Type 1 hypervisor], it is installed bare-metal, *directly over hardware*. Installing Proxmox hypervisor is not harder than any bare-metal Linux-based installation. *ventoy* was used to flash Proxmox PVE ISO file in a USB stick. proxmox1 was then booted from the USB drive and conducted a common installation using the KVM extender.
 
 === OS disk
 
