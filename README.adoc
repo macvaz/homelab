@@ -331,7 +331,7 @@ With a running docker environment, it's time to describe the containers deployed
 
 |https://pi-hole.net/[Pi-hole]
 |Open-source network ad blocker
-|Docker hub
+|https://hub.docker.com/r/pihole/pihole[Docker hub]
 
 |https://www.portainer.io/[Portainer CE]
 |Portainer CE - a lightweight service delivery platform for containerized applications
