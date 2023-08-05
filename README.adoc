@@ -324,7 +324,7 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 
 == 4. Software architecture
 
-Once virtual servers -storage and applications- are described, it's time to show what *applications and services* ara available in the homelab. In the following sections, a *functional description* of the applications and a complete *logical architecture diagram* are presented. 
+Once virtual servers -storage and applications- are described, it's time to show what *applications and services* are available in the homelab. In the following sections, a *functional description* of the applications and a complete *logical architecture diagram* are presented. 
 
 === Containers
 
