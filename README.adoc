@@ -396,10 +396,13 @@ Above containers are deployed in *2 different docker-compose stacks* (homelab.ym
 
 === Service architecture
 
-3 layers:
+3 service layers:
+[source]
+----
  - Reverse proxy managing SSL certificates (nginx proxy manager)
  - Docker web front-ends
  - Docker database backends (MariaDB and PostgreSQL)
+----
 
 All docker IPs are privave and not reacheble from docker virtual server without going troguth proxy container. Only pihole container is reachable from the rest of the homelab in order to expose DNS services to the client network components (mobile phones, tables and pcs)
 
