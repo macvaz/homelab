@@ -322,9 +322,15 @@ Additionally, some extra system packages were installed for house-keeping tasks 
 - ssmtp: mail command line tool redirected to my gmail account
 ----
 
-==== Containers
+== 4. Logical architecture
 
-With a running docker environment, it's time to describe the containers deployed in the homelab. 
+With a running docker environment up&running as described in <<docker_server, docker server section>>, it's time to describe all customer facing applications deployed in the homelab and how they cooperate in a logical architecture.
+
+=== Containers
+
+All application exposed to users are deployed as Docker containers. Most of them are open-source community driven applications that ship its own docker images in hubs like Docker Hub or Linux Servers. There is also one internal development (portfolio manager) that it's also deployed as a docker container.
+
+The list of docker containers available in the homelab is the following: 
 
 |===
 |Application |Description| Repo | Image
@@ -394,10 +400,6 @@ https://github.com/macvaz/homelab/blob/main/docker/docker-compose.yaml
 
 https://www.linuxserver.io/
 docker hub
-
-
-
-== 4. Logical architecture
 
 In this section, the *main services and batch jobs* deployed on the homelab are presented. This diagram includes software running in both bare-metal infrastructure (hypervisor) and virtual infrastructure ("nas" and "docker" virtual servers).
 
