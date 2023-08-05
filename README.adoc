@@ -369,10 +369,10 @@ With a running docker environment, it's time to describe the containers deployed
 |Public
 |https://docs.linuxserver.io/images/docker-transmission[LinuxServer]
 
-|Photoprism
-|
-|
-|Docker hub
+|https://www.photoprism.app/[Photoprism]
+|AI powered photo app you can run safely at home
+|Public
+|https://hub.docker.com/r/photoprism/photoprism[Docker hub]
 
 |mariadb
 |
