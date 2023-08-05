@@ -356,25 +356,31 @@ With a running docker environment, it's time to describe the containers deployed
 
 |nextcloud
 |
+|
 |Docker hub
 
 |Nginx Proxy Manager
+|
 |
 |Docker hub
 
 |transmission
 |
+|
 |Docker hub
 
 |photoprism
+|
 |
 |Docker hub
 
 |mariadb
 |
+|
 |Docker hub
 
 |postgresql
+|
 |
 |Docker hub
 
