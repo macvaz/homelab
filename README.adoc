@@ -394,8 +394,17 @@ The list of docker containers available in the homelab is the following:
 
 Above containers are deployed in *2 different docker-compose stacks* (homelab.yml and portainer.yml). All docker-related information can be found https://github.com/macvaz/homelab/blob/main/docker[here].
 
+=== Service architecture
 
-=== Software architecture
+3 layers:
+ - Reverse proxy managing SSL certificates (nginx proxy manager)
+ - Docker web front-ends
+ - Docker database backends (MariaDB and PostgreSQL)
+
+All docker IPs are privave and not reacheble from docker virtual server without going troguth proxy container. Only pihole container is reachable from the rest of the homelab in order to expose DNS services to the client network components (mobile phones, tables and pcs)
+
+
+=== Logical architecture
 
 In this section, *main services and batch jobs* deployed on the homelab are presented. This diagram includes, from a logical point of view, software running in both bare-metal infrastructure (hypervisor) and virtual servers ("nas" and "docker").
 
