@@ -396,7 +396,7 @@ Above containers are deployed in *2 different docker-compose stacks* (homelab.ym
 
 === Service architecture
 
-By default, each docker container exports its web applications in different TCP ports, providing a very fragmented and uncomfortable browsing experience. In addition, some of the applications use HTTP and others self-signed HTTPS. One common best practice for exposing different web applications, in a secure and professional way, is to setup a reverse proxy.
+By default, each docker container exports its web applications in different TCP ports, providing a very fragmented and uncomfortable browsing experience. In addition, some of the applications use HTTP and other applications use self-signed HTTPS. One common *best practice for exposing different web applications, in a secure and professional way, is to setup a reverse proxy*.
 
 Nginx Proxy Manager (NPM) is deployed as a docker container and is the only web application that end users can reach directly. Since all other docker containers have only internal IP addresses (10.10.10.0/24), web traffic needs to be forwarded through the proxy. Each docker container gets a FQDN from thehomelab.site domain. When a request is send to the proxy (ie. nextcloud.thehomelab.site) NPM checks its configuration in order to forward the request to nextcloud's internal IP address. NPM it's also responsible for all SSL handshakes and also Let's Encrypt domain certificates renewals using DNS Challanges with CloudFlare.
 
