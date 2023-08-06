@@ -400,15 +400,11 @@ By default, each docker container exports its web applications in different TCP 
 
 Nginx Proxy Manager (NPM) is deployed as a docker container and is the only web application that end users can reach directly. Since all other docker containers have only internal IP addresses (10.10.10.0/24), web traffic needs to be forwarded through the proxy. Each docker container gets a FQDN from thehomelab.site domain. When a request is send to the proxy (ie. nextcloud.thehomelab.site) NPM checks its configuration in order to forward the request to nextcloud's internal IP address. NPM it's also responsible for all SSL handshakes and also Let's Encrypt domain certificates renewals using DNS Challanges with CloudFlare.
 
-Using NPM as a reverse proxy has several advantages:
-
-[source]
-----
- - There is only 1 HTTPS port (443) open for all web applications exposed from docker. All web traffic is forwarded via that unique port, hiding the internal ports of each docker container.
- - NPM uses a valid SSL certificate from Let's Encrypt for securing all web applications behind the proxy. Client web browsers present a validated certificate for all of them
- - Each docker container with a web interface gets a FQDN of thehomelab.site domain. NPM redirects internally to the given docker container based on the FQDN.
- - There is a central point for controlling web traffic where other best practices can be applied in the future (Identity Management, quality of service, etc)
-----
+.Using NPM as a reverse proxy has several advantages:
+ * There is only 1 HTTPS port (443) open for all web applications exposed from docker. All web traffic is forwarded via that unique port, hiding the internal ports of each docker container.
+ * NPM uses a valid SSL certificate from Let's Encrypt for securing all web applications behind the proxy. Client web browsers present a validated certificate for all of them
+ * Each docker container with a web interface gets a FQDN of thehomelab.site domain. NPM redirects internally to the given docker container based on the FQDN.
+ * There is a central point for controlling web traffic where other best practices can be applied in the future (Identity Management, quality of service, etc)
 
 There are 3 relational databases running in the homelab: 1 PostgreSQL server (portfolio manager) and 2 MariaDB servers (photoprism and nextcloud). The serving ports for these databases remain closed from LAN network (192.168.1.0/24) being only available for docker containers using the internal  docker network (10.10.10.0/24). This desing enhances security by reducing exposed surface.
 
