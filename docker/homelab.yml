@@ -13,6 +13,7 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - TZ=Europe/Madrid
     networks:
       - homelab
     volumes:
@@ -34,6 +35,7 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - TZ=Europe/Madrid
       - MYSQL_RANDOM_ROOT_PASSWORD=1
       - MYSQL_PASSWORD=$PHOTOPRISM_PASSWORD
       - MYSQL_DATABASE=photoprism
@@ -51,6 +53,7 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - TZ=Europe/Madrid
       - MYSQL_RANDOM_ROOT_PASSWORD=1
       - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
       - MYSQL_DATABASE=nextcloud
@@ -68,6 +71,7 @@ services:
     container_name: checkmk
     environment:
       CMK_PASSWORD: $LOGIN_PASSWORD
+      TZ: Europe/Madrid
     networks:
       - homelab
     volumes:
@@ -86,6 +90,7 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - TZ=Europe/Madrid
       - MYSQL_PASSWORD=$NEXTCLOUD_PASSWORD
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
@@ -140,6 +145,7 @@ services:
       PHOTOPRISM_INDEX_SCHEDULE: ""
       PHOTOPRISM_DISABLE_BACKGROUNDS: "true"
       PHOTOPRISM_WAKEUP_INTERVAL: 86400
+      TZ: Europe/Madrid
     working_dir: "/photoprism"
     networks:
       - homelab
@@ -190,7 +196,7 @@ services:
     container_name: pihole
     hostname: pihole
     environment:
-      - TZ='Europe/Madrid'
+      - TZ=Europe/Madrid
       - PUID=$PUID
       - PGID=$PGID
       - VIRTUAL_HOST=$PIHOLE_VIRTUAL_HOST
@@ -211,6 +217,7 @@ services:
     environment:
       - PUID=$PUID
       - PGID=$PGID
+      - TZ=Europe/Madrid
       - BW_DOMAIN=$BITWARDEN_DOMAIN
       - BW_DB_PROVIDER=$BITWARDEN_DB_PROVIDER
       - BW_INSTALLATION_ID=$BITWARDEN_INSTALLATION_ID
@@ -234,6 +241,7 @@ services:
     user: "${PUID}:${PGID}"
     environment:
       - FRED_API_KEY=$FRED_API_KEY
+      - TZ=Europe/Madrid
       - MPLCONFIGDIR=/tmp/matplotlib
       - MS_BEARER_TOKEN_PATH=/tmp/morningstar.token
     volumes:
@@ -256,5 +264,6 @@ services:
     ipc: host
     environment:
       MS_BEARER_TOKEN_PATH: /tmp/morningstar.token
+      TZ: Europe/Madrid
     volumes:
       - /tmp:/tmp
