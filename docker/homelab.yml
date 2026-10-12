@@ -197,12 +197,12 @@ services:
     hostname: pihole
     environment:
       - TZ=Europe/Madrid
-      - PUID=$PUID
-      - PGID=$PGID
-      - VIRTUAL_HOST=$PIHOLE_VIRTUAL_HOST
+      - PIHOLE_UID=$PUID
+      - PIHOLE_GID=$PGID
+      - FTLCONF_webserver_api_password=$LOGIN_PASSWORD
+      - FTLCONF_dns_listeningMode=all
     volumes:
       - $VOL_DATA/pihole/etc-pihole:/etc/pihole
-      - $VOL_DATA/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp" # DNS
       - "53:53/udp" # DNS
